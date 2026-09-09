@@ -61,7 +61,8 @@ Phases below follow `MASTER-PROMPT.md` §47.
       by the country architecture spec (nullable `countryId` on `HomepageSection`/`Banner`/`CmsPage`);
       admin UI and resolution logic not yet implemented.
 - [ ] Product architecture updates for handicraft domain
-- [ ] Media/CDN architecture (§19)
+- [x] Media/CDN architecture — **decided**: reuse existing pipeline as-is, defer CDN fronting to
+      Phase 5/8 (`docs/decisions/0005-media-cdn-architecture.md`, 2026-09-09). No code changes needed now.
 - [ ] SEO foundation
 
 ## Phase 2 — Handicraft Domain
