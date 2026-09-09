@@ -95,6 +95,11 @@ Phases below follow `MASTER-PROMPT.md` §47.
 
 ## Backlog / ad-hoc
 
-- [ ] `npm install` in `wood-vintage/backend` and `wood-vintage/frontend`
+- [x] `npm install` in `wood-vintage/backend` and `wood-vintage/frontend` (2026-09-09)
 - [ ] Recreate `.env` (backend) and `.env.local` (frontend) from their `.example` files with real values
 - [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
+- [ ] **Frontend security:** fix 2 critical (`next` RCE, `swiper` prototype pollution) + 7 high npm
+      vulnerabilities — see `docs/claude/technical-debt.md`. Needs testing, not a blind
+      `npm audit fix --force` (major/breaking bumps).
+- [ ] **Backend security:** triage 17 npm vulnerabilities (2 low, 8 moderate, 7 high) — see
+      `docs/claude/technical-debt.md`.
