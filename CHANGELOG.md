@@ -83,3 +83,33 @@ file is the higher-level, release-facing summary.
     review alone. Test user/order/script cleaned up afterward.
   - Deployment notes: local dev only; not deployed anywhere. `unique-dressup` unaffected — this
     fix was not backported there.
+- Frontend: all 9 npm vulnerabilities fixed (2 critical, 7 high), `npm audit` now clean. `next`
+  patched (`15.5.19` → `^15.5.25`, no code changes), `swiper` patched (`^11.1.14` → `^14.2.0`,
+  npm called it breaking but the real usages needed no changes), `postcss` pinned via an
+  `overrides` entry.
+  - Files changed: `frontend/package.json`, `frontend/package-lock.json`. See
+    `wood-vintage/frontend` commit `d1ec1a0` and `docs/decisions/0007-frontend-npm-vulnerabilities-fixed.md`.
+  - DB changes: none.
+  - API changes: none.
+  - Migration requirements: none.
+  - Testing status: `tsc --noEmit` + `npm run build` clean; full-stack boot + `curl` confirmed
+    correct SSR markup for both carousels. Independently re-verified after the fact (not just
+    trusted): `npm audit` re-run shows 0 vulnerabilities. **Disclosed gap**: real-browser
+    hydration/interactivity of the carousels not verified (tooling couldn't reach this sandbox's
+    localhost) — tracked as a follow-up.
+  - Deployment notes: local dev only.
+- Six architecture decisions recorded for Phase 1 Foundation, done in parallel with the two
+  background agents above (no code changes, documentation-repo only): Country/Currency
+  architecture spec (not yet applied to the backend schema), international URL strategy
+  (subdirectory-per-country), launch-market reference data for all 8 markets, Media/CDN
+  architecture (reuse existing pipeline), and SEO foundation scope. See `docs/decisions/0004`
+  through `0006` plus the country spec in `docs/architecture/`.
+  - Files changed: `docs/architecture/country-architecture-spec.md`,
+    `docs/decisions/0004-international-url-strategy.md`,
+    `docs/decisions/0005-media-cdn-architecture.md`, `docs/decisions/0006-seo-foundation-scope.md`,
+    `docs/countries/launch-markets-reference.md`, plus `tasks/TASKS.md` and
+    `docs/claude/known-decisions.md` updates.
+  - DB/API changes: none — specs and decisions only, no implementation yet.
+  - Testing status: N/A (documentation only).
+  - Deployment notes: N/A. Three open product/business questions consolidated at the top of
+    `tasks/TASKS.md`, explicitly not blocking current engineering work.

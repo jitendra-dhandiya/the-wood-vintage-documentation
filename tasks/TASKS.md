@@ -142,10 +142,14 @@ Phases below follow `MASTER-PROMPT.md` §47.
 - [ ] Fill in real third-party keys as each feature is needed: Razorpay, Google OAuth, Brevo/SMTP
       (none currently set — see `backend/.env` / `frontend/.env.local`)
 - [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
-- [ ] **Frontend security:** fix 2 critical (`next` RCE, `swiper` prototype pollution) + 7 high npm
-      vulnerabilities — see `docs/claude/technical-debt.md`. Needs testing, not a blind
-      `npm audit fix --force` (major/breaking bumps).
+- [x] **Frontend security:** all 9 vulnerabilities fixed, `npm audit` now clean (2026-09-09,
+      `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. One disclosed
+      verification gap remains: real-browser hydration/interactivity check for the two carousels
+      (`HeroSlider`, `TestimonialsSection`) — SSR markup confirmed, client-side behavior not yet.
 - [ ] **Backend security:** triage 17 npm vulnerabilities (2 low, 8 moderate, 7 high) — see
       `docs/claude/technical-debt.md`.
 - [ ] Rebrand seeded content (site name, categories, product copy currently still say "Unique
       Dressup"/fashion — cosmetic only, real work is Phase 2 Handicraft Domain)
+- [ ] Real-browser smoke test of `HeroSlider`/`TestimonialsSection` carousel interactivity
+      post-Swiper-upgrade (autoplay, arrow clicks) — `claude-in-chrome` couldn't reach this
+      sandbox's localhost when attempted; SSR markup confirmed correct, hydration not yet.

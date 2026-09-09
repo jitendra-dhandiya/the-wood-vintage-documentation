@@ -11,3 +11,4 @@ decision record is created.
 | [0004](../decisions/0004-international-url-strategy.md) | International URL strategy | 2026-09-09 | Subdirectory-per-country (`/us/`, `/in/`, ...) on a single domain, evaluated against subdomain/ccTLD/query-param alternatives. Unblocks Phase 3/6. |
 | [0005](../decisions/0005-media-cdn-architecture.md) | Media/CDN architecture | 2026-09-09 | Reuse existing image pipeline as-is; defer actual CDN fronting to Phase 5/8. No Phase 1 code changes needed. |
 | [0006](../decisions/0006-seo-foundation-scope.md) | SEO foundation scope | 2026-09-09 | Existing SEO infra is adequate; only the pre-existing CMS-routing bug needs fixing. Real SEO buildout is Phase 6. |
+| [0007](../decisions/0007-frontend-npm-vulnerabilities-fixed.md) | Frontend npm vulnerabilities fixed | 2026-09-09 | All 9 (incl. 2 critical) fixed with no deferred work — swiper's "breaking" bump needed no code changes. `npm audit` clean. |

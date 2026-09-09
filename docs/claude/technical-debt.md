@@ -14,20 +14,19 @@ The inherited `../backend/CLAUDE.md` §25 ("Known Issues") and §26 ("Future Imp
 a starting point until Phase 0 discovery (MASTER-PROMPT §2, §47, §50) is run properly against the
 copied codebase.
 
-## Frontend: 2 critical + 7 high npm vulnerabilities (post `npm install`)
+## FIXED — Frontend: 2 critical + 7 high npm vulnerabilities
 Where: `frontend/package.json` / `package-lock.json`
-Impact: `next` (critical) — includes unauthenticated RCE on Windows-hosted servers and RCE via
-AVIF image optimization, SSRF in Server Actions/rewrites, DoS in Server Actions and SVG image
-optimization, cache confusion. `swiper` (critical) — prototype pollution. Plus high-severity issues
-in `axios`, `brace-expansion`, `form-data`, `js-yaml`, `nanoid`, `postcss`, `sharp` (transitive via
-`next`).
-Fix: `npm audit fix` resolves the non-breaking ones. The critical `next` and `swiper` fixes require
-`npm audit fix --force` — `next` would bump to 15.5.25 (outside `package.json`'s stated range) and
-`swiper` to 14.2.0 (breaking change per npm). **Deliberately not auto-applied** — a major-version
-bump to Next.js and a breaking Swiper upgrade need testing before landing, not a blind force-fix.
-Fix: track in `tasks/TASKS.md` backlog; do before Phase 5 (Performance)/production readiness at the
-latest, sooner given the RCE severity.
-Found: 2026-09-09
+Impact: `next` (critical RCE/SSRF/DoS), `swiper` (critical prototype pollution), plus 7 high-severity
+transitive issues.
+Fix: `next` → `^15.5.25` (patch bump, no code changes), `swiper` → `^14.2.0` (npm called it breaking,
+but the two real usages — `HeroSlider.tsx`, `TestimonialsSection.tsx` — already used the stable
+modern API, unchanged across that range, so no component changes were needed), `postcss` pinned via
+an `overrides` entry rather than forcing a `next@16` major bump. `npm audit` now reports 0
+vulnerabilities. Verified: `tsc --noEmit` + `npm run build` clean, booted the full stack and
+confirmed the homepage renders correctly with real carousel markup. **Disclosed gap**: client-side
+hydration/interactivity wasn't verified in a real browser (tooling couldn't reach this sandbox's
+localhost) — only SSR markup confirmed. See `docs/decisions/0007-frontend-npm-vulnerabilities-fixed.md`.
+Found: 2026-09-09. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `d1ec1a0`).
 
 ## Backend: 17 npm vulnerabilities (2 low, 8 moderate, 7 high) (post `npm install`)
 Where: `backend/package.json` / `package-lock.json`
