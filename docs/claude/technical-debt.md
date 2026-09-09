@@ -37,3 +37,19 @@ Impact: not yet triaged in detail beyond confirming none reported as critical; i
 Fix: run `npm audit` for the full list and triage each; apply non-breaking fixes via
 `npm audit fix`, evaluate breaking ones individually.
 Found: 2026-09-09
+
+## FIXED — Frontend `API_URL` hardcoded to production, ignoring `NEXT_PUBLIC_API_URL`
+Where: `frontend/constants/index.ts`
+Impact: `../backend/CLAUDE.md` §25 #5 already documented this — `API_URL` was a hardcoded literal
+(`https://api.theuniquedressup.com/api/v1`) rather than reading the env var. It would have silently
+defeated the `.env.local` set up for local dev — the frontend would have kept calling the old
+production fashion-store API regardless of what `NEXT_PUBLIC_API_URL` said.
+Fix: changed to `process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1'`. Verified: full
+stack booted locally (backend :5000 + MySQL `wood_vintage` + frontend :3030) and the homepage SSR
+fetch reached the local backend successfully.
+Found: 2026-09-09. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `97e502d`).
+
+## FIXED — Frontend logged `API_URL` (incl. backend IP) to the browser console in production
+Where: `frontend/lib/axios.ts:4`
+Impact: `../backend/CLAUDE.md` §20/§25 #5 already documented this stray `console.log`.
+Fix: removed. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `97e502d`).

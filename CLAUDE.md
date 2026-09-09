@@ -28,6 +28,18 @@ non-negotiables.
 - `.` (this repo) — strategy, decisions, day-by-day log, task tracker, skills log. See `README.md` for the folder map.
 - `/home/jitendra/work/dev/office/unique-dressup/{backend,frontend}` — original fashion-app source. **Read-only reference, never edit.**
 
+## Local dev environment
+
+- Backend: `http://localhost:5000` (`cd backend && npm run dev`). MySQL DB `wood_vintage` (local
+  server, same credentials as `unique-dressup`'s `unique_dressup` DB — separate schema). `.env`
+  has real generated JWT secrets and an explicit `ADMIN_EMAIL`/`ADMIN_PASSWORD`; third-party keys
+  (Razorpay, Google OAuth, Brevo/SMTP) are placeholders.
+- Frontend: `http://localhost:3030` — **not** the Next.js default 3000; this dev machine runs
+  several other unrelated projects across ports 3000–3010. `package.json` `"dev"` script is
+  `next dev -p 3030`. `.env.local` / backend `FRONTEND_URL`/`ADMIN_URL` are kept in sync with this.
+- Full rationale: `docs/decisions/0002-local-dev-environment-setup.md`.
+- Neither `.env` file is copied from `unique-dressup` or committed here — they're local secrets.
+
 ## Standing instructions for future sessions
 
 1. **Read before writing.** Before starting new work, check `tasks/TASKS.md` for open items and
@@ -48,6 +60,12 @@ non-negotiables.
 7. **Challenge bad requirements** rather than blindly executing them (MASTER-PROMPT §49) — explain
    the problem, the consequence, and propose an alternative before implementing something
    technically dangerous, SEO-damaging, or architecturally unsound.
+8. **Work autonomously.** The user has asked (2026-09-09) to plan and execute without pausing for
+   confirmation at each step — use judgment per the priorities in MASTER-PROMPT §3 and the rules
+   above, rather than asking permission for routine work. Still stop and flag before anything
+   genuinely irreversible or destructive (force-pushes, dropping data, deleting repos, spending
+   real money on paid services) — autonomy is about not over-asking for ordinary engineering work,
+   not a license to skip judgment on high-blast-radius actions.
 
 ## Quick links
 

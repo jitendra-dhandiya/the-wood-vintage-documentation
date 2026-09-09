@@ -96,10 +96,22 @@ Phases below follow `MASTER-PROMPT.md` §47.
 ## Backlog / ad-hoc
 
 - [x] `npm install` in `wood-vintage/backend` and `wood-vintage/frontend` (2026-09-09)
-- [ ] Recreate `.env` (backend) and `.env.local` (frontend) from their `.example` files with real values
+- [x] Recreate `.env` (backend) and `.env.local` (frontend) from their `.example` files (2026-09-09)
+      — see `docs/decisions/0002-local-dev-environment-setup.md`. Real third-party keys
+      (Razorpay/Cashfree/Google/Brevo/SMTP) are still placeholders.
+- [x] Create local dev MySQL DB `wood_vintage`, run `prisma db push`, verify backend boots and seeds
+      (2026-09-09)
+- [x] Fix hardcoded frontend `API_URL` (was ignoring `NEXT_PUBLIC_API_URL`) + remove stray
+      `console.log` — `wood-vintage/frontend` commit `97e502d` (2026-09-09)
+- [x] Verify full stack end-to-end locally: backend :5000 + frontend :3030 talking to each other
+      (2026-09-09)
+- [ ] Fill in real third-party keys as each feature is needed: Razorpay, Google OAuth, Brevo/SMTP
+      (none currently set — see `backend/.env` / `frontend/.env.local`)
 - [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
 - [ ] **Frontend security:** fix 2 critical (`next` RCE, `swiper` prototype pollution) + 7 high npm
       vulnerabilities — see `docs/claude/technical-debt.md`. Needs testing, not a blind
       `npm audit fix --force` (major/breaking bumps).
 - [ ] **Backend security:** triage 17 npm vulnerabilities (2 low, 8 moderate, 7 high) — see
       `docs/claude/technical-debt.md`.
+- [ ] Rebrand seeded content (site name, categories, product copy currently still say "Unique
+      Dressup"/fashion — cosmetic only, real work is Phase 2 Handicraft Domain)

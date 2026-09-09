@@ -57,3 +57,39 @@ rsync -a --exclude '.git/' --exclude 'node_modules/' --exclude 'dist/' \
   <source>/ <destination>/
 cd <destination> && git init && git branch -m main
 ```
+
+## 2026-09-09 — Check for port conflicts on a shared dev machine before assuming defaults
+
+What: Before starting a new project's dev server, check what's already listening
+(`ss -ltn`), rather than assuming the framework default port is free.
+
+Where used: `wood-vintage/frontend` — `next dev` (default port 3000) failed with `EADDRINUSE` even
+after Next's own auto-increment logic, because this machine already runs ~10 unrelated projects
+(the `sfg`/suwalka services) with dev servers spanning ports 3000–3010.
+
+Why it mattered: the instinct was to assume something was wrong with the new setup. It wasn't —
+the machine is just shared across many projects. Killing whatever was on those ports would have
+broken someone else's active work; picking an explicitly free port (3030) was the safe fix.
+
+Reusable as: `ss -ltn | grep ':<port> '` to check a single port, or scan a range before assuming a
+framework's default port is available on a dev box that runs multiple projects. Pick an unused
+port explicitly (`next dev -p <port>`) rather than relying on auto-increment, and keep the CORS
+allow-list (`FRONTEND_URL`/`ADMIN_URL` here) and `NEXT_PUBLIC_SITE_URL` in sync with whatever port
+you land on — see `docs/decisions/0002-local-dev-environment-setup.md`.
+
+## 2026-09-09 — Set explicit seed-time admin credentials, don't rely on a one-time log line
+
+What: `backend/src/server.ts` seeds a `SUPER_ADMIN` on first boot only if none exists, generating a
+random password shown once in the server log when `ADMIN_PASSWORD` isn't set in `.env`.
+
+Where used: `wood-vintage/backend` first boot.
+
+Why it mattered: the first boot generated a throwaway password, logged once. For a dev environment
+meant to be reused across sessions (not a CI/ephemeral boot), that's a trap — losing the log line
+means the only way back in is deleting the seeded admin row and reseeding. Setting `ADMIN_EMAIL`/
+`ADMIN_PASSWORD` explicitly in `.env` *before* first boot avoids it; if you miss that window, the
+fix is `DELETE FROM users WHERE role='SUPER_ADMIN'` in the DB and restart to reseed.
+
+Reusable as: for any app that auto-seeds an admin/root account on first boot, set the credential
+env vars before the first boot, not after — check the seed logic for "only if none exists" guards
+that make a do-over require a manual DB delete.
