@@ -53,3 +53,47 @@ Found: 2026-09-09. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `97e502d`).
 Where: `frontend/lib/axios.ts:4`
 Impact: `../backend/CLAUDE.md` §20/§25 #5 already documented this stray `console.log`.
 Fix: removed. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `97e502d`).
+
+## FIXED — No Prisma migration history (`db push` only)
+Where: `backend/prisma/migrations/`
+Impact: `../backend/CLAUDE.md` §25 #12 (critical-adjacent) — `db push` can silently drop
+columns/tables to converge the schema; no rollback path, no audit trail.
+Fix: reset the (then seed-only) dev DB, generated baseline migration `20260909115445_init`.
+Schema changes now go through `prisma migrate dev`, not `db push` — see `backend/CLAUDE.md` §13 and
+`docs/decisions/0003-phase-1-foundation-prerequisites.md`.
+Found: (inherited, dated 2026-07-27 in the original doc). Fixed: 2026-09-09
+(`wood-vintage/backend` commit `2e2f827`).
+
+## FIXED — Order totals computed from client-supplied prices
+Where: `backend/src/modules/orders/services/order.service.ts`
+Impact: `../backend/CLAUDE.md` §25 #1 (🔴 critical) — `subtotal` was computed from
+`data.items[].price`, a browser-controlled value. **Confirmed exploitable before the fix**: ordered
+a real ₹399 seeded product while sending `price: 1`; would have been charged ₹1.
+Fix: added `effectivePrice()`, re-deriving price server-side (same precedence
+`cart.controller.ts` already uses: `variant.price ?? product.salePrice ?? product.basePrice`).
+Re-tested the same exploit attempt after the fix — charged the real ₹399. See
+`docs/decisions/0003-phase-1-foundation-prerequisites.md`.
+Found: (inherited, dated 2026-07-27). Fixed: 2026-09-09 (`wood-vintage/backend` commit `2e2f827`).
+
+## NOT CURRENT — "Frontend/backend shipping charges disagree" (`CLAUDE.md` §25 #2, as originally written)
+Where: `frontend/constants/index.ts` (`SHIPPING_METHODS`) vs `backend/src/modules/orders/services/order.service.ts` (`SHIPPING_RATES`)
+Impact: the specific claim (mismatched rate constants) is no longer true in the current code — both
+are 79/149/249 and the frontend's old mismatched constants are explicitly marked legacy/unused.
+Residual, lower-severity gap found while checking this: the backend prefers a per-product shipping
+override (`standardShippingCharge` etc.) when set on a product; the frontend's pre-checkout display
+doesn't know about that override, so it can show the flat rate while the (correctly, server-side
+computed) charged amount differs for a product with an override. The *charged* total is still
+correct — this is a display-accuracy gap, not a pricing-integrity one.
+Fix: have checkout fetch a real price/shipping quote from the backend before display, rather than
+computing the shown shipping charge purely from the static `SHIPPING_METHODS` table. Not urgent —
+no product currently has a shipping override set in seed data; do before this becomes common.
+Found: 2026-09-09 (during the order-pricing fix above).
+
+## Fill in real third-party keys before those features work
+Where: `backend/.env` (`RAZORPAY_KEY_ID`/`_SECRET`, `CASHFREE_*`, `GOOGLE_CLIENT_ID`/`_SECRET`,
+`BREVO_API_KEY`/`SMTP_*`), `frontend/.env.local` (`NEXT_PUBLIC_RAZORPAY_KEY`,
+`NEXT_PUBLIC_GOOGLE_CLIENT_ID`)
+Impact: payments, Google sign-in, and transactional email are all non-functional until real
+credentials are supplied — cannot be fabricated.
+Fix: supply real values (sandbox is fine for dev) when each feature is actually being worked on.
+Found: 2026-09-09.

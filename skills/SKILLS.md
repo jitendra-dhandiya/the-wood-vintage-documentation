@@ -93,3 +93,43 @@ fix is `DELETE FROM users WHERE role='SUPER_ADMIN'` in the DB and restart to res
 Reusable as: for any app that auto-seeds an admin/root account on first boot, set the credential
 env vars before the first boot, not after — check the seed logic for "only if none exists" guards
 that make a do-over require a manual DB delete.
+
+## 2026-09-09 — Verify a "fixed" pricing/security bug by attempting the exploit, not just reading the diff
+
+What: After fixing `OrderService.createOrder`'s client-trusted price (see
+`docs/decisions/0003-phase-1-foundation-prerequisites.md`), didn't stop at "the code now reads
+`effectivePrice()` instead of `item.price`" — created a throwaway test user + signed JWT directly
+(no HTTP register flow existed to go through — see the next entry), and sent a real
+`POST /orders` request with a spoofed `price: 1` against a real ₹399 product to confirm the
+resulting order was actually charged ₹399.
+
+Where used: the order-pricing fix in `wood-vintage/backend`.
+
+Why it mattered: a code-review-only "this looks right" leaves open the possibility of a wrong field
+name, an untested code path, or a subtly wrong precedence rule. Placing the actual attack request
+turns "should be fixed" into "confirmed fixed," and would have caught it immediately if it wasn't.
+
+Reusable as: for any fix to a claimed injection/trust vulnerability, don't just read the diff —
+construct the smallest real request that would have exploited the original bug and confirm it now
+fails/produces the correct result. Clean up the test data afterward (test user, test order) so it
+doesn't pollute the dev DB.
+
+## 2026-09-09 — Check the actual auth routes before assuming a documented flow still exists
+
+What: `backend/CLAUDE.md` documents `POST /auth/register` with a password. The actual route file
+(`auth.routes.ts`) has no `/register` route at all — registration is now OTP-based
+(`/otp/request`, `/otp/verify`), a passwordless flow added after the doc's last full analysis date.
+Bypassed this for a quick test by creating the user row directly via Prisma and signing a JWT with
+the app's own `signAccessToken()` util, rather than going through the (changed) HTTP auth flow.
+
+Where used: setting up a test account to verify the order-pricing exploit fix.
+
+Why it mattered: assuming an inherited architecture doc's documented API surface is exactly
+current wastes time chasing a 404 that isn't the bug you're looking for. The project's own git log
+already hinted at this ("feat(auth): passwordless sign-in...") — worth checking before trusting a
+specific documented endpoint still exists.
+
+Reusable as: when a documented endpoint 404s, check the actual route file before assuming
+something else is broken — inherited docs (`CLAUDE.md` here) can drift from the code they describe,
+especially around auth flows that get iterated on. For a quick internal test, creating a DB row +
+signing a token with the app's own utilities is faster and just as valid as going through HTTP auth.

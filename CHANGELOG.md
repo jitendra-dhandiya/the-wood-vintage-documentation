@@ -64,3 +64,22 @@ file is the higher-level, release-facing summary.
   - Testing status: N/A (documentation only).
   - Deployment notes: N/A. One open product question raised, not resolved — see `tasks/TASKS.md`
     Phase 0.
+- Phase 1 (Foundation), first two prerequisite tasks: real Prisma migration history, and
+  server-authoritative order pricing (was trusting client-supplied `data.items[].price` — a real,
+  confirmed-exploitable critical bug, not a hypothetical one).
+  - Files changed: `backend/prisma/migrations/20260909115445_init/` (new), `backend/CLAUDE.md`
+    (migration-strategy section + Known Issues #1/#2/#12 corrected), `backend/src/modules/orders/
+    services/order.service.ts` (`effectivePrice()`). See `wood-vintage/backend` commit `2e2f827`
+    and `docs/decisions/0003-phase-1-foundation-prerequisites.md`.
+  - DB changes: `wood_vintage` reset (mysqldump backup taken first; DB held only throwaway seed
+    data) and rebuilt from the new migration baseline. No production DB touched.
+  - API changes: none to the request/response contract — `POST /orders` still accepts
+    `items[].price` for backwards compatibility, it's simply no longer used for any calculation.
+  - Migration requirements: schema changes from here forward go through `prisma migrate dev`, not
+    `prisma db push` (still technically works, but would desync history if used).
+  - Testing status: `npm run build` clean. Migration verified via `prisma migrate status` (in
+    sync) and a full backend boot/reseed. Pricing fix verified with an actual exploit attempt
+    (spoofed `price: 1` on a real ₹399 product, correctly charged ₹399 after the fix) — not code
+    review alone. Test user/order/script cleaned up afterward.
+  - Deployment notes: local dev only; not deployed anywhere. `unique-dressup` unaffected — this
+    fix was not backported there.

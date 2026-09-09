@@ -27,9 +27,13 @@ Phases below follow `MASTER-PROMPT.md` §47.
 
 ## Phase 1 — Foundation
 
-- [ ] **Do first, ahead of the rest of this phase** (per discovery report §24): adopt Prisma
-      migration history (replace `db push`) and fix server-authoritative order pricing/shipping —
-      both get materially more expensive to retrofit once country pricing tables exist on top.
+- [x] Adopt Prisma migration history (replace `db push`) — baseline `20260909115445_init`
+      (2026-09-09). See `docs/decisions/0003-phase-1-foundation-prerequisites.md`.
+- [x] Fix server-authoritative order pricing — `effectivePrice()` in `order.service.ts`, confirmed
+      exploitable before the fix and re-tested after (2026-09-09). Same decision record.
+- [ ] Stock-not-restored-on-cancel (`CLAUDE.md` §25 #3, 🔴 critical) — not yet touched, still open.
+- [ ] Shipping-display gap for products with a per-product override (lower severity, found while
+      fixing pricing above) — see `docs/claude/technical-debt.md`.
 - [ ] Country architecture (config model per MASTER-PROMPT §7)
 - [ ] Currency architecture
 - [ ] Localization architecture
