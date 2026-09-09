@@ -135,3 +135,29 @@ file is the higher-level, release-facing summary.
   - Files changed: `frontend/app/(store)/[page]/page.tsx`. Commit `3f4763c`.
   - Testing status: verified live — `GET /about` went from 404 to 200 with real seeded content.
   - Deployment notes: local dev only.
+- Backend: implemented the Country architecture per the earlier spec — `Country`,
+  `ProductCountryPricing`, `ProductCountryAvailability` models; nullable `countryId` on
+  `HomepageSection`/`Banner`/`CmsPage`; 8 launch markets seeded (India enabled+default, 7 others
+  seeded but disabled); pricing/availability resolution wired into `GET /products*` and order
+  creation; a `Country` admin CRUD module.
+  - Files changed: `backend/prisma/schema.prisma` + new migration
+    `20260909124334_add_country_architecture`, `backend/src/utils/countryPricing.ts` (new),
+    `backend/src/modules/countries/` (new), `backend/src/modules/orders/services/order.service.ts`,
+    `backend/src/modules/products/**`, `backend/src/server.ts` (seed). Commit `21efdff`. See
+    `docs/decisions/0009-country-architecture-implemented.md`.
+  - DB changes: 3 new tables, 3 new nullable FK columns, 8 new `Country` rows.
+  - API changes: `GET /products`/`GET /products/:slug` accept `?country=<code>` (backwards
+    compatible — no param behaves as before); `POST /orders` accepts an optional `country` field
+    (still never trusts a client-supplied price, only selects which DB row to charge); new
+    `/api/v1/countries*` endpoints.
+  - Migration requirements: none beyond the migration itself (already applied to the dev DB).
+  - Testing status: real verification, not just a code read — a live `ProductCountryPricing`
+    override was created and confirmed to actually change the served price; a real order was
+    placed with a spoofed client price *and* a country override present, and was correctly charged
+    the DB-derived country price, not the spoofed value; unknown country codes correctly degrade
+    (browse endpoints) or 400 (orders); admin endpoints correctly require auth. Independently
+    re-verified after the fact (this session) with extra scrutiny given this touches pricing again
+    — re-ran the build, the migration status check, the DB seed check, several live endpoint calls,
+    and read the actual resolution-logic and admin-controller source directly.
+  - Deployment notes: local dev only. Frontend `CountryContext` and the `/[country]/` URL routing
+    are explicitly separate, not-yet-started follow-ups.

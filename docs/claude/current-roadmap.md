@@ -6,7 +6,7 @@ TASKS.md is the granular checklist; this is the narrative status.
 | Phase | Name | Status |
 |---|---|---|
 | 0 | Discovery | **Done** (2026-09-09) — `docs/architecture/phase-0-discovery-report.md`. One open question flagged, unresolved: does `wood-vintage` eventually replace `unique-dressup` in production? |
-| 1 | Foundation (country/currency/localization/CMS/media/SEO foundation) | In progress — migration history + server-authoritative pricing done (2026-09-09); country/currency/CMS/media/SEO work not started |
+| 1 | Foundation (country/currency/localization/CMS/media/SEO foundation) | In progress — migration history, server-authoritative pricing, and Country architecture (backend) all done (2026-09-09); Media/CDN and SEO foundation scoped as "no Phase 1 work needed"; remaining: Country architecture frontend piece, CMS resolution logic, product architecture for handicraft domain |
 | 2 | Handicraft Domain (categories/materials/styles/attributes/customization) | Not started |
 | 3 | Internationalization (country config/pricing/content/shipping/SEO) | Not started |
 | 4 | Experience (homepage/discovery/storytelling/search/recommendations) | Not started |

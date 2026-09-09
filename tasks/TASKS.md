@@ -51,17 +51,25 @@ Phases below follow `MASTER-PROMPT.md` §47.
       now returns 200 (2026-09-09, `wood-vintage/frontend` commit `3f4763c`).
 - [ ] Shipping-display gap for products with a per-product override (lower severity, found while
       fixing pricing above) — see `docs/claude/technical-debt.md`.
-- [x] Country architecture — **spec written**, not implemented: `docs/architecture/country-architecture-spec.md`
-      (2026-09-09). Backend repo is now free of other in-flight work — safe to implement next.
+- [x] Country architecture — **backend implemented and verified** (2026-09-09,
+      `wood-vintage/backend` commit `21efdff`): `Country`/`ProductCountryPricing`/
+      `ProductCountryAvailability` models, 8 launch markets seeded (India enabled+default),
+      pricing/availability resolution wired into `GET /products*` and order creation. See
+      `docs/decisions/0009-country-architecture-implemented.md`.
+- [ ] **New**: Country architecture, frontend piece — `CountryContext`, `wv_country` cookie,
+      country selector, thread `?country=` through `services/api.service.ts` and the ~5-6
+      storefront pricing-display components (scoped, not all 19 — see the spec's "Scoping note").
+      Backend contract now exists and is verified; this is the next natural piece.
 - [x] Currency architecture — covered by the same spec (`currency`/`currencySymbol` on `Country`).
       Reference data for the 8 launch markets: `docs/countries/launch-markets-reference.md` (2026-09-09).
 - [~] Localization architecture — **scoped, not fully decided**: locale-aware formatting for all 8
       markets is decided (Phase 1); full UI/content translation into German/French/Dutch is an
       **open question for the user**, not decided here — see `docs/countries/launch-markets-reference.md`
       "Localization scope."
-- [ ] CMS foundation (content inheritance: Global → Country → Language, §30) — data model covered
-      by the country architecture spec (nullable `countryId` on `HomepageSection`/`Banner`/`CmsPage`);
-      admin UI and resolution logic not yet implemented.
+- [ ] CMS foundation (content inheritance: Global → Country → Language, §30) — data model **now
+      implemented** (nullable `countryId` on `HomepageSection`/`Banner`/`CmsPage`, part of commit
+      `21efdff`); admin UI and resolution logic (which row wins when both Global and a Country
+      override exist) not yet implemented.
 - [ ] Product architecture updates for handicraft domain
 - [x] Media/CDN architecture — **decided**: reuse existing pipeline as-is, defer CDN fronting to
       Phase 5/8 (`docs/decisions/0005-media-cdn-architecture.md`, 2026-09-09). No code changes needed now.
