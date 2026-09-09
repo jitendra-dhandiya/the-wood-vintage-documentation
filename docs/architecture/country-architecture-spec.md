@@ -122,6 +122,15 @@ every existing product would vanish from every country the moment this ships, wh
 - `services/api.service.ts` calls include `?country=` the same way gender filtering is threaded
   through today.
 
+**Scoping note (2026-09-09):** grepped for existing price-display surfaces before starting the
+frontend piece — `formatPrice`/`basePrice`/`salePrice` appear in ~19 files (`ProductCard`,
+`ProductDetailClient`, cart/checkout, account order pages, and most of the admin panel). This is a
+genuinely broad surface, not a small patch — the storefront-facing subset (product card, product
+detail, cart, checkout, category listings) is what actually needs to become country-aware for a
+shopper; the admin-panel occurrences mostly display already-resolved order/product data and don't
+need `CountryContext` threaded through them. Scope the frontend implementation task to the
+storefront subset explicitly, not all 19 files uniformly.
+
 ## Admin changes
 
 - New "Countries" admin section: enable/disable markets, set default, edit currency/locale/timezone.
