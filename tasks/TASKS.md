@@ -63,7 +63,9 @@ Phases below follow `MASTER-PROMPT.md` §47.
 - [ ] Product architecture updates for handicraft domain
 - [x] Media/CDN architecture — **decided**: reuse existing pipeline as-is, defer CDN fronting to
       Phase 5/8 (`docs/decisions/0005-media-cdn-architecture.md`, 2026-09-09). No code changes needed now.
-- [ ] SEO foundation
+- [x] SEO foundation — **decided**: existing infra (SeoMeta, sitemap, JSON-LD, robots.ts) is
+      adequate; no new Phase 1 work beyond the pre-existing CMS-routing bug fix
+      (`docs/decisions/0006-seo-foundation-scope.md`, 2026-09-09). Real SEO buildout is Phase 6.
 
 ## Phase 2 — Handicraft Domain
 

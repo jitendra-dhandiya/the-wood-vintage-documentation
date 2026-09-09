@@ -10,3 +10,4 @@ decision record is created.
 | [0003](../decisions/0003-phase-1-foundation-prerequisites.md) | Phase 1 prerequisites | 2026-09-09 | Real Prisma migration history adopted; order pricing made server-authoritative (confirmed-exploitable client-price-trust bug fixed and re-tested). |
 | [0004](../decisions/0004-international-url-strategy.md) | International URL strategy | 2026-09-09 | Subdirectory-per-country (`/us/`, `/in/`, ...) on a single domain, evaluated against subdomain/ccTLD/query-param alternatives. Unblocks Phase 3/6. |
 | [0005](../decisions/0005-media-cdn-architecture.md) | Media/CDN architecture | 2026-09-09 | Reuse existing image pipeline as-is; defer actual CDN fronting to Phase 5/8. No Phase 1 code changes needed. |
+| [0006](../decisions/0006-seo-foundation-scope.md) | SEO foundation scope | 2026-09-09 | Existing SEO infra is adequate; only the pre-existing CMS-routing bug needs fixing. Real SEO buildout is Phase 6. |
