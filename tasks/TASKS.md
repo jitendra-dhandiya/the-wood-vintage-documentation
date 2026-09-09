@@ -13,20 +13,23 @@ Phases below follow `MASTER-PROMPT.md` §47.
 - [x] Set up `wood-vintage/{backend,frontend,documentation}` as fresh repos, seeded from
       `unique-dressup` via file copy, no shared git history/remotes (2026-09-09)
 - [x] Initiate `documentation` repo structure (2026-09-09)
-- [ ] Verify `../backend/CLAUDE.md` is current against actual code (it's dated 2026-07-27 /
-      backend `7b7531f`, frontend `69b123f` — check drift since)
-- [ ] Produce/refresh the Phase 0 discovery deliverables from MASTER-PROMPT §47:
-  - [ ] Architecture map
-  - [ ] Dependency map
-  - [ ] Database map
-  - [ ] API map
-  - [ ] Reusable modules inventory
-  - [ ] Technical debt list → `docs/claude/technical-debt.md`
-  - [ ] Migration risks
-- [ ] Write the PROJECT DISCOVERY REPORT (MASTER-PROMPT §50, 25 sections) into `docs/architecture/`
+- [x] Spot-verify `../backend/CLAUDE.md` against the actual copied code (not a full re-audit —
+      see "Verification method" in the discovery report) (2026-09-09)
+- [x] Produce the Phase 0 discovery deliverables from MASTER-PROMPT §47 — architecture map,
+      dependency map, database map, API map, reusable modules inventory, migration risks — folded
+      into the discovery report below rather than as separate documents (2026-09-09)
+- [x] Write the PROJECT DISCOVERY REPORT (MASTER-PROMPT §50, 25 sections):
+      `docs/architecture/phase-0-discovery-report.md` (2026-09-09)
+- [ ] **Open question flagged in the report, not resolved:** is `wood-vintage` meant to eventually
+      replace `unique-dressup` in production (migrating real customers/orders), or launch as a
+      genuinely separate platform/customer base? Changes whether MASTER-PROMPT §45/§46 (data
+      migration, legacy compatibility) apply. Ask the user before Phase 3+ makes assumptions either way.
 
 ## Phase 1 — Foundation
 
+- [ ] **Do first, ahead of the rest of this phase** (per discovery report §24): adopt Prisma
+      migration history (replace `db push`) and fix server-authoritative order pricing/shipping —
+      both get materially more expensive to retrofit once country pricing tables exist on top.
 - [ ] Country architecture (config model per MASTER-PROMPT §7)
 - [ ] Currency architecture
 - [ ] Localization architecture

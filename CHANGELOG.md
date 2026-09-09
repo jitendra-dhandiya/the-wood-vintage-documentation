@@ -49,3 +49,18 @@ file is the higher-level, release-facing summary.
     `unique-dressup` — `backend/CLAUDE.md` §23).
   - Deployment notes: local dev only. Dev servers were stopped after verification, not left
     running. See `docs/decisions/0002-local-dev-environment-setup.md` for the full rationale.
+- Completed Phase 0 (Discovery): `docs/architecture/phase-0-discovery-report.md`, all 25 sections
+  per MASTER-PROMPT §50. Sections 1–17 are current-state facts (synthesized from the inherited
+  `CLAUDE.md`, spot-verified not fully re-audited); 18–25 are new recommendations — Country/
+  CountryContext model, country-scoped CMS extension, a revised Phase 1 sequencing (migration
+  history + server-authoritative pricing before country work), and an explicitly undecided
+  international URL strategy flagged for its own future decision record.
+  - Files changed: `docs/architecture/phase-0-discovery-report.md` (new), `tasks/TASKS.md`,
+    `docs/claude/current-roadmap.md`.
+  - DB changes: none.
+  - API changes: none.
+  - Migration requirements: none for this entry; the report itself recommends migration-history
+    adoption as the first Phase 1 task.
+  - Testing status: N/A (documentation only).
+  - Deployment notes: N/A. One open product question raised, not resolved — see `tasks/TASKS.md`
+    Phase 0.
