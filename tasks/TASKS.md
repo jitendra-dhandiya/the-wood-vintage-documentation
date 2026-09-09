@@ -44,13 +44,15 @@ Phases below follow `MASTER-PROMPT.md` §47.
       (2026-09-09). See `docs/decisions/0003-phase-1-foundation-prerequisites.md`.
 - [x] Fix server-authoritative order pricing — `effectivePrice()` in `order.service.ts`, confirmed
       exploitable before the fix and re-tested after (2026-09-09). Same decision record.
-- [~] Stock-not-restored-on-cancel (`CLAUDE.md` §25 #3, 🔴 critical) — in progress, delegated to a
-      background agent working directly in `wood-vintage/backend` (started 2026-09-09, also
-      covering the npm vulnerability triage below). Not yet confirmed complete.
+- [x] Stock-not-restored-on-cancel (`CLAUDE.md` §25 #3, 🔴 critical) — fixed and independently
+      re-verified (2026-09-09, `wood-vintage/backend` commit `bf811c8`). `InventoryLog` also wired
+      up (was written nowhere before). See `docs/decisions/0008-...`.
+- [x] CMS routing bug fixed (`/cms` → `/seo/cms`, `CLAUDE.md` §25 #7) — verified live, `GET /about`
+      now returns 200 (2026-09-09, `wood-vintage/frontend` commit `3f4763c`).
 - [ ] Shipping-display gap for products with a per-product override (lower severity, found while
       fixing pricing above) — see `docs/claude/technical-debt.md`.
 - [x] Country architecture — **spec written**, not implemented: `docs/architecture/country-architecture-spec.md`
-      (2026-09-09). Implementation queued until the backend repo is free of the in-flight agent work above.
+      (2026-09-09). Backend repo is now free of other in-flight work — safe to implement next.
 - [x] Currency architecture — covered by the same spec (`currency`/`currencySymbol` on `Country`).
       Reference data for the 8 launch markets: `docs/countries/launch-markets-reference.md` (2026-09-09).
 - [~] Localization architecture — **scoped, not fully decided**: locale-aware formatting for all 8
@@ -146,8 +148,9 @@ Phases below follow `MASTER-PROMPT.md` §47.
       `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. One disclosed
       verification gap remains: real-browser hydration/interactivity check for the two carousels
       (`HeroSlider`, `TestimonialsSection`) — SSR markup confirmed, client-side behavior not yet.
-- [ ] **Backend security:** triage 17 npm vulnerabilities (2 low, 8 moderate, 7 high) — see
-      `docs/claude/technical-debt.md`.
+- [x] **Backend security:** 17 → 2 vulnerabilities (both moderate, confirmed unreachable, left
+      deliberately) — see `docs/claude/technical-debt.md` and `docs/decisions/0008-...` (2026-09-09,
+      `wood-vintage/backend` commit `044b79d`).
 - [ ] Rebrand seeded content (site name, categories, product copy currently still say "Unique
       Dressup"/fashion — cosmetic only, real work is Phase 2 Handicraft Domain)
 - [ ] Real-browser smoke test of `HeroSlider`/`TestimonialsSection` carousel interactivity

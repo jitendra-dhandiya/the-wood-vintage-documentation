@@ -113,3 +113,25 @@ file is the higher-level, release-facing summary.
   - Testing status: N/A (documentation only).
   - Deployment notes: N/A. Three open product/business questions consolidated at the top of
     `tasks/TASKS.md`, explicitly not blocking current engineering work.
+- Backend: npm vulnerabilities 17 → 2 (remaining confirmed unreachable, left deliberately), plus
+  two critical/high correctness bugs fixed: stock-not-restored-on-cancel (`CLAUDE.md` §25 #3) and
+  `InventoryLog` never written (§25 #21) — both fixed together since they're the same code path.
+  - Files changed: `backend/package.json`/`package-lock.json`, `backend/src/modules/orders/
+    services/order.service.ts`, `backend/src/utils/imagePipeline.ts` (one import fix from the
+    `sharp` bump), `backend/CLAUDE.md`. Commits `044b79d`, `bf811c8`. See
+    `docs/decisions/0008-backend-security-and-stock-restoration.md`.
+  - DB changes: none to schema; `InventoryLog` rows now populated going forward.
+  - API changes: none to the contract.
+  - Migration requirements: none.
+  - Testing status: each dependency bump individually verified (build + boot + real endpoint
+    curls) before keeping; stock-restoration verified live with real before/after numbers (stock
+    50→47→50, totalSold 0→3→0) plus the resulting `InventoryLog` rows. Independently re-verified
+    after the fact (this session): real commits confirmed, `npm audit`/`npm run build` re-run
+    myself, dev DB confirmed free of test pollution.
+  - Deployment notes: local dev only. Not backported to `unique-dressup`.
+- Frontend: fixed the CMS-routing 404 bug (`CLAUDE.md` §25 #7) — one-line URL fix
+  (`/cms/` → `/seo/cms/`), applied directly (not delegated) once both background agents' work was
+  confirmed complete and their repos clean.
+  - Files changed: `frontend/app/(store)/[page]/page.tsx`. Commit `3f4763c`.
+  - Testing status: verified live — `GET /about` went from 404 to 200 with real seeded content.
+  - Deployment notes: local dev only.

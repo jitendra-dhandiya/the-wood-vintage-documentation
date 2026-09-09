@@ -28,14 +28,34 @@ hydration/interactivity wasn't verified in a real browser (tooling couldn't reac
 localhost) — only SSR markup confirmed. See `docs/decisions/0007-frontend-npm-vulnerabilities-fixed.md`.
 Found: 2026-09-09. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `d1ec1a0`).
 
-## Backend: 17 npm vulnerabilities (2 low, 8 moderate, 7 high) (post `npm install`)
+## MOSTLY FIXED — Backend: 17 npm vulnerabilities → 2 remaining (confirmed unreachable)
 Where: `backend/package.json` / `package-lock.json`
-Impact: not yet triaged in detail beyond confirming none reported as critical; includes a moderate
-`uuid` buffer-bounds issue (transitive via `exceljs`, `gaxios`) needing `uuid@14` (breaking) via
-`npm audit fix --force`.
-Fix: run `npm audit` for the full list and triage each; apply non-breaking fixes via
-`npm audit fix`, evaluate breaking ones individually.
-Found: 2026-09-09
+Impact: was 2 low, 8 moderate, 7 high. Fixed via `npm audit fix` (form-data, joi, js-yaml, morgan),
+removing unused `csurf` (also cleared a `cookie` CVE), a `qs` override, and individually-verified
+bumps (`uuid` 9→14, `google-auth-library` 9→10, `sharp` 0.33→0.35, `nodemailer` 6→10 — each checked
+for actual API usage and smoke-tested before keeping).
+Remaining: 2 moderate `uuid <11.1.1` findings, both via `exceljs`'s own pinned `uuid@8.3.0`.
+**Deliberately not fixed** — `exceljs` 4.4.0 is the latest release, npm's only suggested remediation
+is downgrading to 3.4.0 (a real regression), and the vulnerable code path (`uuid` v3/v5/v6 with a
+`buf` argument) is confirmed unreachable — `exceljs` only ever calls `uuid.v4()`. See
+`docs/decisions/0008-backend-security-and-stock-restoration.md`.
+Found: 2026-09-09. Mostly fixed: 2026-09-09 (`wood-vintage/backend` commit `044b79d`).
+
+## FIXED — Stock not restored when an order is cancelled; `InventoryLog` written nowhere
+Where: `backend/src/modules/orders/services/order.service.ts`
+Impact: `../backend/CLAUDE.md` §25 #3 (🔴 critical) and #21 — cancelled orders permanently leaked
+inventory and inflated `totalSold`; the `InventoryLog` model existed but was never written to.
+Fix: `cancelOrder()` now runs in a transaction restoring `stockQuantity`/reversing `totalSold` per
+line item; both `createOrder` and `cancelOrder` now write `InventoryLog` rows (`SALE`/`RETURN`).
+Verified live (agent) and independently re-checked (this session): build clean, boots clean, dev DB
+has zero leftover test rows. See `docs/decisions/0008-backend-security-and-stock-restoration.md`.
+Found: (inherited, dated 2026-07-27). Fixed: 2026-09-09 (`wood-vintage/backend` commit `bf811c8`).
+
+## FIXED — CMS pages 404 (frontend called `/cms`, backend serves `/seo/cms`)
+Where: `frontend/app/(store)/[page]/page.tsx`
+Impact: `../backend/CLAUDE.md` §25 #7 — every CMS page (about, privacy-policy, terms, etc.) 404'd.
+Fix: one-line URL fix. Verified live: `GET /about` now returns 200 with real seeded content.
+Found: (inherited, dated 2026-07-27). Fixed: 2026-09-09 (`wood-vintage/frontend` commit `3f4763c`).
 
 ## FIXED — Frontend `API_URL` hardcoded to production, ignoring `NEXT_PUBLIC_API_URL`
 Where: `frontend/constants/index.ts`
