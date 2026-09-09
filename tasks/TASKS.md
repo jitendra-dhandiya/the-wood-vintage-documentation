@@ -7,6 +7,19 @@ and `docs/decisions/` records where a task involved a real decision.
 
 Phases below follow `MASTER-PROMPT.md` §47.
 
+## Open questions for the user (not blocking current work, but need real answers eventually)
+
+1. **Does `wood-vintage` eventually replace `unique-dressup` in production** (migrating real
+   customers/orders), or launch as a genuinely separate platform/customer base? Changes whether
+   MASTER-PROMPT §45/§46 apply. Flagged in the Phase 0 discovery report.
+2. **Full UI/content translation into German/French/Dutch (and any other non-English target
+   market) — yes or defer?** Phase 1 ships locale-aware number/currency/date formatting for all 8
+   markets regardless; this question is specifically about translating actual storefront copy.
+   See `docs/countries/launch-markets-reference.md` "Localization scope."
+3. **Payment provider(s) for non-India markets** — Razorpay/Cashfree don't meaningfully cover
+   UAE/USA/Australia/UK/EU (discovery report §8/§16). Needs a real vendor decision before Phase 3
+   country-pricing work can be paired with a working checkout in those markets.
+
 ## Phase 0 — Discovery
 
 - [x] Locate and confirm existing `unique-dressup/backend` and `/frontend` repos and their remotes (2026-09-09)
@@ -31,13 +44,22 @@ Phases below follow `MASTER-PROMPT.md` §47.
       (2026-09-09). See `docs/decisions/0003-phase-1-foundation-prerequisites.md`.
 - [x] Fix server-authoritative order pricing — `effectivePrice()` in `order.service.ts`, confirmed
       exploitable before the fix and re-tested after (2026-09-09). Same decision record.
-- [ ] Stock-not-restored-on-cancel (`CLAUDE.md` §25 #3, 🔴 critical) — not yet touched, still open.
+- [~] Stock-not-restored-on-cancel (`CLAUDE.md` §25 #3, 🔴 critical) — in progress, delegated to a
+      background agent working directly in `wood-vintage/backend` (started 2026-09-09, also
+      covering the npm vulnerability triage below). Not yet confirmed complete.
 - [ ] Shipping-display gap for products with a per-product override (lower severity, found while
       fixing pricing above) — see `docs/claude/technical-debt.md`.
-- [ ] Country architecture (config model per MASTER-PROMPT §7)
-- [ ] Currency architecture
-- [ ] Localization architecture
-- [ ] CMS foundation (content inheritance: Global → Country → Language, §30)
+- [x] Country architecture — **spec written**, not implemented: `docs/architecture/country-architecture-spec.md`
+      (2026-09-09). Implementation queued until the backend repo is free of the in-flight agent work above.
+- [x] Currency architecture — covered by the same spec (`currency`/`currencySymbol` on `Country`).
+      Reference data for the 8 launch markets: `docs/countries/launch-markets-reference.md` (2026-09-09).
+- [~] Localization architecture — **scoped, not fully decided**: locale-aware formatting for all 8
+      markets is decided (Phase 1); full UI/content translation into German/French/Dutch is an
+      **open question for the user**, not decided here — see `docs/countries/launch-markets-reference.md`
+      "Localization scope."
+- [ ] CMS foundation (content inheritance: Global → Country → Language, §30) — data model covered
+      by the country architecture spec (nullable `countryId` on `HomepageSection`/`Banner`/`CmsPage`);
+      admin UI and resolution logic not yet implemented.
 - [ ] Product architecture updates for handicraft domain
 - [ ] Media/CDN architecture (§19)
 - [ ] SEO foundation
