@@ -161,3 +161,39 @@ file is the higher-level, release-facing summary.
     and read the actual resolution-logic and admin-controller source directly.
   - Deployment notes: local dev only. Frontend `CountryContext` and the `/[country]/` URL routing
     are explicitly separate, not-yet-started follow-ups.
+- Backend: Global→Country content resolution for CMS pages, homepage sections, and banners — the
+  data model existed (previous entry) but nothing read it. Also fixed a real schema gap found
+  along the way: `CmsPage.slug` was still globally unique, which would have blocked a country
+  override from ever coexisting with the global page under the same slug.
+  - Files changed: `backend/prisma/schema.prisma` + new migration
+    `20260909130000_cms_page_slug_per_country` (hand-written — `prisma migrate dev` can't run
+    non-interactively once it needs to warn about a constraint change), `backend/src/utils/
+    countryContent.ts` (new), `backend/src/modules/{seo,homepage,banners}/controllers/*.ts`,
+    `backend/src/modules/products/services/product.service.ts` (moved a shared helper into
+    `countryPricing.ts`). Commit `9c7d0ad`. See `docs/decisions/0010-...`.
+  - DB changes: `cms_pages` unique index changed from `(slug)` to `(slug, countryId)`.
+  - API changes: `GET /seo/cms/:slug`, `GET /homepage`, `GET /homepage/data`, `GET /banners/:type`
+    all accept `?country=<code>` now; no param behaves exactly as before.
+  - Testing status: verified directly against the DB with a throwaway script (deliberately no HTTP
+    server, to avoid a port collision with a concurrently-running agent using the same repo) —
+    global content resolves correctly with no country, a real country override wins for that
+    country while other countries still see global, an unknown slug returns null rather than
+    erroring, and homepage sections/banners correctly show only the country-specific set (not
+    merged with global) once one exists. All test rows cleaned up, confirmed via direct query.
+  - Deployment notes: local dev only.
+- Frontend: `CountryContext`, `wv_country` cookie, `CountrySelector`, `?country=` threaded through
+  the real storefront pricing surface (product detail, category/collection listings, cart,
+  checkout).
+  - Files changed: `frontend/lib/countryPreference.ts` (new), `frontend/contexts/CountryContext.tsx`
+    (new), `frontend/components/common/CountrySelector.tsx` (new), plus `app/layout.tsx`,
+    `app/(store)/*`, `components/{layout,category,product}/*.tsx`, `services/api.service.ts`,
+    `types/index.ts`, `utils/format.ts`. Commit `6536c70`. See `docs/decisions/0010-...`.
+  - DB/API changes: none new (consumes the backend contract from the previous entry).
+  - Testing status: `tsc --noEmit` + `npm run build` clean. Verified twice — once by the
+    implementing agent (live pricing-override test via curl, `POST /orders` with both a spoofed
+    price and a country override charging correctly, an unknown country code 400ing at checkout),
+    and again independently in this session (booted both servers, created a fresh real pricing
+    override, `curl`'d the SSR product page with and without the country cookie, confirmed the
+    exact price difference directly rather than trusting the report). DB confirmed clean both times.
+  - Deployment notes: local dev only. No admin UI yet for authoring country-scoped content — the
+    resolution logic works, but creating country-scoped rows currently requires direct API calls.

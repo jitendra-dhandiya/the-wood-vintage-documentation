@@ -56,20 +56,26 @@ Phases below follow `MASTER-PROMPT.md` §47.
       `ProductCountryAvailability` models, 8 launch markets seeded (India enabled+default),
       pricing/availability resolution wired into `GET /products*` and order creation. See
       `docs/decisions/0009-country-architecture-implemented.md`.
-- [ ] **New**: Country architecture, frontend piece — `CountryContext`, `wv_country` cookie,
-      country selector, thread `?country=` through `services/api.service.ts` and the ~5-6
-      storefront pricing-display components (scoped, not all 19 — see the spec's "Scoping note").
-      Backend contract now exists and is verified; this is the next natural piece.
+- [x] Country architecture, frontend piece — **implemented and independently verified**
+      (2026-09-09, `wood-vintage/frontend` commit `6536c70`): `CountryContext`, `wv_country`
+      cookie, `CountrySelector`, `?country=` threaded through the real storefront pricing surface.
+      Live-verified with a real pricing override (₹399/599 base → ₹1,299/1,499 AE override, both
+      confirmed via SSR HTML). See `docs/decisions/0010-...`.
 - [x] Currency architecture — covered by the same spec (`currency`/`currencySymbol` on `Country`).
       Reference data for the 8 launch markets: `docs/countries/launch-markets-reference.md` (2026-09-09).
 - [~] Localization architecture — **scoped, not fully decided**: locale-aware formatting for all 8
       markets is decided (Phase 1); full UI/content translation into German/French/Dutch is an
       **open question for the user**, not decided here — see `docs/countries/launch-markets-reference.md`
       "Localization scope."
-- [ ] CMS foundation (content inheritance: Global → Country → Language, §30) — data model **now
-      implemented** (nullable `countryId` on `HomepageSection`/`Banner`/`CmsPage`, part of commit
-      `21efdff`); admin UI and resolution logic (which row wins when both Global and a Country
-      override exist) not yet implemented.
+- [x] CMS foundation (content inheritance: Global → Country → Language, §30) — data model
+      (`21efdff`) and **resolution logic now implemented and verified** (2026-09-09,
+      `wood-vintage/backend` commit `9c7d0ad`): `resolveCmsPage`/`resolveHomepageSections`/
+      `resolveBanners`. Also fixed a real schema gap found along the way — `CmsPage.slug` was
+      still globally unique, blocking country overrides from existing. See `docs/decisions/0010-...`.
+- [ ] **New**: admin UI for creating country-scoped `HomepageSection`/`Banner`/`CmsPage` rows (the
+      resolution logic exists and works; an admin can currently only create country-scoped content
+      via direct API calls, not through a UI screen). Not urgent until real country-specific
+      content is actually being authored.
 - [ ] Product architecture updates for handicraft domain
 - [x] Media/CDN architecture — **decided**: reuse existing pipeline as-is, defer CDN fronting to
       Phase 5/8 (`docs/decisions/0005-media-cdn-architecture.md`, 2026-09-09). No code changes needed now.
