@@ -57,7 +57,9 @@ Phases below follow `MASTER-PROMPT.md` §47.
 - [ ] Country content overrides
 - [ ] Country availability
 - [ ] Country shipping rules (§18)
-- [ ] Country SEO / hreflang / URL strategy (§31 — decision needs to be documented before implementing)
+- [ ] Implement country SEO / hreflang / URL strategy — **decided** (`docs/decisions/0004-international-url-strategy.md`:
+      subdirectory-per-country, `app/[country]/...`), not yet implemented. Real restructuring of the
+      route tree, scope as its own task, not a side effect of something else.
 
 ## Phase 4 — Experience
 
