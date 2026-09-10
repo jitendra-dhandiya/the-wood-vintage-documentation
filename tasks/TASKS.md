@@ -49,8 +49,10 @@ Phases below follow `MASTER-PROMPT.md` §47.
       up (was written nowhere before). See `docs/decisions/0008-...`.
 - [x] CMS routing bug fixed (`/cms` → `/seo/cms`, `CLAUDE.md` §25 #7) — verified live, `GET /about`
       now returns 200 (2026-09-09, `wood-vintage/frontend` commit `3f4763c`).
-- [ ] Shipping-display gap for products with a per-product override (lower severity, found while
-      fixing pricing above) — see `docs/claude/technical-debt.md`.
+- [x] Shipping-display gap for products with a per-product override — **fixed** (2026-09-10,
+      `wood-vintage/frontend` commit `76c55e4`), build/type-check verified but **not** live/browser
+      verified (client component, `claude-in-chrome` can't reach this sandbox) — see
+      `docs/claude/technical-debt.md`.
 - [x] Country architecture — **backend implemented and verified** (2026-09-09,
       `wood-vintage/backend` commit `21efdff`): `Country`/`ProductCountryPricing`/
       `ProductCountryAvailability` models, 8 launch markets seeded (India enabled+default),

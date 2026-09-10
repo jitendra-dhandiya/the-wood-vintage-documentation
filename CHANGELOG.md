@@ -197,3 +197,21 @@ file is the higher-level, release-facing summary.
     exact price difference directly rather than trusting the report). DB confirmed clean both times.
   - Deployment notes: local dev only. No admin UI yet for authoring country-scoped content — the
     resolution logic works, but creating country-scoped rows currently requires direct API calls.
+
+## 2026-09-10
+
+- Frontend: checkout now shows the real per-product shipping-charge override instead of always the
+  flat rate (`technical-debt.md` gap tracked since `0003`).
+  - Files changed: `frontend/types/index.ts`, `frontend/app/(store)/checkout/page.tsx`. Commit
+    `76c55e4`. See `docs/decisions/0011-checkout-shipping-display-fix.md`.
+  - DB/API changes: none — the data was already returned by the existing cart/product endpoints.
+  - Testing status: `tsc --noEmit` + `npm run build` clean. **Not** live/browser verified — checkout
+    is a client component, and the browser-automation tool available in this environment can't
+    reach this sandbox's localhost (confirmed again, same limitation as the Swiper carousel
+    verification gap in the 2026-09-09 entry). Disclosed as an open gap, not claimed as done.
+  - Deployment notes: local dev only.
+- Started Phase 2 (Handicraft Domain): spec written
+  (`docs/architecture/phase-2-handicraft-domain-spec.md`) for `Material`/`Style`/`Room` taxonomy
+  models, a separate `Artisan` entity, and additive `Product` fields (dimensions, finish, assembly,
+  customization, manufacturing time, craft story). Implementation delegated to a background agent,
+  in progress as of this entry — see the next changelog entry once it lands.

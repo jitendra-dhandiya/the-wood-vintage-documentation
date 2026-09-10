@@ -103,10 +103,18 @@ override (`standardShippingCharge` etc.) when set on a product; the frontend's p
 doesn't know about that override, so it can show the flat rate while the (correctly, server-side
 computed) charged amount differs for a product with an override. The *charged* total is still
 correct — this is a display-accuracy gap, not a pricing-integrity one.
-Fix: have checkout fetch a real price/shipping quote from the backend before display, rather than
-computing the shown shipping charge purely from the static `SHIPPING_METHODS` table. Not urgent —
-no product currently has a shipping override set in seed data; do before this becomes common.
-Found: 2026-09-09 (during the order-pricing fix above).
+## FIXED — Checkout didn't reflect the per-product shipping override
+Where: `frontend/app/(store)/checkout/page.tsx`
+Fix: mirrors the backend's own logic client-side rather than fetching a new quote endpoint — the
+cart/product APIs already return `standardShippingCharge`/`codShippingCharge`/
+`expressShippingCharge` on `CartItem.product` (full scalar columns, no backend change needed), so
+checkout now takes the same max-across-cart-items override when one applies, falling back to the
+flat `SHIPPING_METHODS` rate otherwise. `tsc --noEmit`/`npm run build` clean, logic is a direct
+line-by-line match of the already-verified (real exploit-tested) backend calculation.
+**Disclosed gap**: no live/browser verification — this is a client component (can't check via
+curl) and the `claude-in-chrome` tool can't reach this sandbox's localhost (same limitation as the
+Swiper carousel fix in `0007`). Not claimed fully verified.
+Found: 2026-09-09. Fixed: 2026-09-09 (`wood-vintage/frontend` commit `76c55e4`).
 
 ## Fill in real third-party keys before those features work
 Where: `backend/.env` (`RAZORPAY_KEY_ID`/`_SECRET`, `CASHFREE_*`, `GOOGLE_CLIENT_ID`/`_SECRET`,
