@@ -133,3 +133,35 @@ Reusable as: when a documented endpoint 404s, check the actual route file before
 something else is broken — inherited docs (`CLAUDE.md` here) can drift from the code they describe,
 especially around auth flows that get iterated on. For a quick internal test, creating a DB row +
 signing a token with the app's own utilities is faster and just as valid as going through HTTP auth.
+
+## 2026-09-10 — `claude-in-chrome` can't verify this sandbox's dev servers; a local headless Chrome can
+
+What: `claude-in-chrome` (the browser-automation MCP tool) drives the **user's own Chrome
+browser on their machine**, not a browser inside this sandbox — its own tool description confirms
+this (it lists "every connected browser" and asks the user to pick one). That machine has no
+network route to this sandbox's `localhost:3030`/`:5000`. This came up three times this session
+(`0007`'s Swiper carousel check, `0011`'s checkout shipping display) as "tooling couldn't reach
+localhost" without ever identifying *why* — it isn't transient or fixable by retrying, it's
+architectural. Retrying it wastes a turn.
+
+Where used: would apply to any real-browser (post-JS-hydration) verification of an app running in
+this sandbox, in this or a similarly-sandboxed project.
+
+Why it mattered: two verification gaps got disclosed as open rather than closed, when a real fix
+was available and just hadn't been looked for. `google-chrome` turns out to be installed as a
+system binary in this sandbox (`which google-chrome` → `/usr/bin/google-chrome`) and **can** reach
+this sandbox's own localhost, since it runs inside it. No new dependency needed — no Playwright/
+Puppeteer install, which would add a heavy, testing-only dependency to a repo that otherwise has no
+test tooling at all (`backend/CLAUDE.md` §23 notes this explicitly).
+
+Reusable as:
+```bash
+# Static/SSR-rendered HTML after JS execution:
+google-chrome --headless=new --disable-gpu --no-sandbox --dump-dom <url>
+# Screenshot (add --window-size=W,H before --screenshot for a specific viewport):
+google-chrome --headless=new --disable-gpu --no-sandbox --screenshot=/path/out.png <url>
+```
+Confirmed working against a real URL (`https://example.com`) before relying on it. Use this
+instead of `claude-in-chrome` for any "does this actually render/hydrate correctly" check against
+an app running in this sandbox — reserve `claude-in-chrome` for tasks that genuinely need the
+user's own browser (their logged-in sessions, their extensions, something they want to watch).
