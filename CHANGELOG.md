@@ -248,3 +248,41 @@ file is the higher-level, release-facing summary.
     scripting to seed cart state before navigating — deferred as disproportionate effort against a
     low-risk, already-reviewed few lines of logic).
   - See `docs/decisions/0012-phase-2-backend-and-closed-verification-gaps.md`.
+- Frontend: Phase 2 (Handicraft Domain) frontend — material/style/room/dimensions/finish/assembly/
+  customization display on the product page, a craft-story narrative section, a "Meet the Maker"
+  artisan card, Material/Style/Room filter chips on `/shop`, four new admin taxonomy CRUD screens
+  (Materials/Styles/Rooms/Artisans), and a new product-form section for all of it.
+  - Files changed: `frontend/types/index.ts`, `frontend/services/api.service.ts`,
+    `frontend/components/product/ProductDetailClient.tsx`, `frontend/app/(store)/shop/page.tsx`,
+    `frontend/app/(admin)/admin/{materials,styles,rooms,artisans}/page.tsx` (new),
+    `frontend/components/admin/AdminLayoutClient.tsx`,
+    `frontend/app/(admin)/admin/products/{add,[id]}/page.tsx`. Commit `969ab39`.
+  - DB/API changes: none new — consumes the backend contract from the previous entry.
+  - Testing status: `tsc --noEmit` + `npm run build` clean. Verified with real data via the API
+    (assigned a full set of attributes to a demo product, confirmed via headless-Chrome DOM dump
+    that the product page renders all of it, and that a product with nothing set still renders
+    cleanly). Independently re-verified after the fact: real commit confirmed, DB queried directly
+    and found back at its clean pre-test state.
+  - Deployment notes: local dev only.
+- **Full end-to-end application verification** — the user asked directly for the whole app working,
+  not each piece checked separately. Built real browser automation (Chrome DevTools Protocol via
+  `chrome-remote-interface`, in a throwaway scratchpad project — no new dependency in either repo)
+  and drove the actual storefront: homepage → shop → product detail → clicked "Add to Bag" → cart
+  → checkout → filled the real address form → clicked "Place Order" → **a real order was created in
+  the database** with correct pricing/shipping/total, stock and `InventoryLog` updated correctly →
+  cancelled it through the real API, confirmed stock restored → all test data cleaned up.
+  - Files changed: none in the app repos from this pass itself (found two false alarms — a stale
+    orphaned dev-server process, and a Chrome-autofill testing artifact misread as a hydration bug
+    — both correctly ruled out, not fixed because they weren't real). Fixed a data-integrity drift
+    in the dev DB left over from an early-session verification pass done before the stock-restoration
+    fix existed (direct SQL correction, not an app code change). See
+    `docs/decisions/0013-full-end-to-end-verification.md`.
+  - Result: the application works end to end — browsing, cart, checkout, order creation, pricing
+    integrity, stock management, cancellation — for everything except completing real payment. That
+    step correctly fails because Razorpay/Cashfree credentials are still placeholders (flagged since
+    `0002`), not because of a code defect. This is now the one concrete, identified blocker to a
+    fully completable purchase, promoted to a distinct open question in `tasks/TASKS.md`.
+  - Testing status: this entry *is* the testing — the most rigorous verification pass of the
+    session, real user-driven interaction rather than API/SSR-level checks.
+  - Deployment notes: local dev only. Needs real payment gateway credentials from the user before
+    a purchase can actually complete anywhere.

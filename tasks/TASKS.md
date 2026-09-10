@@ -7,7 +7,10 @@ and `docs/decisions/` records where a task involved a real decision.
 
 Phases below follow `MASTER-PROMPT.md` §47.
 
-## Open questions for the user (not blocking current work, but need real answers eventually)
+## Open questions for the user
+
+Items 1-3 don't block current engineering work. Item 4 is different — it's the one concrete thing
+blocking a real customer from completing a purchase.
 
 1. **Does `wood-vintage` eventually replace `unique-dressup` in production** (migrating real
    customers/orders), or launch as a genuinely separate platform/customer base? Changes whether
@@ -19,6 +22,12 @@ Phases below follow `MASTER-PROMPT.md` §47.
 3. **Payment provider(s) for non-India markets** — Razorpay/Cashfree don't meaningfully cover
    UAE/USA/Australia/UK/EU (discovery report §8/§16). Needs a real vendor decision before Phase 3
    country-pricing work can be paired with a working checkout in those markets.
+4. **This IS blocking, unlike 1-3**: real Razorpay/Cashfree sandbox credentials for the *existing*
+   India market. Confirmed by the full end-to-end walkthrough (`0013`, 2026-09-10) — every step up
+   to payment works from a real browser click-through; the payment step itself 500s on placeholder
+   keys. Whenever this is answered, drop the real values into `backend/.env`
+   (`RAZORPAY_KEY_ID`/`_SECRET`, `CASHFREE_APP_ID`/`_SECRET_KEY`) and
+   `frontend/.env.local` (`NEXT_PUBLIC_RAZORPAY_KEY`).
 
 ## Phase 0 — Discovery
 
@@ -170,8 +179,15 @@ Phases below follow `MASTER-PROMPT.md` §47.
       `console.log` — `wood-vintage/frontend` commit `97e502d` (2026-09-09)
 - [x] Verify full stack end-to-end locally: backend :5000 + frontend :3030 talking to each other
       (2026-09-09)
-- [ ] Fill in real third-party keys as each feature is needed: Razorpay, Google OAuth, Brevo/SMTP
-      (none currently set — see `backend/.env` / `frontend/.env.local`)
+- [ ] **Confirmed by the full E2E walkthrough (`0013`) as THE remaining blocker to a completable
+      checkout**: real Razorpay and/or Cashfree credentials. Everything up to and including order
+      creation, pricing, stock, and cancellation genuinely works (real browser, real clicks, real
+      order in the DB) — the payment step 500s because `CASHFREE_APP_ID`/`CASHFREE_SECRET_KEY` (and
+      Razorpay's equivalents) are still placeholders. This codebase's COD flow also requires a
+      Cashfree-collected delivery deposit, so COD isn't a workaround either. **Needs real
+      sandbox/live credentials from the user** — cannot be fabricated.
+- [ ] Google OAuth, Brevo/SMTP keys — lower priority than payment (login/email work without them,
+      just without those specific features), fill in when needed (`backend/.env` / `frontend/.env.local`).
 - [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
 - [x] **Frontend security:** all 9 vulnerabilities fixed, `npm audit` now clean (2026-09-09,
       `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. Carousel hydration

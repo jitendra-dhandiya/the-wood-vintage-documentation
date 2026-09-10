@@ -3,6 +3,14 @@
 Mirrors `tasks/TASKS.md` at a phase level (MASTER-PROMPT §47). Keep this in sync with TASKS.md —
 TASKS.md is the granular checklist; this is the narrative status.
 
+**Full end-to-end verification (2026-09-10, `docs/decisions/0013-...`)**: a real browser, scripted
+via CDP to click real buttons and fill a real form (not just API calls or SSR dumps), walked
+through homepage → shop → product → add to cart → checkout → placed a real order, confirmed
+correct in the database → cancelled it. Everything up to and including order creation, pricing
+integrity, stock management, and cancellation is confirmed genuinely working. The one thing
+stopping a real customer from completing a purchase today is real Razorpay/Cashfree credentials
+(placeholders — see "Open questions" #4 in `tasks/TASKS.md`), not a code defect.
+
 | Phase | Name | Status |
 |---|---|---|
 | 0 | Discovery | **Done** (2026-09-09) — `docs/architecture/phase-0-discovery-report.md`. One open question flagged, unresolved: does `wood-vintage` eventually replace `unique-dressup` in production? |

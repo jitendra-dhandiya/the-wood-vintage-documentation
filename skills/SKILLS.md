@@ -166,3 +166,94 @@ Confirmed working against a real URL (`https://example.com`) before relying on i
 **Update, same day:** the user said explicitly "I dont want to use claude chrome" on this project.
 Use local headless Chrome for *all* browser verification here — don't fall back to
 `claude-in-chrome` even as a retry, not just prefer headless Chrome when convenient.
+
+## 2026-09-10 — Real click-through E2E testing via CDP, in a scratchpad project (no repo dependency)
+
+What: `--dump-dom` (a single snapshot after page load) is enough to confirm a page renders
+correctly, but not enough to confirm an actual user flow (fill a form, click a button, land on the
+next state) works. For that, drove headless Chrome via the DevTools Protocol directly:
+`google-chrome --headless=new --remote-debugging-port=<port>` exposes a CDP endpoint;
+`chrome-remote-interface` (an npm package) gives a clean JS API over it — `Runtime.evaluate` to
+read/set page state and dispatch real DOM/React-compatible input events, `Page.navigate` to move
+between routes in the same session (preserving cart/auth state across the walkthrough, like a real
+user).
+
+Where used: full storefront walkthrough — homepage → shop → product detail → add to cart → cart →
+checkout → fill address form → place a real order.
+
+Why it mattered: this is qualitatively more rigorous than "the SSR HTML looks right" — it proved
+the React components actually wire up correctly to the (already API-verified) business logic, by
+driving them the way a shopper would, not by re-checking the API directly.
+
+Reusable as:
+```bash
+mkdir /tmp/.../scratch-cdp && cd /tmp/.../scratch-cdp && npm init -y && npm install chrome-remote-interface
+google-chrome --headless=new --disable-gpu --no-sandbox --remote-debugging-port=9333 about:blank &
+```
+```js
+const CDP = require('chrome-remote-interface');
+const client = await CDP({ port: 9333 });
+const { Page, Runtime, Console } = client;
+await Page.enable(); await Runtime.enable(); await Console.enable();
+await Page.navigate({ url: 'http://localhost:3030/...' });
+await Page.loadEventFired();
+// Set a React-controlled <input>'s value the way real typing would (not el.value = x, which React
+// won't see as a change without the native setter + a dispatched 'input' event):
+await Runtime.evaluate({ expression: `
+  const el = document.querySelector('input[name="firstName"]');
+  const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+  setter.call(el, 'value'); el.dispatchEvent(new Event('input', { bubbles: true }));
+`});
+// Click a button found by its visible text (no test-ids in this codebase):
+await Runtime.evaluate({ expression: `
+  Array.from(document.querySelectorAll('button')).find(b => /place order/i.test(b.innerText)).click();
+`});
+```
+Install the npm package in a scratchpad-only throwaway project (`npm init -y` in `/tmp/.../scratch`),
+never in either app repo — this is a verification tool, not a project dependency, and this
+codebase deliberately has no test tooling installed (`backend/CLAUDE.md` §23).
+
+## 2026-09-10 — Kill background dev servers *by PID*, and verify the port is actually free, not just that the kill command returned success
+
+What: `TaskStop` on a background bash task doesn't always guarantee the process it started (or a
+detached child of it) is actually gone. Hit this twice in one session: (1) a `next-server` process
+outlived a supposedly-stopped background task and caused a *later* fresh `npm run dev` to fail with
+`EADDRINUSE`, whose confusing symptom was a 500 from the **stale** server, momentarily looking like
+a regression; (2) a `google-chrome --headless` process launched with `nohup ... & disown` survived
+a `pkill -f <port pattern>` because the actual argv didn't match the grep pattern used.
+
+Where used: the full E2E walkthrough — both the app dev servers and the CDP-driving headless Chrome
+instances.
+
+Why it mattered: a stale process serving a *previous* build/state can make a real bug look present
+(or a real bug look absent) depending on which version happens to answer the request. Chasing a
+"bug" that's actually just old code still running wastes time and can lead to a wrong conclusion.
+
+Reusable as: after stopping a background dev server (or before starting a new one on the same
+port), verify with `ss -ltn | grep :<port>` — don't trust the stop command's exit code alone. If
+something's still bound, find the exact PID (`ss -ltnp` or `ps aux | grep <name>`) and `kill <pid>`
+directly rather than a pattern-matched `pkill`, which can miss processes whose argv doesn't match
+the pattern used.
+
+## 2026-09-10 — A hydration-mismatch console warning can be a testing artifact, not a real bug — isolate before concluding either way
+
+What: Saw a real React hydration-mismatch error (MUI `InputLabel`'s `data-shrink` state disagreeing
+between server and client) on `/checkout` during the E2E walkthrough. Rather than logging it as a
+bug or dismissing it as noise, isolated the variable: re-ran the identical page load in a
+**completely fresh Chrome profile** (`--user-data-dir=<empty new dir>`), with no prior navigation
+or typed-field history. Zero hydration warnings.
+
+Where used: the E2E checkout verification.
+
+Why it mattered: the original test run reused one Chrome profile across many navigations to
+`/checkout`, typing into fields named `firstName`/`phone`/etc. repeatedly — Chrome's own
+form-autofill memory pre-filled those fields from its own history before React hydrated, which is
+exactly the kind of client/server mismatch React's hydration warning describes, but the "server" in
+this case never had a chance to know about it — it's an artifact of the test methodology (a reused,
+autofill-remembering profile), not the application's code.
+
+Reusable as: when a real-browser check shows a hydration warning tied to form-field state (label
+shrink, defaultValue vs. value, autofill-shaped attributes), re-test in a fresh
+`--user-data-dir` before concluding it's a real app defect — autofill contamination from a reused
+profile is a common false-positive source specific to iterative browser-based testing, not
+something a single clean page load would ever surface.
