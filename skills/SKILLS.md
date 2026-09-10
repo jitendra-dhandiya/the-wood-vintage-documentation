@@ -161,7 +161,8 @@ google-chrome --headless=new --disable-gpu --no-sandbox --dump-dom <url>
 # Screenshot (add --window-size=W,H before --screenshot for a specific viewport):
 google-chrome --headless=new --disable-gpu --no-sandbox --screenshot=/path/out.png <url>
 ```
-Confirmed working against a real URL (`https://example.com`) before relying on it. Use this
-instead of `claude-in-chrome` for any "does this actually render/hydrate correctly" check against
-an app running in this sandbox — reserve `claude-in-chrome` for tasks that genuinely need the
-user's own browser (their logged-in sessions, their extensions, something they want to watch).
+Confirmed working against a real URL (`https://example.com`) before relying on it.
+
+**Update, same day:** the user said explicitly "I dont want to use claude chrome" on this project.
+Use local headless Chrome for *all* browser verification here — don't fall back to
+`claude-in-chrome` even as a retry, not just prefer headless Chrome when convenient.
