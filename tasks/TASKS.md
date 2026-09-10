@@ -78,7 +78,7 @@ Phases below follow `MASTER-PROMPT.md` §47.
       resolution logic exists and works; an admin can currently only create country-scoped content
       via direct API calls, not through a UI screen). Not urgent until real country-specific
       content is actually being authored.
-- [ ] Product architecture updates for handicraft domain
+- [x] Product architecture updates for handicraft domain — **backend done**, see Phase 2 below.
 - [x] Media/CDN architecture — **decided**: reuse existing pipeline as-is, defer CDN fronting to
       Phase 5/8 (`docs/decisions/0005-media-cdn-architecture.md`, 2026-09-09). No code changes needed now.
 - [x] SEO foundation — **decided**: existing infra (SeoMeta, sitemap, JSON-LD, robots.ts) is
@@ -87,11 +87,24 @@ Phases below follow `MASTER-PROMPT.md` §47.
 
 ## Phase 2 — Handicraft Domain
 
-- [ ] Categories, materials, styles, room taxonomy (§16)
-- [ ] Product attributes (admin-configurable, no code changes to add new ones)
-- [ ] Customization / made-to-order support
-- [ ] Furniture-specific product detail fields (dimensions, weight, finish, assembly, manufacturing time)
-- [ ] Artisan/craft storytelling content model (§33)
+- [x] Materials, styles, room taxonomy (§16) — **backend implemented and verified** (2026-09-10,
+      `wood-vintage/backend` commit `59964a4`): `Material`/`Style`/`Room` models (11/11/8 seeded,
+      admin-CRUDable with no code change to add a value), `Product` filters
+      (`?materialSlug=&styleSlug=&roomSlug=`). See `docs/decisions/0012-...`.
+- [x] Product attributes (admin-configurable, no code changes to add new ones) — same commit,
+      same models.
+- [x] Customization / made-to-order support — `isCustomizable`/`customizationNotes`/
+      `manufacturingTimeDays` fields on `Product`, same commit.
+- [x] Furniture-specific product detail fields (dimensions, weight, finish, assembly, manufacturing
+      time) — `lengthCm`/`widthCm`/`heightCm`/`finish`/`assemblyRequired`/`assemblyInstructions`,
+      same commit. `weight` already existed pre-Phase-2.
+- [x] Artisan/craft storytelling content model (§33) — `Artisan` model (unseeded — no real data
+      yet, correctly left empty) + `craftStory` field on `Product`, same commit.
+- [ ] **New**: Phase 2 frontend — material/style/room display + filters on the storefront, artisan
+      bio rendering, craft story on product pages, admin UI for the new taxonomy screens (Materials/
+      Styles/Rooms/Artisans admin CRUD screens, product edit form's new "Craft & Dimensions"
+      section). Backend contract exists and is verified; this is the natural next piece, same
+      pattern as the Country architecture's frontend follow-up (`0010`).
 
 ## Phase 3 — Internationalization
 
@@ -161,14 +174,19 @@ Phases below follow `MASTER-PROMPT.md` §47.
       (none currently set — see `backend/.env` / `frontend/.env.local`)
 - [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
 - [x] **Frontend security:** all 9 vulnerabilities fixed, `npm audit` now clean (2026-09-09,
-      `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. One disclosed
-      verification gap remains: real-browser hydration/interactivity check for the two carousels
-      (`HeroSlider`, `TestimonialsSection`) — SSR markup confirmed, client-side behavior not yet.
+      `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. Carousel hydration
+      verification gap **closed** 2026-09-10 via local headless Chrome — see `docs/decisions/0012-...`.
 - [x] **Backend security:** 17 → 2 vulnerabilities (both moderate, confirmed unreachable, left
       deliberately) — see `docs/claude/technical-debt.md` and `docs/decisions/0008-...` (2026-09-09,
       `wood-vintage/backend` commit `044b79d`).
 - [ ] Rebrand seeded content (site name, categories, product copy currently still say "Unique
       Dressup"/fashion — cosmetic only, real work is Phase 2 Handicraft Domain)
-- [ ] Real-browser smoke test of `HeroSlider`/`TestimonialsSection` carousel interactivity
-      post-Swiper-upgrade (autoplay, arrow clicks) — `claude-in-chrome` couldn't reach this
-      sandbox's localhost when attempted; SSR markup confirmed correct, hydration not yet.
+- [x] Real-browser smoke test of `HeroSlider`/`TestimonialsSection` carousel interactivity
+      post-Swiper-upgrade — **done 2026-09-10** via local headless Chrome (`google-chrome
+      --headless=new --dump-dom`, not `claude-in-chrome` — see `skills/SKILLS.md`). Found
+      `swiper-initialized`/`swiper-slide-active`/`swiper-pagination-bullet-active` in the post-JS
+      DOM, proving real hydration, not just correct SSR markup. See `docs/decisions/0012-...`.
+- [ ] **New**: full checkout shipping-display verification (`0011`) — headless Chrome confirmed
+      `/checkout` renders without a JS crash on an empty cart, but the actual override calculation
+      with a populated cart + overridden product still needs either real UI interaction or CDP
+      scripting to seed cart state before navigating. Narrower gap than before, not fully closed.

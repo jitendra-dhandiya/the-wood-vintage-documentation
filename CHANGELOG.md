@@ -210,8 +210,41 @@ file is the higher-level, release-facing summary.
     reach this sandbox's localhost (confirmed again, same limitation as the Swiper carousel
     verification gap in the 2026-09-09 entry). Disclosed as an open gap, not claimed as done.
   - Deployment notes: local dev only.
-- Started Phase 2 (Handicraft Domain): spec written
-  (`docs/architecture/phase-2-handicraft-domain-spec.md`) for `Material`/`Style`/`Room` taxonomy
-  models, a separate `Artisan` entity, and additive `Product` fields (dimensions, finish, assembly,
-  customization, manufacturing time, craft story). Implementation delegated to a background agent,
-  in progress as of this entry — see the next changelog entry once it lands.
+- Backend: Phase 2 (Handicraft Domain) implemented — `Material`/`Style`/`Room`/`Artisan` models
+  (11/11/8 seeded, artisans correctly unseeded), CRUD modules, `Product` gains material/style/room/
+  artisan relations plus dimensions/finish/assembly/customization/manufacturing-time/craft-story
+  fields, `GET /products` gains `?materialSlug=&styleSlug=&roomSlug=`.
+  - Files changed: `backend/prisma/schema.prisma` + migration `20260910043130_add_handicraft_domain`,
+    `backend/src/modules/{materials,styles,rooms,artisans}/` (new), `backend/src/server.ts` (seed),
+    `backend/src/modules/products/**`. Commit `59964a4`. See
+    `docs/architecture/phase-2-handicraft-domain-spec.md` and `docs/decisions/0012-...`.
+  - DB changes: 4 new tables, 4 new nullable FK columns + several scalar columns on `Product`,
+    30 new seeded rows (11 materials + 11 styles + 8 rooms).
+  - API changes: new `/materials*`, `/styles*`, `/rooms*`, `/artisans*` endpoints (public read +
+    admin CRUD); `GET /products` gains the three new filters; product responses include the new
+    relations as full objects.
+  - Migration requirements: none beyond the migration itself (applied to the dev DB). Notably, this
+    migration applied via normal `prisma migrate dev` with no non-interactive-environment issue —
+    that problem (hit for the CMS-slug fix in `0010`) appears specific to migrations needing a
+    destructive-change warning, not a general limitation.
+  - Testing status: real verification — an existing demo product was updated with a full set of the
+    new fields via the API and confirmed to round-trip correctly (nested objects, not just ids);
+    filters confirmed matching/non-matching/unknown-slug cases; a pre-existing untouched product
+    confirmed unaffected (all-null new fields, renders fine); full admin CRUD exercised end-to-end
+    on one taxonomy module. Independently re-verified after the fact: real commit confirmed, DB
+    counts queried directly (not just trusted), controller source read directly, filter checks
+    re-run independently.
+  - Deployment notes: local dev only. Frontend (display, filters, admin UI) not yet started.
+- Closed/narrowed two disclosed browser-verification gaps using a newly-found capability (local
+  headless Chrome, since `claude-in-chrome` drives the user's own machine and can't reach this
+  sandbox — see `skills/SKILLS.md`).
+  - The Swiper carousel hydration gap from the 2026-09-09 entry (`0007`) is **closed**: post-JS DOM
+    dump of the homepage shows real Swiper runtime classes (`swiper-initialized`,
+    `swiper-slide-active`, `swiper-pagination-bullet-active`), proving actual client-side
+    initialization, not just correct SSR markup.
+  - The checkout shipping-display gap from earlier today (`0011`) is **narrowed, not closed**:
+    confirmed `/checkout` renders without a JS crash on an empty cart; the full override
+    calculation with a populated cart still isn't verified in a real browser (would need CDP
+    scripting to seed cart state before navigating — deferred as disproportionate effort against a
+    low-risk, already-reviewed few lines of logic).
+  - See `docs/decisions/0012-phase-2-backend-and-closed-verification-gaps.md`.
