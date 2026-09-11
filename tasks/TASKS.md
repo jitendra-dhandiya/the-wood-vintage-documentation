@@ -188,7 +188,18 @@ blocking a real customer from completing a purchase.
       sandbox/live credentials from the user** — cannot be fabricated.
 - [ ] Google OAuth, Brevo/SMTP keys — lower priority than payment (login/email work without them,
       just without those specific features), fill in when needed (`backend/.env` / `frontend/.env.local`).
-- [ ] Decide remote host/naming for all three `wood-vintage` repos and push them
+- [x] Remote hosting configured and pushed — **done** (2026-09-10). New SSH identity `github-skm`
+      → `shilpamaheshwari1210-cmd` GitHub account. `documentation` → `wood-vintage-documentation`;
+      `backend` → `ud-server` (origin) + `wood-vintage-server` (`woodvintage` remote); `frontend` →
+      `ud-client` (origin) + `wood-vintage-client` (`woodvintage` remote). See `docs/decisions/0014-...`.
+      **Remember**: `git push` alone only updates `origin` (the `ud-*` repos) — push
+      `woodvintage` explicitly too after commits in `backend`/`frontend` if both should stay in sync.
+- [x] Commit author identity fixed — set `user.name`/`user.email` to
+      `Shilpa Maheshwari <shilpamaheshwari1210-cmd@users.noreply.github.com>` **locally in each of
+      the 3 repos** (not global — the machine's global identity is presumably intentional for other
+      projects). Applies going forward only; history through this point stays authored as
+      `Alexander The Great` (the pre-existing global identity), by the user's explicit choice not
+      to rewrite/force-push. See `docs/decisions/0014-...`.
 - [x] **Frontend security:** all 9 vulnerabilities fixed, `npm audit` now clean (2026-09-09,
       `wood-vintage/frontend` commit `d1ec1a0`). See `docs/decisions/0007-...`. Carousel hydration
       verification gap **closed** 2026-09-10 via local headless Chrome — see `docs/decisions/0012-...`.

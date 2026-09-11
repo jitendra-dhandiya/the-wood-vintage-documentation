@@ -286,3 +286,9 @@ file is the higher-level, release-facing summary.
     session, real user-driven interaction rather than API/SSR-level checks.
   - Deployment notes: local dev only. Needs real payment gateway credentials from the user before
     a purchase can actually complete anywhere.
+- Ops: all 3 repos pushed to GitHub for the first time (5 remotes total — `backend`/`frontend`
+  each have `origin` = `ud-*` plus a `woodvintage` remote = `wood-vintage-*`). New dedicated SSH
+  identity `github-skm` → `shilpamaheshwari1210-cmd` account. Per-repo git author set to
+  `Shilpa Maheshwari` going forward (history through this point stays as the machine's global
+  `Alexander The Great` identity — not rewritten, by user choice). `unique-dressup` untouched.
+  See `docs/decisions/0014-remote-hosting-configured-and-pushed.md`.
