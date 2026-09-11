@@ -217,3 +217,9 @@ blocking a real customer from completing a purchase.
       `/checkout` renders without a JS crash on an empty cart, but the actual override calculation
       with a populated cart + overridden product still needs either real UI interaction or CDP
       scripting to seed cart state before navigating. Narrower gap than before, not fully closed.
+- [x] Identify real URLs for the 5 Indian competitors named in MASTER-PROMPT §32 (2026-09-11) —
+      `docs/competitor-research/indian-competitors-directory.md`. Found Sunrise International/The
+      Timber Guy/Sunrise Art & Exports are the same company, not 3 separate competitors.
+- [ ] **New**: the full §32 teardown (positioning, homepage, nav, pricing, SEO, trust, etc.) for
+      each — this pass was identification only. Also: USA/UAE/Australia/Europe competitor research,
+      not started at all.
