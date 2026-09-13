@@ -155,10 +155,15 @@ Room/Material/Style rather than keep it alongside the new taxonomy.
 
 - [x] Backend: real frequently-bought-together recommendations, public artisan directory endpoint,
       3 new taxonomy-driven `HomepageSectionType` values. See `docs/decisions/0020-...`.
-- [ ] Frontend: gender-axis replacement (hide toggle + fix the silent-WOMEN-default risk — see spec
+- [x] Frontend: gender-axis replacement (hide toggle + fix the silent-WOMEN-default risk — see spec
       §1, this is the highest-risk single item), new homepage sections (§2), artisan directory pages
       (§4), search facets (§6), recently-viewed server sync for signed-in users (§7). Full detail in
-      `docs/architecture/phase-4-experience-spec.md`.
+      `docs/architecture/phase-4-experience-spec.md`. Implemented 2026-09-13 as 5 separate commits in
+      `wood-vintage/frontend` (plus one small `gender_toggle_enabled` seed-default commit in
+      `wood-vintage/backend`) — **independently re-verified and pushed** to all 4 remotes. Real
+      `curl` check confirmed the silent-narrowing risk is closed (no-`gender`-param request returns
+      the full catalogue, not just WOMEN). See `docs/decisions/0021-...`. **Phase 4 is now
+      substantially done** — remaining items below are deliberately out of scope, not gaps.
 - [ ] **New** (found by the audit, deliberately out of scope for the above): Size/Color filter chips
       on `/shop` are unconditional even for furniture products that don't have meaningful
       size/color variants — should be conditional or relabeled (e.g. dimension/finish).

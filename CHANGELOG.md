@@ -336,3 +336,40 @@ file is the higher-level, release-facing summary.
   - Testing status: `tsc --noEmit` clean; booted the backend and called `GET /orders/my` (no
     params, and with `page`/`limit`) and the admin `GET /orders` with a real JWT — all `200`.
   - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+
+## 2026-09-13 (continued) — Phase 4 (Experience)
+
+- Audited all 9 Phase 4 sub-items against the real codebase before building anything. User
+  confirmed the one real architectural call: replace the MEN/WOMEN gender toggle with
+  Room/Material/Style as the storefront's primary browsing axis.
+- **Backend**: real frequently-bought-together recommendations (order co-occurrence, cancelled
+  orders excluded), public artisan directory endpoint, 3 new `HomepageSectionType` values
+  (`SHOP_BY_ROOM`/`SHOP_BY_MATERIAL`/`ARTISAN_SPOTLIGHT`). Commits `35705b4`, `e9486eb`, `ccd6625`.
+  See `docs/decisions/0020-...`.
+  - Files changed: `src/modules/artisans/*`, `src/modules/products/services/product.service.ts`,
+    `prisma/schema.prisma` + migration.
+  - DB changes: real migration `20260913143742_add_homepage_taxonomy_sections`.
+  - API changes: `GET /artisans` (new public list); `GET /products/:slug` response's
+    `suggestedProducts` now prioritizes real co-purchase data.
+  - Testing status: real order placed and cancelled to verify the recommendation engine picks up
+    and then correctly drops a co-purchase signal.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+- **Frontend** — highest-blast-radius item in Phase 4: gender-axis replacement (toggle hidden by
+  default AND the silent-WOMEN-default risk closed), new taxonomy-driven homepage sections, public
+  artisan directory pages, search facets matching `/shop`, recently-viewed server sync for
+  signed-in users. Commits `6153d9a`, `4e1c285`, `ec3b18e`, `8728b75`, `e7596b0` (frontend) +
+  `3163a16` (backend, `gender_toggle_enabled` seed default). See `docs/decisions/0021-...`.
+  - Files changed: extensive — see the decision record for the full list per item.
+  - DB changes: none beyond the backend commit above (settings seed row only).
+  - API changes: none new — reuses existing `roomApi`/`materialApi`/`artisanApi`/`productApi`
+    client calls and the new `GET /artisans` from the backend batch above.
+  - Testing status: `type-check`/`build` clean; independently re-verified beyond the implementing
+    agent's own report — real `curl` proof the catalogue-visibility risk is closed (no-param
+    request now returns all 10 products, not 6 WOMEN-scoped ones), a real homepage section created
+    via the admin API and confirmed rendering in headless Chrome post-hydration, a real JWT
+    round-tripped through the recently-viewed endpoints to confirm the response shape matches what
+    the frontend expects. DB confirmed clean after all testing.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage` on both repos.
+- **Phase 4 is now substantially done.** Remaining items (Size/Color filter relabeling,
+  guest/signed-in recently-viewed merge, deeper personalization/ML — deferred to Phase 8) are
+  tracked in `tasks/TASKS.md`, not gaps in this pass.
