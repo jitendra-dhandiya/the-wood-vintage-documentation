@@ -41,7 +41,41 @@ app/                             app/
                                   └── (auth)/         ← unchanged
 ```
 
-### Middleware (new — this app currently has none)
+### Middleware — CORRECTION (2026-09-13): this app already has one, extend it, don't replace it
+
+This spec originally said "this app currently has none" — **wrong**, verified by actually reading
+the file before implementation started. `frontend/middleware.ts` already exists and does real,
+deliberate SEO work: a permanent (301) redirect for `/wishlist` → `/account/wishlist`, and a
+lookup-based (not config-based, precisely because a slug rename in admin and a deploy are separate
+acts at separate times) permanent redirect for renamed category slugs, matched only against
+`/category/:slug` and `/wishlist` via `export const config = { matcher: [...] }`. **This logic must
+be preserved and composed with the new country-prefix logic, not deleted or overwritten** — read
+the full existing file before writing a single line of the new middleware.
+
+Composition, once `[country]` prefixing is live:
+- `/wishlist` needs no change — it redirects straight to `/account/wishlist`, which was never
+  going to be country-prefixed anyway (an account-family destination). Keep matching the bare
+  `/wishlist` path (before any country prefix could apply) or add it to the "never country-prefix
+  this" exclusion list — either way, it must keep firing exactly as today.
+- `/category/:slug` legacy-slug forwarding moves to firing against `/[country]/category/:slug`
+  instead, since `/category` is a `(store)` route and does move under the country segment. The
+  slug is at path segment index 3 after restructuring (`['', country, 'category', slug]`), not 2.
+  The API check (`fetch .../categories/:slug`) is unaffected — it doesn't need a country.
+- Order of operations for a flat legacy request like `/category/old-slug` (no country prefix,
+  possibly also a renamed slug): country-prefix redirect fires first (→
+  `/in/category/old-slug`), the browser follows it, a *second* request arrives at
+  `/in/category/old-slug`, and the legacy-slug redirect fires on *that* request (→
+  `/in/category/new-slug`) if the slug is confirmed renamed. Two redirects in sequence for that one
+  specific combination (flat + renamed) is correct and acceptable — most requests hit only one or
+  neither.
+
+`middleware.ts`'s `matcher` config needs broadening from `['/category/:slug', '/wishlist']` to
+cover every storefront path that needs country-prefix resolution, while still explicitly excluding
+`/admin`, `/account`, `/login`, `/register`, `/api`, `/_next`, static assets — get this matcher
+right or either the exclusions leak (admin gets prefixed, breaking it) or storefront paths get
+missed (no redirect happens, defeating the point).
+
+### Middleware — original design (still applies, now composed with the above)
 
 `middleware.ts` at the frontend root:
 - Matches all paths except `/admin/*`, `/account/*`, `/login`, `/register`, `/api/*`, `/_next/*`,
@@ -134,6 +168,36 @@ regardless of whether it came from a URL segment or a cookie.
 - hreflang tags present and correct on a page with the app running under 2+ enabled countries
   (temporarily enable a second country for the test, disable it again afterward — same pattern used
   in `0013`/`0012`'s verification passes).
+
+## Exact scope, confirmed by reading the actual codebase (2026-09-13)
+
+**Route files that move from `app/(store)/` to `app/[country]/(store)/`** (confirmed via `find`,
+26 page/loading/layout/template/error files across these routes — move the whole `(store)`
+directory as one unit, don't recreate it file-by-file): `about`, `blog/(index)`, `blog/[slug]`,
+`cart`, `categories`, `category/[slug]`, `checkout`, `collections/(index)`, `collections/[slug]`,
+`contact`, `error.tsx`, `faq`, `(home)` (the root `page.tsx`), `layout.tsx`, `not-found.tsx`,
+`order-success`, `[page]` (CMS catch-all), `privacy-policy`, `product/[slug]`, `return-policy`,
+`search`, `shipping-policy`, `shop`, `template.tsx`, `terms`, `track/[waybill]`.
+
+**Files confirmed (via grep) to contain internal absolute links to now-country-prefixed paths —
+every one of these needs its `href`/`router.push`/`redirect` calls updated to include the current
+country** (read each file, don't guess at the exact link — some may already be relative or use a
+helper worth extending rather than hand-editing every occurrence):
+`app/(account)/account/orders/page.tsx`, `app/(account)/account/wishlist/page.tsx`,
+`app/(store)/about/page.tsx`, `app/(store)/cart/page.tsx`, `app/(store)/categories/page.tsx`,
+`app/(store)/collections/(index)/page.tsx`, `app/(store)/not-found.tsx`,
+`app/(store)/order-success/page.tsx`, `components/cart/CartDrawer.tsx`,
+`components/category/CategoryPageClient.tsx`, `components/home/HeroSlider.tsx`,
+`components/layout/MegaMenu.tsx`, `components/layout/MobileBottomNav.tsx`,
+`components/product/ProductDetailClient.tsx`, `components/layout/Navbar.tsx` (links to `/`, `/shop`,
+`/search?q=`; its `/account/*` and `/admin/*` links are correct as-is, don't touch those).
+**This list may not be exhaustive** — it was produced by one grep pattern; the implementer should
+re-search (`grep -rn 'href="/\|router\.push(' app components`) after the route move to catch
+anything this pattern missed, including relative-looking links that break once nesting changes.
+
+**A `withCountry(path, country)` (or similarly named) helper is worth adding** — a single function
+these files call instead of hand-writing `` `/${country}${path}` `` everywhere. Reduces the edit
+surface and gives one place to fix if the prefix scheme ever changes again.
 
 ## Rollback plan
 
