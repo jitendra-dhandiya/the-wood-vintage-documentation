@@ -327,3 +327,12 @@ file is the higher-level, release-facing summary.
     through the real UI post-restructuring. Found and logged (not fixed, out of scope) a real
     pre-existing bug: `GET /orders/my` throws a Prisma error.
   - Deployment notes: local dev only. Pushed to all relevant GitHub remotes.
+- **Fixed the `GET /orders/my` pagination bug** found above. `getUserOrders`/`getAllOrders`
+  discarded `paginationParams()`'s sanitized `limit`, passing the raw (possibly `NaN`) value to
+  Prisma's `take`. Commit `68db808`. See `docs/decisions/0019-fix-orders-pagination-bug.md`.
+  - Files changed: `backend/src/modules/orders/services/order.service.ts`.
+  - DB changes: none.
+  - API changes: none (bug fix only — same contract, now actually works with no query params).
+  - Testing status: `tsc --noEmit` clean; booted the backend and called `GET /orders/my` (no
+    params, and with `page`/`limit`) and the admin `GET /orders` with a real JWT — all `200`.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.

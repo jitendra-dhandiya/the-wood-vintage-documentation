@@ -140,9 +140,10 @@ blocking a real customer from completing a purchase.
       re-verified beyond the agent's own report — reproduced the category-slug-rename redirect
       chain from scratch. See `docs/decisions/0018-url-restructuring-implemented.md`.
       **Phase 3 is now fully done.**
-- [ ] **New**: `GET /orders/my` throws a Prisma validation error (`paginationParams()` called
-      without `limit`) — found while verifying the URL restructuring, confirmed pre-existing and
-      unrelated to that change. Needs its own fix.
+- [x] `GET /orders/my` Prisma validation error — **fixed 2026-09-13**. Root cause: `getUserOrders`/
+      `getAllOrders` destructured only `{ skip }` from `paginationParams()` and used the raw,
+      unsanitized `limit` (NaN with no query string) in Prisma's `take`. See
+      `docs/decisions/0019-fix-orders-pagination-bug.md`.
 - [ ] **New**: blog detail page's metadata has no hreflang (the URL-restructuring spec's list
       didn't name it) — minor, low-priority follow-up if/when blog SEO matters.
 
