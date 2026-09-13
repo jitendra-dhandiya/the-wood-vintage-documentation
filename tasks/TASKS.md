@@ -121,10 +121,12 @@ blocking a real customer from completing a purchase.
       verified (`0016`, `wood-vintage/frontend` commit `394adb8`). Found a real gap along the way:
       no write endpoints for `ProductCountryPricing`/`ProductCountryAvailability` — tracked as a
       new backend task below.
-- [ ] **New**: `POST/PUT/DELETE` endpoints for `ProductCountryPricing`/`ProductCountryAvailability`
-      (found by `0016` — only read-side resolution exists today, no way to set an override except
-      direct SQL). Needed before the product-form "Country Pricing & Availability" section
-      (deferred in `0016`) can be built.
+- [x] `PUT`/`DELETE` endpoints for `ProductCountryPricing`/`ProductCountryAvailability` — done and
+      verified (`0017`, `wood-vintage/backend` commit `03e63b4`). Nested under products, matching
+      the variant-routes pattern. Real round-trip verified (set → resolution picks it up
+      immediately, no other code changed → delete → clean 404 → fallback confirmed).
+- [ ] **New**: product-form "Country Pricing & Availability" UI section (deferred in `0016`, now
+      unblocked by `0017`'s API existing) — next frontend piece once the URL restructuring lands.
 - [x] Country pricing rules (§17) — `ProductCountryPricing`, done and verified (`0009`, `0013`).
 - [x] Country content overrides — Global→Country CMS/homepage/banner resolution, done and verified
       (`0010`).
