@@ -117,14 +117,17 @@ blocking a real customer from completing a purchase.
 
 ## Phase 3 — Internationalization
 
-- [ ] Country configuration (admin-manageable, §10)
-- [ ] Country pricing rules (§17)
-- [ ] Country content overrides
-- [ ] Country availability
-- [ ] Country shipping rules (§18)
+- [~] Country configuration (admin-manageable, §10) — backend done (`0009`); admin UI **in
+      progress** (frontend agent running as of 2026-09-13, see `phase-3-country-shipping-and-admin-spec.md`).
+- [x] Country pricing rules (§17) — `ProductCountryPricing`, done and verified (`0009`, `0013`).
+- [x] Country content overrides — Global→Country CMS/homepage/banner resolution, done and verified
+      (`0010`).
+- [x] Country availability — `ProductCountryAvailability`, done (`0009`).
+- [x] Country shipping rules (§18) — `CountryShippingRule`, done and verified (`0015`).
 - [ ] Implement country SEO / hreflang / URL strategy — **decided** (`docs/decisions/0004-international-url-strategy.md`:
-      subdirectory-per-country, `app/[country]/...`), not yet implemented. Real restructuring of the
-      route tree, scope as its own task, not a side effect of something else.
+      subdirectory-per-country, `app/[country]/...`). User confirmed to proceed (2026-09-13). Own
+      spec written (`phase-3-url-restructuring-spec.md`); implementation starting once the frontend
+      repo is free of the concurrent Countries-admin-UI agent.
 
 ## Phase 4 — Experience
 
