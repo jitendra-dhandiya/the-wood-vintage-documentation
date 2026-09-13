@@ -292,3 +292,38 @@ file is the higher-level, release-facing summary.
   `Shilpa Maheshwari` going forward (history through this point stays as the machine's global
   `Alexander The Great` identity — not rewritten, by user choice). `unique-dressup` untouched.
   See `docs/decisions/0014-remote-hosting-configured-and-pushed.md`.
+
+## 2026-09-13
+
+- Real URLs for the 5 named Indian competitors (MASTER-PROMPT §32) — found via search, not
+  guessed. Real finding: Sunrise International, The Timber Guy, and Sunrise Art & Exports are the
+  same company, not three separate competitors. `docs/competitor-research/indian-competitors-directory.md`.
+- **Phase 3 (Internationalization) completed in full.**
+  - Backend: `CountryShippingRule` (per country+method, additive highest-priority step ahead of the
+    existing flat-rate/override chain — zero risk to unconfigured countries). Commit `31d3aa0`.
+    See `docs/decisions/0015-country-shipping-rules.md`.
+  - Frontend: Countries admin screen + shipping-rules UI. Commit `394adb8`. Found a real gap: no
+    write endpoints existed for per-product country pricing/availability. See
+    `docs/decisions/0016-country-admin-ui.md`.
+  - Backend: closed that gap — `PUT`/`DELETE /products/:id/country-pricing|country-availability/:countryId`.
+    Commit `03e63b4`. Real round-trip verified. See `docs/decisions/0017-...`.
+  - Frontend: **the `/[country]/...` URL restructuring** — the highest-blast-radius change in the
+    project. All 34 storefront routes moved, the pre-existing SEO-redirect middleware (wishlist,
+    renamed-category-slug) preserved and correctly composed with new country-prefix logic,
+    14+ internal-link sites fixed, hreflang/canonical/sitemap/robots updated. Commits `c8cc8c1`,
+    `c148290`, `a866124`, `44eb691`. Verified more thoroughly than anything else this session,
+    including independently reproducing the trickiest redirect chain from scratch. See
+    `docs/decisions/0018-url-restructuring-implemented.md`.
+  - Files changed: extensive — see the individual decision records for full file lists per piece.
+  - DB changes: new `country_shipping_rules` table; `country_shipping_rules`/
+    `product_country_pricing`/`product_country_availability` all confirmed empty (no default data)
+    after all testing.
+  - API changes: new `/countries/:id/shipping-rules*` and `/products/:id/country-pricing|
+    country-availability/:countryId` endpoints; every storefront URL now lives under
+    `/<country-code>/...` (e.g. `/in/product/x`) instead of flat paths — old flat paths 307-redirect
+    to the resolved country's equivalent.
+  - Testing status: each piece independently re-verified beyond the implementing agent's own
+    report — real DB queries, real re-run redirect chains, a genuine order placed and cancelled
+    through the real UI post-restructuring. Found and logged (not fixed, out of scope) a real
+    pre-existing bug: `GET /orders/my` throws a Prisma error.
+  - Deployment notes: local dev only. Pushed to all relevant GitHub remotes.

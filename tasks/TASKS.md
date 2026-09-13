@@ -132,10 +132,19 @@ blocking a real customer from completing a purchase.
       (`0010`).
 - [x] Country availability — `ProductCountryAvailability`, done (`0009`).
 - [x] Country shipping rules (§18) — `CountryShippingRule`, done and verified (`0015`).
-- [ ] Implement country SEO / hreflang / URL strategy — **decided** (`docs/decisions/0004-international-url-strategy.md`:
-      subdirectory-per-country, `app/[country]/...`). User confirmed to proceed (2026-09-13). Own
-      spec written (`phase-3-url-restructuring-spec.md`); implementation starting once the frontend
-      repo is free of the concurrent Countries-admin-UI agent.
+- [x] Implement country SEO / hreflang / URL strategy — **done and thoroughly verified**
+      (2026-09-13, `wood-vintage/frontend` commits `c8cc8c1`/`c148290`/`a866124`/`44eb691`). All 34
+      storefront routes moved under `app/[country]/...`, existing legacy redirects (wishlist,
+      renamed-category-slug) preserved and composed with the new country-prefix middleware, 14+
+      internal-link sites fixed, hreflang/canonical added, sitemap/robots updated. Independently
+      re-verified beyond the agent's own report — reproduced the category-slug-rename redirect
+      chain from scratch. See `docs/decisions/0018-url-restructuring-implemented.md`.
+      **Phase 3 is now fully done.**
+- [ ] **New**: `GET /orders/my` throws a Prisma validation error (`paginationParams()` called
+      without `limit`) — found while verifying the URL restructuring, confirmed pre-existing and
+      unrelated to that change. Needs its own fix.
+- [ ] **New**: blog detail page's metadata has no hreflang (the URL-restructuring spec's list
+      didn't name it) — minor, low-priority follow-up if/when blog SEO matters.
 
 ## Phase 4 — Experience
 
