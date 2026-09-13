@@ -257,3 +257,22 @@ shrink, defaultValue vs. value, autofill-shaped attributes), re-test in a fresh
 `--user-data-dir` before concluding it's a real app defect — autofill contamination from a reused
 profile is a common false-positive source specific to iterative browser-based testing, not
 something a single clean page load would ever surface.
+
+## 2026-09-13 — `rm -rf .next` before `npm run dev` if a production `npm run build` ran first
+
+What: `npm run build` (production) and `npm run dev` write different, incompatible things into
+`.next` — production build output uses content-hashed chunk filenames; dev mode expects its own
+unhashed ones (`main-app.js`, etc.). Running a production build, then starting `next dev` without
+clearing `.next` first, leaves the dev server serving a mix of the two — requests for dev-mode
+chunk names 404 silently, which breaks all client-side hydration/fetching with no obvious error in
+the terminal (the page loads, looks static, and nothing interactive works).
+
+Where used: hit while verifying the Countries admin UI, after an earlier `npm run build`
+verification step in the same session.
+
+Why it mattered: this looks exactly like a real app bug (broken hydration) if you don't know the
+cause — cost real debugging time before the actual cause (stale `.next`) was found.
+
+Reusable as: any time a verification pass in this project runs both `npm run build` and
+`npm run dev` in the same session, `rm -rf .next` between them (before starting `next dev`) rather
+than assuming they're independent.

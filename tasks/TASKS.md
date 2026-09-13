@@ -117,8 +117,14 @@ blocking a real customer from completing a purchase.
 
 ## Phase 3 — Internationalization
 
-- [~] Country configuration (admin-manageable, §10) — backend done (`0009`); admin UI **in
-      progress** (frontend agent running as of 2026-09-13, see `phase-3-country-shipping-and-admin-spec.md`).
+- [x] Country configuration (admin-manageable, §10) — backend (`0009`) + admin UI, done and
+      verified (`0016`, `wood-vintage/frontend` commit `394adb8`). Found a real gap along the way:
+      no write endpoints for `ProductCountryPricing`/`ProductCountryAvailability` — tracked as a
+      new backend task below.
+- [ ] **New**: `POST/PUT/DELETE` endpoints for `ProductCountryPricing`/`ProductCountryAvailability`
+      (found by `0016` — only read-side resolution exists today, no way to set an override except
+      direct SQL). Needed before the product-form "Country Pricing & Availability" section
+      (deferred in `0016`) can be built.
 - [x] Country pricing rules (§17) — `ProductCountryPricing`, done and verified (`0009`, `0013`).
 - [x] Country content overrides — Global→Country CMS/homepage/banner resolution, done and verified
       (`0010`).
