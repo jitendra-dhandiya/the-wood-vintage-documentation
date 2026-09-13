@@ -147,6 +147,27 @@ blocking a real customer from completing a purchase.
 - [ ] **New**: blog detail page's metadata has no hreflang (the URL-restructuring spec's list
       didn't name it) — minor, low-priority follow-up if/when blog SEO matters.
 
+## Phase 4 — Experience (started 2026-09-13)
+
+Audit done (all 9 sub-items assessed against real code — see `0020` and
+`docs/architecture/phase-4-experience-spec.md`). User confirmed: replace the gender axis with
+Room/Material/Style rather than keep it alongside the new taxonomy.
+
+- [x] Backend: real frequently-bought-together recommendations, public artisan directory endpoint,
+      3 new taxonomy-driven `HomepageSectionType` values. See `docs/decisions/0020-...`.
+- [ ] Frontend: gender-axis replacement (hide toggle + fix the silent-WOMEN-default risk — see spec
+      §1, this is the highest-risk single item), new homepage sections (§2), artisan directory pages
+      (§4), search facets (§6), recently-viewed server sync for signed-in users (§7). Full detail in
+      `docs/architecture/phase-4-experience-spec.md`.
+- [ ] **New** (found by the audit, deliberately out of scope for the above): Size/Color filter chips
+      on `/shop` are unconditional even for furniture products that don't have meaningful
+      size/color variants — should be conditional or relabeled (e.g. dimension/finish).
+- [ ] **New** (deliberately deferred, spec §7): merging guest (localStorage) and signed-in
+      (server) recently-viewed history on login — not required for Phase 4, worth doing later.
+- [ ] Personalization beyond recommendations + recently-viewed (real affinity scoring, ML-driven
+      "for you" sections) is intentionally deferred to Phase 8 (Scale) per MASTER-PROMPT §47, which
+      explicitly owns "recommendation engine" and "AI-assisted merchandising" — not a Phase 4 gap.
+
 ## Phase 4 — Experience
 
 - [ ] New homepage structure (§12, validate sections against analytics — don't implement blindly)
