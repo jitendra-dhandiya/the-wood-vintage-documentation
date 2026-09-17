@@ -175,28 +175,61 @@ Room/Material/Style rather than keep it alongside the new taxonomy.
 
 ## Phase 4 — Experience
 
-- [ ] New homepage structure (§12, validate sections against analytics — don't implement blindly)
-- [ ] Category discovery / filters
-- [ ] Product storytelling template (§33)
-- [ ] Recommendations (rule-based first, §24)
-- [ ] Search (typo tolerance, synonyms; future-ready for Elasticsearch/Algolia-style infra, §23)
-- [ ] Wishlist / recently viewed / personalization
+**Superseded by the detailed section above (started 2026-09-13) — all items below done there.**
+- [x] New homepage structure — taxonomy-driven sections (`0020`/`0021`), not analytics-validated
+      (no analytics platform exists yet — see Phase 7) but genuinely rebuilt around Room/Material/
+      Style rather than the old gender toggle.
+- [x] Category discovery / filters — Material/Style/Room filters + new homepage discovery sections.
+- [x] Product storytelling template — artisan bio card + directory (`0021`).
+- [x] Recommendations (rule-based) — real order-co-occurrence "frequently bought together" (`0020`).
+- [x] Search — facets matching `/shop` (`0021`); typo tolerance/synonyms/Elasticsearch-class infra
+      not built (would be a real infra decision, not code-only — not attempted).
+- [x] Wishlist / recently viewed / personalization — wishlist was already done; recently-viewed now
+      server-synced for signed-in users (`0021`); personalization scoped to recommendations +
+      recently-viewed, deeper ML-driven personalization deferred to Phase 8 per MASTER-PROMPT §47.
 
 ## Phase 5 — Performance
 
-- [ ] CDN, image optimization, caching
-- [ ] SSR/SSG usage audit
-- [ ] API and DB performance pass
-- [ ] Bundle size audit
-- [ ] Core Web Vitals baseline + targets (§20, §35)
+- [x] Images — already done pre-Phase-5 (see `backend/CLAUDE.md` §19); audit confirmed it genuinely
+      satisfies this sub-item, nothing left to build.
+- [x] Caching — HTTP cache headers + Next ISR audited and confirmed correct/broad; in-process/Redis
+      caching for hot read endpoints deliberately NOT built (PM2 multi-worker limits an in-process
+      cache's value; Redis is an infra decision) — tracked in `docs/claude/technical-debt.md`.
+- [x] SSR/SSG usage audit — done, `backend/CLAUDE.md` §16's table found stale post-`[country]`
+      restructuring; real split documented in `0022`. True SSG (`generateStaticParams`) not used
+      anywhere — ISR-with-revalidate judged a reasonable choice at current catalogue size, not a gap.
+- [x] API and DB performance pass — no N+1 found; fixed a real missing `[isActive,isBestSeller]`
+      index and trimmed over-fetched material/style/room/artisan/badges from product-list responses.
+      See `0022`.
+- [x] Bundle size audit — `@next/bundle-analyzer` wired in (`npm run build:analyze`); confirmed
+      `@mui/x-data-grid` is an unused dependency (not removed, flagged only).
+- [x] Core Web Vitals baseline + targets — real reporting now exists (`0022`); no CI/target-gating
+      yet since there's no CI/CD pipeline at all (separate, already-known gap, `backend/CLAUDE.md` §24).
+- [ ] **New**: CDN fronting for `/img`/`/uploads` — needs a provider choice + DNS change, not code.
+      Deliberately deferred since `0005` (2026-09-09); still the right call.
 
 ## Phase 6 — SEO
 
-- [ ] Technical SEO (crawlability, sitemap, robots.txt, structured data, canonical URLs)
-- [ ] Content SEO (buying guides, material guides, comparisons)
-- [ ] International SEO (hreflang, localized URLs, country metadata)
-- [ ] Programmatic SEO pages (material/room/style/country/use-case — real value only, §5)
-- [ ] Landing page architecture
+Spec written (`docs/architecture/phase-6-seo-spec.md`) after a real audit found several already-
+indexed pages silently shipping fashion-era fallback metadata. Implementation in progress.
+
+- [ ] Technical SEO — fashion-era fallback metadata on `/shop`, `/search`, `/categories`,
+      `/collections`, `/contact` (real, already-indexed pages) needs fixing; sitemap needs
+      collections/artisans/material/room/style added.
+- [ ] Content SEO — blog detail's fallback title still says "Unique Dressup Blog"; no
+      editorial/target-keyword tooling (deliberately not building ahead of a real content program).
+- [ ] International SEO — core mechanism (`buildCountryAlternates()`) already solid and correctly
+      used on most page types; blog detail has no `alternates` at all (worse than `0018` flagged —
+      missing canonical too, not just hreflang), same 5 pages above also missing it.
+- [ ] Programmatic SEO pages — Material/Room/Style landing pages: **the data model, product
+      relations, and admin CRUD already exist**; only the frontend route is missing. Highest-leverage
+      item in this phase.
+- [ ] Structured data — only `Product` JSON-LD exists (with a real bug: hardcoded
+      `priceCurrency: 'INR'`, wrong for non-India country pages); no `BreadcrumbList`/
+      `Organization`/`WebSite`/`Article` anywhere despite the UI/data already existing for most.
+- [ ] Landing page architecture — same as "Programmatic SEO pages" above.
+- [ ] **New**: Footer links don't call `withCountry()` — every sitewide footer link forces a 307
+      redirect hop instead of linking to the canonical URL. The one place `0018`'s sweep missed.
 
 ## Phase 7 — Analytics
 
