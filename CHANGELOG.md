@@ -429,3 +429,28 @@ file is the higher-level, release-facing summary.
   - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
 - **Phase 7 is now done.** No admin UI renders the new funnel/country-breakdown data yet — a
   natural, low-risk follow-up, tracked in `tasks/TASKS.md`, not blocking.
+
+## 2026-09-17 (continued) — Phase 8 (Scale) audit + a real bug fix
+
+- Audited all 9 Phase 8 sub-items against the real codebase. Found and fixed a genuine, live
+  correctness bug independent of any vendor decision: Razorpay/Cashfree hardcoded `currency: 'INR'`
+  while charging `order.total`, already denominated in the order's own country currency for any
+  non-India order — would have silently mischarged by roughly the exchange rate (e.g. ~22x for
+  AED) the moment a non-India country went live with online payment enabled.
+  `wood-vintage/backend` commit `fd084de`. See `docs/decisions/0027-...`.
+  - Files changed: `src/modules/payments/controllers/payment.controller.ts`.
+  - DB changes: none.
+  - API changes: `POST /payments/razorpay/create` and `/cashfree/create`/`/cashfree/cod-deposit`
+    now return `400` for a non-INR order instead of silently proceeding with the wrong currency.
+  - Testing status: real live verification — temporarily enabled the seeded AE market, placed a
+    real order, confirmed both gateway endpoints now reject it before ever reaching the gateway API;
+    confirmed a real India/INR order still passes the guard unaffected. Cleaned up afterward.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+- Rest of Phase 8 confirmed either already covered (images/SSR — Phase 5; recommendations — Phase
+  4+7), explicitly deferred by the user (multi-warehouse), or genuinely blocked on a business/vendor
+  decision (additional payment/shipping providers, per-country tax rates, AI-assisted
+  merchandising) or deliberately not built ahead of real need (full-text search, Redis-backed rate
+  limiting, object storage for uploads) — all logged in `docs/claude/technical-debt.md` and
+  `tasks/TASKS.md`, not attempted speculatively.
+- **This closes the active work for all 8 MASTER-PROMPT phases** for what's genuinely code-doable
+  without further business/vendor input.

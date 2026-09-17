@@ -124,3 +124,39 @@ Impact: payments, Google sign-in, and transactional email are all non-functional
 credentials are supplied — cannot be fabricated.
 Fix: supply real values (sandbox is fine for dev) when each feature is actually being worked on.
 Found: 2026-09-09.
+
+## Product search doesn't scale past a small catalogue
+Where: `backend/src/modules/products/services/product.service.ts` (`getProducts`, `searchProducts`)
+Impact: search/filter text matching uses Prisma `contains` (`LIKE '%...%'`), which can't use a
+B-tree index — degrades non-linearly as the catalogue grows. Not a current problem (catalogue is
+near-empty); would become one at real scale.
+Fix: add a MySQL `FULLTEXT` index (`name`/`description`/`brand`/`sku`, and `tags` via its own table)
+and rewrite the matching query to `MATCH...AGAINST` via `$queryRaw` (Prisma's mysql provider needs
+raw SQL for this, no first-class query-builder support). Do this when the catalogue is actually
+large enough to need it, not speculatively — the rewrite has real behavioral differences from
+`LIKE` (stopwords, minimum word length, relevance ranking) worth doing carefully against real data.
+Found: 2026-09-17 (Phase 8 Scale audit).
+
+## Rate limiting and file uploads assume a single machine
+Where: `backend/src/app.ts` (rate limiter, `express-rate-limit` default in-memory store),
+`backend/src/utils/upload.ts` (`multer.diskStorage` → local `./uploads`)
+Impact: both are correct for the current single-machine PM2 cluster (`instances: 'max'`) deployment
+target — a shared filesystem, so per-worker state and local disk both work. Neither would survive
+running the app on more than one machine behind a load balancer: the rate limiter's counter isn't
+shared across machines (effective limit becomes `max × machineCount`, not the configured max), and
+an upload landing on one instance wouldn't be visible from another.
+Fix: a shared rate-limit store (Redis) and object storage (S3-compatible) for uploads, respectively
+— both real infrastructure decisions (new dependency, hosting choice), same class as the CDN/caching
+deferral in `0022`. Not built ahead of an actual multi-machine deployment.
+Found: 2026-09-17 (Phase 8 Scale audit).
+
+## No per-country tax rate model
+Where: `backend/prisma/schema.prisma` (`Product.taxPercent`, single global field, `@default(18)`,
+India-GST-shaped)
+Impact: VAT (UK/EU), GST-equivalent (AU), and sales tax (US, sub-national) rates differ by market
+and aren't modeled per-country at all — every order everywhere uses the same global tax rate/logic.
+Fix: the schema change (a per-country tax rate, similar in shape to `CountryShippingRule`) is
+straightforward once real rates are known — but building it with placeholder numbers would be
+actively wrong, not merely incomplete. Needs real VAT/GST/sales-tax figures per target market from
+whoever owns finance/legal compliance before this is worth doing.
+Found: 2026-09-17 (Phase 8 Scale audit).

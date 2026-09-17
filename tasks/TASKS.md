@@ -253,21 +253,43 @@ not integrated, see the spec).
 - [ ] **New**: no admin UI screen renders the funnel/country-breakdown data yet — both endpoints are
       real and correct; a dashboard chart is a natural, low-risk follow-up, not blocking.
 
-## Phase 8 — Scale
+## Phase 8 — Scale (audited 2026-09-17 — see `docs/decisions/0027-...`)
 
-- [ ] High-traffic readiness — mostly Phase 5 overlap (CDN, shared caching); both already
-      identified as infrastructure decisions, not code (see `0022`), not revisited here.
-- [ ] Large product/image volume handling — image pipeline already handles this (Phase 5 audit
-      confirmed); indexes/pagination already solid.
+- [x] **Found and fixed a real bug, not a scale-readiness gap**: Razorpay/Cashfree hardcoded
+      `currency: 'INR'` while charging an order total already denominated in the order's own country
+      currency (e.g. AED) — a non-India online payment would have silently charged ~22x too little.
+      Fixed: resolve the real currency, refuse online payment (COD still works) when it isn't INR.
+      Verified live with a real temporarily-enabled AE order. See `docs/decisions/0027-...`.
+- [ ] High-traffic readiness — CDN/shared caching already identified as infra decisions (`0022`).
+      **New, found in this audit**: rate limiting uses an in-memory store (per-PM2-worker, not
+      shared) and file uploads write to local disk — both fine for the current single-machine PM2
+      cluster, neither survives a real multi-machine deployment. Logged in `technical-debt.md`
+      (Redis / S3-compatible storage — infra decisions, not built ahead of an actual multi-machine
+      deployment).
+- [ ] Large product/image volume handling — image pipeline already solid (Phase 5). **New, found in
+      this audit**: product search (`contains`/`LIKE`) doesn't scale past a small catalogue — real
+      gap, not yet a problem (catalogue is near-empty). Logged in `technical-debt.md`
+      (`FULLTEXT` index + query rewrite, deliberately not built speculatively).
 - [x] Multi-warehouse support — **asked the user directly (2026-09-17)**: skip for now, current
       single-warehouse architecture stays as-is. Revisit only with a real second warehouse to
       support — building this speculatively risks guessing wrong about how inventory should split.
 - [ ] Multiple payment/shipping providers — same open question as item 3 in "Open questions for the
-      user" above; needs a real vendor decision, not resolved by this pass.
-- [ ] Recommendation engine → ML-ready architecture — the real co-purchase engine built in Phase 4
-      (`0020`) is a reasonable foundation; a full ML build-out would be premature with the current
-      (test-only) order volume. Not attempted — would violate "don't design for hypothetical future
-      requirements."
+      user" above; needs a real vendor decision. **New, found in this audit**: "multiple shipping
+      providers" turned out to be a single hardcoded `DELHIVERY` enum value with zero real carrier
+      API integration (no rate-shopping, no label generation) — not a partial multi-carrier system,
+      genuinely not built at all.
+- [ ] International orders — **New, found in this audit**: no per-country tax rate model
+      (`Product.taxPercent` is one global, India-GST-shaped field) — VAT/GST/sales-tax rates differ
+      by market. Schema change is straightforward once real rates are known; needs finance/legal
+      input first, not resolvable by this pass. Logged in `technical-debt.md`.
+- [ ] AI-assisted merchandising — **New, confirmed in this audit**: zero AI/LLM integration exists
+      anywhere in either repo (grepped for provider names/API key patterns). Fully blocked on a
+      business/vendor decision (provider, budget, specific task) — nothing to build without one.
+- [x] Recommendation engine → ML-ready architecture — the real co-purchase engine built in Phase 4
+      (`0020`) is a reasonable foundation, and this audit confirmed the interaction data it and
+      Phase 7 already generate (`AnalyticsEvent`, `RecentlyViewed`, `OrderItem`) is clean and
+      structured enough for future ML use. Real order volume, not missing infrastructure, is the
+      actual blocker to anything ML-based being meaningful — nothing further to build now.
 
 ## Backlog / ad-hoc
 
