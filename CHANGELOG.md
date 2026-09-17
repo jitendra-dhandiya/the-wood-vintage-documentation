@@ -373,3 +373,34 @@ file is the higher-level, release-facing summary.
 - **Phase 4 is now substantially done.** Remaining items (Size/Color filter relabeling,
   guest/signed-in recently-viewed merge, deeper personalization/ML — deferred to Phase 8) are
   tracked in `tasks/TASKS.md`, not gaps in this pass.
+
+## 2026-09-17 — Phase 5 (Performance) and Phase 6 (SEO)
+
+- **Phase 5**: fixed a missing `[isActive,isBestSeller]` composite index, trimmed over-fetched
+  product-list payloads (material/style/room/artisan/badges), added Core Web Vitals reporting and a
+  bundle analyzer. `wood-vintage/backend` commits `10edffe`, `83fd368`, `f3e1884`;
+  `wood-vintage/frontend` commit `b387e64`. See `docs/decisions/0022-phase-5-performance.md`.
+  - Files changed: `prisma/schema.prisma` + migration, `product.service.ts`, new `metrics` module,
+    `next.config.ts`, `package.json`, new `WebVitalsReporter.tsx`, `app/layout.tsx`.
+  - DB changes: real migration `20260917100222_add_bestseller_index`.
+  - API changes: `GET /products*` list responses no longer include `material`/`style`/`room`/
+    `artisan`/`badges`; new public `POST /metrics/web-vitals`.
+  - Testing status: real live verification — confirmed the trimmed fields are actually gone from
+    the API response while the one admin consumer that reads list fields is unaffected; confirmed a
+    real Core Web Vitals POST logs correctly and a malformed one is safely ignored.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage` on both repos.
+- **Phase 6**: fixed fashion-era fallback metadata on 5 real indexed pages, Footer
+  country-prefixing, blog detail hreflang/canonical/title, Product JSON-LD currency/brand bugs;
+  added sitewide Organization/WebSite + BreadcrumbList/Article JSON-LD; built new Material/Room/
+  Style landing pages (data model already existed, only the route was missing) + sitemap additions.
+  `wood-vintage/frontend` commits `0319c4a`, `ebba75b`, `a79906e`, `77fe00d`, `40673e6`. See
+  `docs/decisions/0023-phase-6-seo-implemented.md`.
+  - Files changed: extensive — see the decision record for the full list.
+  - DB changes: none.
+  - API changes: none new (reuses existing `GET /materials|rooms|styles/:slug` endpoints).
+  - Testing status: independently re-verified beyond the implementing agent's own report — real
+    `curl`/headless-Chrome checks of all 5 metadata-fixed pages, product-page JSON-LD, new landing
+    pages, Footer links, and `sitemap.xml` counts.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+- Asked the user directly whether Phase 8's multi-warehouse support needs modeling now — answer:
+  skip for now, revisit only with a real second warehouse to support.
