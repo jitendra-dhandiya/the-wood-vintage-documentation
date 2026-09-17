@@ -303,3 +303,33 @@ indexed pages silently shipping fashion-era fallback metadata. Implementation in
 - [ ] **New**: the full §32 teardown (positioning, homepage, nav, pricing, SEO, trust, etc.) for
       each — this pass was identification only. Also: USA/UAE/Australia/Europe competitor research,
       not started at all.
+- [x] **Phase 6 SEO spec implemented** (2026-09-17, `docs/architecture/phase-6-seo-spec.md`, 5
+      commits in `wood-vintage/frontend`): fashion-era root/page metadata fallback rewritten for the
+      furniture vertical (5 pages that had none — shop/search/categories/collections-index/contact —
+      each got a sibling Server Component `layout.tsx`, since those pages are Client Components and
+      can't export `generateMetadata` themselves); Footer's internal links now go through
+      `withCountry()`; blog detail got `buildCountryAlternates()`, a real site-name fallback, a
+      country-prefixed `openGraph.url`, and `Article` JSON-LD; product page's `priceCurrency`
+      hardcoded `'INR'` and `brand.name` fallback `'LUXÉ'` fixed; sitewide `Organization`+`WebSite`
+      JSON-LD added to the root layout; `BreadcrumbList` JSON-LD added to
+      product/category/collection/artisans pages; new `/material/[slug]`, `/room/[slug]`,
+      `/style/[slug]` landing pages (following `category/[slug]`'s pattern) plus sitemap additions
+      for those three, collections, and artisans (all previously omitted). Verified against a real
+      booted backend+frontend, not just code review.
+- [ ] **New** (Phase 6 follow-up, deliberately out of scope per the spec's non-goals):
+      `LocalBusiness` schema for the `Store` model — needs a lat/lng field added to `Store`
+      (`backend/prisma/schema.prisma`) first, i.e. a real migration, before real (non-fake)
+      `LocalBusiness` JSON-LD can be emitted.
+- [ ] **New** (Phase 6 follow-up, out of scope per the spec's non-goals): editorial/content-strategy
+      tooling (`targetKeyword` fields, content briefs) for the blog/CMS — useful once there's an
+      actual content program, not worth building ahead of one.
+- [ ] **Confirmed still open** (Phase 6 audit, 2026-09-17): the DB's `settings.site_name`/
+      `site_description` still return "Unique Dressup" / "Trendy & affordable fashion for every
+      occasion. Explore kurtas, co-ords, dresses, and more." from `GET /settings/public` — this is
+      what Footer's own fallback copy references. Same root cause as the already-tracked "Rebrand
+      seeded content" item above (categories/products), not new — but now confirmed live against the
+      running DB rather than only suspected from code. Also noticed while verifying: seeded catalog
+      still has fashion-only products/categories (e.g. `statement-canvas-tote`), and no
+      Material/Room/Style FK is set on any seeded product, so the new `/material/[slug]`,
+      `/room/[slug]`, `/style/[slug]` pages render correctly but empty until the catalog gets real
+      handicraft taxonomy data.
