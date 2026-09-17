@@ -231,24 +231,25 @@ indexed pages silently shipping fashion-era fallback metadata. Implementation in
 - [ ] **New**: Footer links don't call `withCountry()` — every sitewide footer link forces a 307
       redirect hop instead of linking to the canonical URL. The one place `0018`'s sweep missed.
 
-## Phase 7 — Analytics (started 2026-09-17)
+## Phase 7 — Analytics (2026-09-17) — DONE
 
 Spec written (`docs/architecture/phase-7-analytics-spec.md`) after scoping which sub-items are
 code-doable without a third-party analytics vendor decision (GA4/Segment/PostHog/etc — deliberately
-not integrated, see the spec). Backend done and verified; frontend instrumentation in progress.
+not integrated, see the spec).
 
 - [x] Event tracking schema — in-house `AnalyticsEvent` model + `POST /metrics/event`, deliberately
       minimal (typed columns, no JSON blob). See `docs/decisions/0025-...`.
-- [x] Funnel tracking (backend) — `GET /analytics/funnel`, distinct-session counts + conversion
-      rates. Verified live against a real simulated 2-session funnel, exact numbers matched.
+- [x] Funnel tracking — `GET /analytics/funnel` (distinct-session counts + conversion rates) +
+      frontend firing at all 5 stages (page view, product view, add-to-cart, checkout started, order
+      placed). Verified live end-to-end: a real 6-event browser-driven sequence produced the exact
+      expected funnel numbers. See `docs/decisions/0025-...`/`0026-...`.
 - [x] Country-level dashboards — `Order.countryId` (was missing entirely — only a free-text name in
       a JSON snapshot before this) + `GET /analytics/country-breakdown`. See `docs/decisions/0024-...`.
 - [x] Product analytics — already existed (`topProducts` in the admin dashboard, via `totalSold`);
       confirmed adequate, no new work needed.
-- [x] Marketing attribution (backend) — `Order.utmSource`/`utmMedium`/`utmCampaign` columns +
-      `createOrder` wiring. See `docs/decisions/0025-...`.
-- [ ] Frontend: event firing at the 5 funnel touch-points (page view, product view, add-to-cart,
-      checkout started, order placed) + first-touch UTM capture — delegated, verification pending.
+- [x] Marketing attribution — `Order.utmSource`/`utmMedium`/`utmCampaign` columns + first-touch UTM
+      cookie capture (`wv_attribution`) threaded into checkout. Verified: a real order placed with
+      real UTM params landed correctly on the `Order` row. See `docs/decisions/0025-...`/`0026-...`.
 - [ ] **New**: no admin UI screen renders the funnel/country-breakdown data yet — both endpoints are
       real and correct; a dashboard chart is a natural, low-risk follow-up, not blocking.
 

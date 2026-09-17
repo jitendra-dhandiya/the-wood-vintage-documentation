@@ -404,3 +404,28 @@ file is the higher-level, release-facing summary.
   - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
 - Asked the user directly whether Phase 8's multi-warehouse support needs modeling now — answer:
   skip for now, revisit only with a real second warehouse to support.
+
+## 2026-09-17 (continued) — Phase 7 (Analytics), now done
+
+- **Backend**: `Order.countryId` FK (was missing entirely) + `GET /analytics/country-breakdown`;
+  in-house `AnalyticsEvent` log + `POST /metrics/event` + `GET /analytics/funnel`; `Order`
+  `utmSource`/`utmMedium`/`utmCampaign` columns. Deliberately not a third-party analytics platform —
+  a vendor decision, not code, mirroring the Phase 5 Core Web Vitals approach. `wood-vintage/backend`
+  commits `ce44722`, `9fe5593`. See `docs/decisions/0024-...`/`0025-...`.
+  - DB changes: 2 real migrations (`add_order_country`, `add_analytics_event_and_order_attribution`).
+  - API changes: `GET /analytics/country-breakdown`, `GET /analytics/funnel`, `POST /metrics/event`.
+  - Testing status: real simulated multi-session funnel matched exactly; real order with real UTM
+    params and a resolved country verified end-to-end; all test data cleaned up afterward.
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+- **Frontend**: `trackEvent()` wired at all 5 funnel stages; first-touch UTM cookie capture
+  (`wv_attribution`) threaded into checkout's order payload. `wood-vintage/frontend` commits
+  `0e69032`, `13e93e6`. See `docs/decisions/0026-...`.
+  - Files changed: new `lib/analytics.ts`, `lib/attribution.ts`, `PageViewTracker.tsx`,
+    `AttributionInitializer.tsx`; touched `ProductDetailClient.tsx`, `useCart.ts`, `checkout/
+    page.tsx`, `order-success/page.tsx`, `app/layout.tsx`.
+  - Testing status: independently re-verified beyond the implementing agent's own report — full
+    diff review, `type-check`/`build` clean, DB confirmed clean after fixing one leftover test order
+    the agent's own cleanup couldn't reach (a sandbox restriction on its side, not a code issue).
+  - Deployment notes: local dev only. Pushed to `origin` and `woodvintage`.
+- **Phase 7 is now done.** No admin UI renders the new funnel/country-breakdown data yet — a
+  natural, low-risk follow-up, tracked in `tasks/TASKS.md`, not blocking.
