@@ -231,21 +231,42 @@ indexed pages silently shipping fashion-era fallback metadata. Implementation in
 - [ ] **New**: Footer links don't call `withCountry()` — every sitewide footer link forces a 307
       redirect hop instead of linking to the canonical URL. The one place `0018`'s sweep missed.
 
-## Phase 7 — Analytics
+## Phase 7 — Analytics (started 2026-09-17)
 
-- [ ] Event tracking schema (§26)
-- [ ] Funnel tracking
-- [ ] Country-level dashboards
-- [ ] Product analytics
-- [ ] Marketing attribution
+Spec written (`docs/architecture/phase-7-analytics-spec.md`) after scoping which sub-items are
+code-doable without a third-party analytics vendor decision (GA4/Segment/PostHog/etc — deliberately
+not integrated, see the spec). Backend done and verified; frontend instrumentation in progress.
+
+- [x] Event tracking schema — in-house `AnalyticsEvent` model + `POST /metrics/event`, deliberately
+      minimal (typed columns, no JSON blob). See `docs/decisions/0025-...`.
+- [x] Funnel tracking (backend) — `GET /analytics/funnel`, distinct-session counts + conversion
+      rates. Verified live against a real simulated 2-session funnel, exact numbers matched.
+- [x] Country-level dashboards — `Order.countryId` (was missing entirely — only a free-text name in
+      a JSON snapshot before this) + `GET /analytics/country-breakdown`. See `docs/decisions/0024-...`.
+- [x] Product analytics — already existed (`topProducts` in the admin dashboard, via `totalSold`);
+      confirmed adequate, no new work needed.
+- [x] Marketing attribution (backend) — `Order.utmSource`/`utmMedium`/`utmCampaign` columns +
+      `createOrder` wiring. See `docs/decisions/0025-...`.
+- [ ] Frontend: event firing at the 5 funnel touch-points (page view, product view, add-to-cart,
+      checkout started, order placed) + first-touch UTM capture — delegated, verification pending.
+- [ ] **New**: no admin UI screen renders the funnel/country-breakdown data yet — both endpoints are
+      real and correct; a dashboard chart is a natural, low-risk follow-up, not blocking.
 
 ## Phase 8 — Scale
 
-- [ ] High-traffic readiness
-- [ ] Large product/image volume handling
-- [ ] Multi-warehouse support
-- [ ] Multiple payment/shipping providers
-- [ ] Recommendation engine → ML-ready architecture
+- [ ] High-traffic readiness — mostly Phase 5 overlap (CDN, shared caching); both already
+      identified as infrastructure decisions, not code (see `0022`), not revisited here.
+- [ ] Large product/image volume handling — image pipeline already handles this (Phase 5 audit
+      confirmed); indexes/pagination already solid.
+- [x] Multi-warehouse support — **asked the user directly (2026-09-17)**: skip for now, current
+      single-warehouse architecture stays as-is. Revisit only with a real second warehouse to
+      support — building this speculatively risks guessing wrong about how inventory should split.
+- [ ] Multiple payment/shipping providers — same open question as item 3 in "Open questions for the
+      user" above; needs a real vendor decision, not resolved by this pass.
+- [ ] Recommendation engine → ML-ready architecture — the real co-purchase engine built in Phase 4
+      (`0020`) is a reasonable foundation; a full ML build-out would be premature with the current
+      (test-only) order volume. Not attempted — would violate "don't design for hypothetical future
+      requirements."
 
 ## Backlog / ad-hoc
 
