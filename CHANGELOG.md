@@ -454,3 +454,9 @@ file is the higher-level, release-facing summary.
   `tasks/TASKS.md`, not attempted speculatively.
 - **This closes the active work for all 8 MASTER-PROMPT phases** for what's genuinely code-doable
   without further business/vendor input.
+
+## 2026-09-20
+
+- Rebranded to "The Wood Vintage" handicraft store: new logo assets, walnut/copper theme, all
+  fashion copy/data replaced, real handicraft catalogue seed (`npm run seed:handicraft`), mega-menu
+  rebuild, QA fixes (blog 404, admin-login 404, free-shipping threshold now applied). See `0028`, `0029`.
