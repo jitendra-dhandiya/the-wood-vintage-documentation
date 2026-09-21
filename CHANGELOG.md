@@ -470,3 +470,14 @@ file is the higher-level, release-facing summary.
   - DB changes: none (existing tables). API: new `GET/PUT /products/:id/countries`,
     `PUT /products/countries/bulk`, `country` param on featured/trending/new/best-sellers/search and admin list.
   - Testing: real HTTP checks (IN-only, IN+US, remove IN, order rejection), tsc clean, frontend build.
+
+## 2026-09-21 - Motion and loading states (frontend only)
+
+- Scroll reveals, hero entrance, animated stats, wishlist/bag micro-interactions, card hover polish;
+  loading.tsx + themed skeletons for product/category/collection/room/material/style/artisans/blog post/cart;
+  admin table skeleton rows; designed empty states; navigation progress starts on click.
+  - Files: frontend `components/common/{Reveal,CountUp,EmptyState,Skeletons,NavigationProgress}`, `hooks/useReveal.ts`,
+    `globals.css`, `themes/index.ts`, product/cart/home components. Decision `0033`.
+  - DB/API changes: none. Migrations: none.
+  - Testing: `tsc --noEmit` and `next build` clean; headless-Chrome screenshots at 1440/390, reduced-motion check.
+  - Bundle: shared first-load JS unchanged (102 kB); home +1 kB.
