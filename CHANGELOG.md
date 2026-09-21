@@ -460,3 +460,13 @@ file is the higher-level, release-facing summary.
 - Rebranded to "The Wood Vintage" handicraft store: new logo assets, walnut/copper theme, all
   fashion copy/data replaced, real handicraft catalogue seed (`npm run seed:handicraft`), mega-menu
   rebuild, QA fixes (blog 404, admin-login 404, free-shipping threshold now applied). See `0028`, `0029`.
+
+## 2026-09-21 — Per-product country selection
+
+- Admin can choose the countries each product is sold in (add/edit forms + bulk on the list), with
+  per-country prices; availability is now enforced on storefront and orders. See decision 0032.
+  - Files: backend `product.service/controller/routes`, `utils/countryPricing.ts`, `order.service.ts`,
+    `cart.controller.ts`; frontend `ProductCountriesSection`, admin product pages, home/navbar/sitemap.
+  - DB changes: none (existing tables). API: new `GET/PUT /products/:id/countries`,
+    `PUT /products/countries/bulk`, `country` param on featured/trending/new/best-sellers/search and admin list.
+  - Testing: real HTTP checks (IN-only, IN+US, remove IN, order rejection), tsc clean, frontend build.
