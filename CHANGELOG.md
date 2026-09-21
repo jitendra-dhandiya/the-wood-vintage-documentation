@@ -5,6 +5,17 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-21 (geo-locked country)
+
+- Storefront country locked by visitor location, no switcher (decision 0036).
+  - Files changed: backend `utils/geo.ts`, `utils/requestCountry.ts`, `modules/geo`, product/order controllers (one-line
+    country resolution), `app.ts`, `.env.example`; frontend `middleware.ts`, `app/not-available`, `RegionLabel`
+    (replaces `CountrySelector`), `Navbar`, `CountryContext` (no `setCountry`), `lib/countryPreference.ts`, `next.config.ts` (`NEXT_DIST_DIR`).
+  - DB changes: none. API changes: new `GET /geo/resolve`; product endpoints/`POST /orders` may 403 on location mismatch.
+  - Migration requirements: `npm i` (new dep `geoip-lite`). Production: set `GEO_TRUST_PROXY=true` behind nginx that overwrites XFF.
+  - Testing status: tsc clean both repos, frontend build, curl + headless Chrome matrix (see 0036).
+  - Deployment notes: MaxMind GeoLite attribution on legal page; enabled-country cache in middleware is 5 min.
+
 ## 2026-09-21 (quote and lead capture)
 
 - Product page quote CTA + WhatsApp, 2-step lead form, admin Leads (decision 0034).

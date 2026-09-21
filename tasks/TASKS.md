@@ -384,3 +384,11 @@ not integrated, see the spec).
 - [ ] Configure Brevo/SMTP so new-lead email alerts actually send (untested end to end in dev).
 - [ ] Privacy policy wording for leads, consent withdrawal / retention process.
 - [ ] Follow-ups: lead assignment UI, uncontacted-lead reminders, funnel report UI for lead events, shared-store rate limit if API scales out.
+
+## Geo-locked country (2026-09-21) — built, see `docs/decisions/0036-geo-locked-country.md`
+- [x] `GET /geo/resolve`, middleware lock + region page, selector removed, server-side `enforceRequestCountry` on products + `POST /orders`.
+- [ ] Production: set `GEO_TRUST_PROXY=true`, make nginx overwrite `X-Forwarded-For`, keep backend private; verify with a real foreign IP.
+- [ ] Add MaxMind GeoLite attribution to the legal/credits page; schedule GeoLite data refresh (licence key).
+- [ ] Optional: reverse-DNS verification for crawlers; notify-me capture on `/not-available`; apply `enforceRequestCountry` to homepage/banner/CMS country params.
+- [ ] Coupons agent: `order.controller.ts` createOrder now passes `country: await enforceRequestCountry(...)` (one line) — keep it when merging.
+
