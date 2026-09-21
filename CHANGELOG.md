@@ -5,6 +5,18 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-21 (quote and lead capture)
+
+- Product page quote CTA + WhatsApp, 2-step lead form, admin Leads (decision 0034).
+  - Files changed: backend `modules/leads`, `utils/phone.ts`, analytics/metrics/settings/server seed; frontend
+    `components/product/QuoteLead.tsx`, `ProductDetailClient`, admin leads page, settings tab, dashboard card.
+  - DB changes: new `leads` table (migration `add_lead`); 5 new `settings` rows (group `leads`).
+  - API changes: `POST /leads` (public), `GET/PATCH /leads`, `GET /leads/export`, `GET /analytics/leads-summary`,
+    5 new metrics event names, `/settings/public` now includes group `leads`.
+  - Migration requirements: `prisma migrate deploy`.
+  - Testing status: tsc + build clean; real HTTP and headless-Chrome verification (see 0034).
+  - Deployment notes: set the real WhatsApp number, notification email and response promise in Admin > Settings > Leads.
+
 ## 2026-09-09
 
 - Initiated the `wood-vintage` project: `backend`, `frontend`, `documentation` set up as fresh git

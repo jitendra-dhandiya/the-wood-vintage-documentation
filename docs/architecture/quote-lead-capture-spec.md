@@ -54,7 +54,7 @@ Modal on desktop (centered dialog), full-screen sheet on mobile. Product thumbna
 
 ## 5. Mobile sticky bar
 
-Ad traffic is mostly mobile. Below `md` a fixed bar appears with **Get Best Quote & Price** (flex 1) and a **WhatsApp** icon button. It slides in only after the in-page CTA has scrolled out of view (IntersectionObserver) so it never duplicates a visible CTA, and hides while the modal is open. It sits directly above the existing 58px `MobileBottomNav` (bottom offset = 58px + safe-area inset) so neither hides the other; z-index just under the nav's. Page bottom padding is added so the footer is never covered.
+Ad traffic is mostly mobile. Below `md` a fixed bar appears with **Get Best Quote & Price** (flex 1) and a **WhatsApp** icon button. It slides in whenever the in-page CTA is not on screen (on first load the CTA is often below the fold, so the bar is visible immediately; it retracts while the real CTA is visible), via IntersectionObserver, so it never duplicates a visible CTA. It is portaled to body because page transitions leave a transformed ancestor that would break position: fixed, and hides while the modal is open. It sits directly above the existing 58px `MobileBottomNav` (bottom offset = 58px + safe-area inset) so neither hides the other; z-index just under the nav's. Page bottom padding is added so the footer is never covered.
 
 ## 6. CTA animation
 

@@ -377,3 +377,10 @@ not integrated, see the spec).
       Material/Room/Style FK is set on any seeded product, so the new `/material/[slug]`,
       `/room/[slug]`, `/style/[slug]` pages render correctly but empty until the catalog gets real
       handicraft taxonomy data.
+
+## Quote and lead capture (2026-09-21) — built, see `docs/decisions/0034-quote-lead-capture.md`
+- [x] Spec, `Lead` model + API, admin Leads page, product-page CTA hierarchy, 2-step form, sticky mobile bar, analytics events.
+- [ ] **Owner:** set real `whatsapp_number`, `lead_notification_email`, `lead_response_promise` (Admin > Settings > Leads). WhatsApp number is currently the placeholder 919876543210.
+- [ ] Configure Brevo/SMTP so new-lead email alerts actually send (untested end to end in dev).
+- [ ] Privacy policy wording for leads, consent withdrawal / retention process.
+- [ ] Follow-ups: lead assignment UI, uncontacted-lead reminders, funnel report UI for lead events, shared-store rate limit if API scales out.
