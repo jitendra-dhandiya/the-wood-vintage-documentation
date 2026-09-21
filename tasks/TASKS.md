@@ -399,3 +399,11 @@ not integrated, see the spec).
 - [ ] Expire abandoned PENDING online orders so their coupon redemption is released.
 - [ ] Per-line discount allocation for partial returns/refunds.
 
+
+## Combo offers (2026-09-21) — built, see `docs/decisions/0037-combo-offers.md`
+- [x] Combo/ComboItem/ComboCountryPricing/CartCombo schema, single-engine bundle pricing, coupon interaction defined, orders/stock/cancel for every constituent.
+- [x] Admin: list (sold/revenue), form (product picker, variant, qty, live per-market savings, image, schedule), activate, duplicate, delete-or-deactivate.
+- [x] Storefront: COMBO_OFFERS home section, /combos, /combo/[slug] (SEO + JSON-LD), product-page block, cart/drawer/checkout bundles.
+- [x] Seed: 3 sample combos + homepage section (idempotent).
+- [ ] Per-line discount allocation / partial returns of a combo line; combo-specific analytics events.
+- [ ] Variant-level stock (stock is product-level everywhere).

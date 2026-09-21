@@ -5,6 +5,15 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-21 (combo offers)
+
+- Admin-managed combo offers end to end (decision 0037).
+  - Files changed: backend `modules/combos/*` (new), `pricing/pricing.service.ts` + `unitPrice.ts`, `pricing.types.ts`, `coupons/coupon.service.ts` (scoped coupons skip combo lines), `orders/order.service.ts`, `cart` controller/routes, `coupon.controller.ts` (preview includes bundles), upload folder `combos`, seed (`seed-data/combos.ts`, `seed-combos.ts`, `npm run seed:combos`); frontend `components/combo/*`, `components/admin/ComboFormDialog.tsx`, admin `/admin/combos`, `/[country]/combo/[slug]`, `/[country]/combos`, cart page/drawer/checkout, product page block, homepage `COMBO_OFFERS`, order pages, sitemap, `useCart`/`useCoupon`/cart slice.
+  - DB changes: migrations `20260921095159_combo_offers`, `20260921095509_combo_bundle_qty` (combos, combo_items, combo_country_pricing, cart_combos, order_items combo columns, enum value COMBO_OFFERS).
+  - API changes: public `GET /combos`, `GET /combos/:slug`; `POST /cart/combo/add`, `PUT/DELETE /cart/combo/:id`, `GET /cart` returns `combos`; `POST /orders` accepts `combos`; admin `/combos/admin/*`.
+  - Migration requirements: `prisma migrate deploy`, then `npm run seed:combos` for sample data + homepage section.
+  - Testing: 71-check real-HTTP suite, tsc clean both repos, frontend build, headless Chrome screenshots; test data removed.
+
 ## 2026-09-21 (coupons end to end)
 
 - Coupon codes made real end to end (decision 0035).
