@@ -392,3 +392,10 @@ not integrated, see the spec).
 - [ ] Optional: reverse-DNS verification for crawlers; notify-me capture on `/not-available`; apply `enforceRequestCountry` to homepage/banner/CMS country params.
 - [ ] Coupons agent: `order.controller.ts` createOrder now passes `country: await enforceRequestCountry(...)` (one line) — keep it when merging.
 
+## Coupons end to end (2026-09-21) — built, see `docs/decisions/0035-coupons-end-to-end.md`
+- [x] Single pricing/coupon service, CouponUsage ledger, race-safe limits, per-country terms, revert on cancel/return/refund.
+- [x] Storefront apply/remove (cart + checkout), offers hint; admin form with all rules + usage report.
+- [ ] Order confirmation email/invoice showing the coupon (no order email/invoice exists yet).
+- [ ] Expire abandoned PENDING online orders so their coupon redemption is released.
+- [ ] Per-line discount allocation for partial returns/refunds.
+

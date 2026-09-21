@@ -5,6 +5,14 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-21 (coupons end to end)
+
+- Coupon codes made real end to end (decision 0035).
+  - Files changed: backend `modules/pricing/*` (new), `modules/coupons/*`, `order.service.ts`, `cart` (coupon route moved), `auth.middleware` (`optionalAuth`), `utils/money.ts`, seed; frontend `hooks/useCoupon.ts`, `components/cart/CouponBox.tsx`, cart/checkout pages, admin coupons page + `CouponFormDialog`/`CouponUsageDialog`, order pages, `formatPrice`.
+  - DB changes: migration `20260921091918_coupons_end_to_end` (Coupon rules/country columns, `coupon_usages`, Order coupon snapshot; WELCOME10 set first-order-only + public).
+  - API changes: `POST /coupons/validate` (server cart, no client amounts), `GET /coupons/offers`, admin `GET /coupons/:id`, `/usages`, `PATCH /:id/active`; `/coupons/:code/check` removed; orders reject unusable coupons with `COUPON_*` codes.
+  - Testing: 60-check real-HTTP suite (percent/fixed/cap/min/expired/limits/races/per-user/country/free-shipping/cancel), headless Chrome screenshots; test data removed.
+
 ## 2026-09-21 (geo-locked country)
 
 - Storefront country locked by visitor location, no switcher (decision 0036).
