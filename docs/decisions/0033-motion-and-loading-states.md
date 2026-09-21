@@ -59,3 +59,6 @@ query in an effect (not at render) to avoid a hydration mismatch.
   orders/products/settings/marquee keep their existing loaders.
 - framer-motion is still disabled below 900px by MobileMotionConfig (dev logs a reduced-motion warning).
 - Skeleton screenshots were taken from a temporary route (real loading.tsx only streams on slow SSR).
+
+## Addendum 2026-09-21: branded navigation overlay
+Slow navigations (still pending after 450ms) now also show a non-blocking blurred cream overlay with the animated TW monogram ring and "Crafting your page…" (`NavigationProgress.tsx`, `.nav-overlay` in `globals.css`), alongside the top progress bar. Cleared on route change or after 10s; kept running under reduced motion (rotation only).
