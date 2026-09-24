@@ -32,7 +32,7 @@ deploy_frontend() {
   log "frontend: build"
   NEXT_PUBLIC_API_URL="https://$DOMAIN/api/v1" NEXT_PUBLIC_SITE_URL="https://$DOMAIN" \
   NEXT_PUBLIC_SITE_NAME="The Wood Vintage" NEXT_PUBLIC_DEFAULT_CURRENCY=INR NEXT_PUBLIC_DEFAULT_CURRENCY_SYMBOL="₹" \
-  NEXT_TELEMETRY_DISABLED=1 npm run build
+  INTERNAL_API_URL="http://127.0.0.1:5000/api/v1" NEXT_TELEMETRY_DISABLED=1 npm run build
   log "frontend: reload"
   pm2 describe wv-web >/dev/null 2>&1 && pm2 reload wv-web --update-env || pm2 start "$ROOT/ecosystem.config.js" --only wv-web
 }
