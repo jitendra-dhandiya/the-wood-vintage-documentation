@@ -124,10 +124,11 @@ limit_req_zone $binary_remote_addr zone=wv_api:10m rate=20r/s;
 limit_req_zone $binary_remote_addr zone=wv_auth:10m rate=5r/m;
 limit_req_zone $binary_remote_addr zone=wv_lead:10m rate=10r/m;
 limit_conn_zone $binary_remote_addr zone=wv_conn:10m;
-gzip on; gzip_comp_level 5; gzip_min_length 1024; gzip_proxied any; gzip_vary on;
+gzip_comp_level 5; gzip_min_length 1024; gzip_proxied any; gzip_vary on;
 gzip_types text/plain text/css application/json application/javascript text/xml application/xml image/svg+xml;
 proxy_cache_path /var/cache/nginx/wv_img levels=1:2 keys_zone=wv_img:20m max_size=2g inactive=30d use_temp_path=off;
 EOF
+install -d -o www-data -g www-data /var/cache/nginx/wv_img
 rm -f /etc/nginx/sites-enabled/default
 cat > /etc/nginx/sites-available/00-default-deny <<'EOF'
 server { listen 80 default_server; listen [::]:80 default_server; server_name _; return 444; }
