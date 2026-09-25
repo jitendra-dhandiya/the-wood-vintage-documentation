@@ -300,3 +300,9 @@ From `docs/claude/technical-debt.md`, `tasks/TASKS.md` and the decisions above. 
 | OPN-22 | 2 moderate `uuid` advisories through `exceljs` (unreachable) | 0008 | Accepted |
 | OPN-23 | Country list cache in middleware 5 min; `/not-available` returns 200 | 0036 | Known limits |
 | OPN-24 | Full competitor teardown and non-India competitor research not started | TASKS | |
+
+## 2026-09-25 — Production product pages "Product Not Found" (found by the SEO audit)
+- **Symptom:** `/in/product/<slug>` returned HTTP 200 with "Product Not Found" + noindex; sitemap had 0 product URLs. The API worked from outside.
+- **Root cause:** Next SSR fetches the API through the public URL, so nginx saw the server's own IP (45.195.129.38, a datacentre in Mauritius per GeoIP) and forwarded it as the visitor IP; with `GEO_TRUST_PROXY=true` the backend's per-request market lock (decision 0036, `enforceRequestCountry`) returned 403 REGION_UNAVAILABLE, which the page rendered as "not found". Same family as the earlier middleware geo bug (0036 follow-ups).
+- **Fix:** nginx `map $remote_addr $wv_xff` blanks X-Forwarded-For **and X-Real-IP** for the server's own IP (`docs/operations/server/nginx-site.conf`, `nginx-proxy.conf`). Verified: product page renders, US test IP still redirected to /not-available, IN IP allowed. The sitemap regenerates within its 1 h revalidate window.
+- **Prevention:** post-deploy smoke test must fetch a product page and check for its title, not just HTTP 200; add `/in/product/<slug>` content assertion + sitemap product count to `deploy.sh` health step; consider a dedicated internal API URL for all SSR fetches (INTERNAL_API_URL) instead of the public one.
