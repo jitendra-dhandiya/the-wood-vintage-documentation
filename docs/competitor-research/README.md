@@ -4,3 +4,8 @@ One file per competitor teardown (Woodsala, The Timber Guy, Sunrise Internationa
 
 `indian-competitors-directory.md` — real URLs for the 5 named Indian competitors (found 2026-09-11,
 via search, not guessed). Identification only, not the full §32 teardown yet — that's still open.
+
+Phase 2 research (2026-09-25):
+- [india-market-price-benchmark.md](india-market-price-benchmark.md) - measured India prices by category, MRP vs selling price, target price ladder, row-level observations.
+- [india-competitor-analysis.md](india-competitor-analysis.md) - 12+ Indian competitors: positioning, price, reviews, social, gaps.
+- [us-uae-competitor-analysis.md](us-uae-competitor-analysis.md) - USA and UAE competitor sets and price evidence.
