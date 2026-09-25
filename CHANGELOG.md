@@ -5,6 +5,13 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-25 (marketing: first-100-orders plan and master growth plan)
+
+- Documentation only: go-to-market plan for the first 100 orders (decision 0040). No code, no DB, no deployment change.
+  - Files added: `docs/marketing/first-100-orders-plan.md`, `docs/marketing/first-100/01..10-*.md` (owner input sheet, launch readiness gate, starter catalogue with price floors, 9 combos, 8 coupons, target audience, channel mix and budget scenarios, customisation offer, roadmap and operations, risks), `docs/marketing/master-growth-plan.md`, `docs/decisions/0040-marketing-go-to-market-plan.md`; index updates in `docs/claude/known-decisions.md`, `docs/marketing/README.md`, `tasks/TASKS.md`, `daily-log/2026-09-25.md`.
+  - Testing: n/a (documentation). Margin and funnel figures were computed with a throwaway script from the unit-economics formulas; all inputs are ASSUMPTIONS until the owner fills `first-100/01-owner-input-sheet.md`.
+  - Deployment notes: none.
+
 ## 2026-09-25 (handicraft size system)
 
 - "Size / Dimensions" + "Finish" replace fashion sizes/colour (decision 0039).

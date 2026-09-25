@@ -414,3 +414,24 @@ not integrated, see the spec).
 - [x] Variant sale price honoured at checkout.
 - [ ] Variant prices in non-default currencies (still base-currency, see 0032).
 - [ ] Size facet in search if the owner wants one (needs structured dimensions or a normalised size table).
+
+## Marketing & growth workstream (2026-09-25) — documentation only, see `docs/decisions/0040-marketing-go-to-market-plan.md`
+Docs: [master-growth-plan](../docs/marketing/master-growth-plan.md) (start here), [first-100-orders-plan](../docs/marketing/first-100-orders-plan.md) + [first-100/](../docs/marketing/first-100/), [workstream plan](../docs/marketing/marketing-workstream-plan.md), [market selection](../docs/countries/market-selection.md), [price benchmark](../docs/competitor-research/india-market-price-benchmark.md), [unit economics](../docs/marketing/unit-economics-model.md), [positioning/USP](../docs/marketing/positioning-and-usp.md), [social playbook](../docs/marketing/social-media-playbook.md), [India SEO plan](../docs/seo/india-seo-plan.md), [gap tracker](../docs/ux/customer-psychology-gap-tracker.md).
+Development stays on hold; items marked (dev) need the owner to lift the hold for that item.
+
+**P0 (before any ad spend; Gate A, target Fri 16 Oct 2026)** — see `first-100/02-launch-readiness-gate.md`
+- [ ] Owner: fill P0 rows of `first-100/01-owner-input-sheet.md` (timber INR/cft, ex-factory cost per SKU, capacity, lead times, advance %, COD rule); get 2 freight quotes.
+- [ ] Owner: real WhatsApp Business number, phone, email, Instagram in Admin > Settings > Leads/site; lead alert email works (test lead, then delete).
+- [ ] Owner/marketing: remove fake testimonials, "8 artisan workshops", fictional artisans/blog, stock photos; hide the newsletter form and the "Save X%" chips.
+- [ ] Photographer/marketing: real photos (4+ each) for 12+ SKUs; deactivate every non-photographed seed product.
+- [ ] Owner + lawyer: rewrite return/shipping/FAQ pages for made-to-order and approve the warranty text (`first-100/08-customisation-offer.md`).
+- [ ] Staff the sales desk (2 people, 15-minute first reply, 10:00-20:00, 7 days); build the lead sheet, UTM registry, `ref:` codes.
+- [ ] Owner: decide Diwali ready stock (about INR 1.1 lakh) and last order dates (default 28 Oct ready stock; no furniture promise).
+- [ ] CA: GST per product family; invoice template; business UPI/account for advances.
+
+**P1 (first 100 orders)**
+- [ ] Configure combos C1-C4 (then C5-C7) and the 8 launch coupons in admin exactly as in `first-100/04` and `05`; deactivate WELCOME10/FREESHIP/HANDMADE500.
+- [ ] Gate B (dev): live payment keys + gateway approval for furniture, order confirmation email + GST invoice, pincode delivery estimate, advance-payment path, Meta pixel/GA4/Search Console/Merchant feed, manual-order entry for WhatsApp sales, lead assignment/lead-to-order link.
+- [ ] Marketing: paid test T1 (INR 10,000 cap) from 19 Oct; weekly KPI review (master plan section 4); stop/scale rules in `first-100/07`.
+- [ ] Marketing: designer lookbook + 30 outreach messages; 3-4 nano creator barter seedings; Google Business Profile; SEO P0 pages (dev): custom-furniture, how-customisation-works, made-in-jodhpur.
+- [ ] Owner: week-8 checkpoint (22 Nov, at least 12 orders) and order-30 checkpoint (unlock quote-only pieces, US B2B sample discussion).
