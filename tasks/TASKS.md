@@ -442,3 +442,30 @@ Development stays on hold; items marked (dev) need the owner to lift the hold fo
 - [ ] Owner: approve US pricing at parity to 8% under comps, returns/warranty policy, channel plan (Amazon FBA + Etsy + Instagram/WhatsApp; own site as brand hub), payments (Stripe invite / PayPal / Razorpay International).
 - [ ] Marketing: capture Etsy/Amazon/Wayfair prices with a browser session (blocked to the research tool); Meta Ad Library checks for US competitors.
 - [ ] Dev (on hold): USD checkout, payments, sales tax, DDP messaging, US legal pages, per-SKU HTS/species/weight fields.
+
+## US-first B2C export (2026-09-25) - documentation only, see `docs/decisions/0041-us-first-b2c-export-plan.md` and `docs/marketing/us-first-100-orders-plan.md`
+Supersedes the India first-100 tasks above for the export business (India items kept for history). Development stays on hold; (dev) = needs the owner to lift the hold for that item.
+
+**Gate 0 (by Fri 9 Oct 2026)**
+- [ ] Owner + workshop: fill the P0 rows of `docs/marketing/us-first-100/01-owner-input-sheet.md` (ex-factory cost, carton size/weight, capacity for 118 units in 4 weeks, species); decide cash (USD 20,000 recommended) and the wood policy (mango/acacia in container 1).
+- [ ] Owner: written quotes from DHL Global Forwarding (LCL per CBM, FCL, air) plus one other forwarder; 2-3 US 3PL quotes (state choice with sales-tax nexus in mind); customs broker; ground last-mile quote for 20 cartons to 5 ZIP codes.
+- [ ] Owner: ask Etsy support whether an India shop can list US-stock items and whether DHL/3PL delivery counts as DDP; run the Amazon Seller Central revenue calculator per SKU (replaces the FBA fee placeholders).
+- [ ] Owner: list at least 30 real US contacts/temples/community groups; find a US-based helper for photos and returns inspection.
+- [ ] Owner: approve the price ladder and floors, the policy set (40% deposit, final sale for custom, 12-month limited warranty, returns) and skipping the Christmas 2026 air pilot.
+
+**Gate A (container leaves Jodhpur about Mon 9 Nov)**
+- [ ] Broker: HTS sheet per SKU (mandir, bookshelf rulings), Lacey data sheet, importer-of-record + bond + ISF, invoice/packing-list template; Owner: CITES stance in writing (EPCH/CITES MA), Made in India marks, ISPM-15 pallets, coating lead test, drop tests, cargo and product-liability insurance.
+- [ ] CA: IEC/GST/LUT/AD code, USD receipt route (Payoneer/Amazon; own-site route decision by 6 Nov).
+
+**Gate B (Etsy live Fri 20 Nov; Amazon live about 1 Feb 2027)**
+- [ ] LW: attorney-reviewed policy pack incl. FTC ship-date rule, warranty designation, TCPA/CAN-SPAM; CPA: sales-tax nexus advice; LW: USPTO knockout search and filing (classes 20/35), Brand Registry route.
+- [ ] Marketing: 66 real product photos, workshop/carving/packing/assembly videos (Jodhpur, 2 shoot days), Etsy 15-25 listings, Amazon 3 hero listings, Pinterest boards, 9 Instagram posts, 30-day calendar (`docs/marketing/social/11-us-diaspora-and-mainstream-playbook.md`).
+
+**Gate C (config now, dev later; target Fri 27 Nov for the config minimum)**
+- [ ] Owner/marketing (config): remove fake testimonials/artisans/blog; real USD prices per product (0032), US shipping rule, announcement bar, real WhatsApp/phone/email (Admin > Settings > Leads), species/origin/inches in descriptions, US combos and coupons (USD `countryTerms`).
+- [ ] Owner: decide what `/in` and `/` do now that India is out of scope; enable `/us` as a content + quote market; verify Googlebot access.
+- [ ] Dev (on hold): hide Add to Bag for US, US legal pages, consent banner + TCPA opt-in, review feature (verified buyers), delivery-date/lead-time display, crawler verification by IP/reverse-DNS, notify-me on `/not-available`, USD checkout + sales tax + payments (after about order 50), Product/Offer schema for US, Merchant Center US feed, CDN.
+
+**Run (18 Jan - Apr 2027)**
+- [ ] Book container 2 at order 25 (about 8 Feb); weekly KPI review (`master-growth-plan.md` US-4); checkpoints week 22 (at least 45 orders) and week 26 (at least 74); re-rank SKUs/segments at order 30 with real data.
+

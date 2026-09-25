@@ -1,5 +1,7 @@
 # 3. Starter catalogue - 16 launch SKUs, 4 quote-only, price ladder and floors
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. Built on the ranking in [../best-selling-products-by-market.md](../best-selling-products-by-market.md) (scores are our judgement) and the margin method in [../unit-economics-model.md](../unit-economics-model.md). Prices seen at competitors are VERIFIED 2026-09-25 (source: [../../competitor-research/india-market-price-benchmark.md](../../competitor-research/india-market-price-benchmark.md) sections 5 and 6). **Every cost below is an ASSUMPTION** to be replaced in [01-owner-input-sheet.md](01-owner-input-sheet.md) (B1-B6); nine rows (five launch SKUs and the four quote-only pieces) reuse the unit-economics costs, the other eleven were invented by this team so a margin can be computed at all.
 
 ## 1. Which SKUs, and why these

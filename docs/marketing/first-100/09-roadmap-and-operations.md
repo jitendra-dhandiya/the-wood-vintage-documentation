@@ -1,5 +1,7 @@
 # 9. The 100-order plan - roadmap, festival timing, operating rhythm, SLA, contingency
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25 (Fri). Week 1 starts Mon 28 Sep 2026; week 16 ends Sun 17 Jan 2027. All targets are ASSUMPTIONS from the model in [07-channel-mix-and-budget.md](07-channel-mix-and-budget.md); change the inputs in [01](01-owner-input-sheet.md) and recompute. The social calendar in [../social/04-calendar-and-roadmap.md](../social/04-calendar-and-roadmap.md) is written for D1 = 28 Sep; the playbook itself says a 28 Sep launch is unrealistic and shifts D1 to **Mon 5 Oct** ([../social-media-playbook.md](../social-media-playbook.md) section 2). This plan follows the shifted calendar: week 1 is the set-up and shoot sprint.
 
 ## 1. Phases

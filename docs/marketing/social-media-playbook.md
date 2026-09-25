@@ -1,5 +1,7 @@
 # Social media playbook - The Wood Vintage (Instagram + Facebook, India first)
 
+> **US EDITION NOTE (2026-09-25).** This playbook is India-oriented. For the US (diaspora and mainstream audiences, Pinterest, Amazon/Etsy content, FTC disclosure, US calendar) use [social/11-us-diaspora-and-mainstream-playbook.md](social/11-us-diaspora-and-mainstream-playbook.md); the India files under [social/](social/) remain the method reference.
+
 Date: 2026-09-25. Status: research and plan (development on hold; no code changed). Owner: marketing workstream.
 Part of the Phase-2 deliverables in [marketing-workstream-plan.md](marketing-workstream-plan.md). Companion plan (written by another team): `first-100-orders-plan.md` (offers, budget, channel mix, 100-order arithmetic) - this playbook covers the social channels only and defers to it for budget and offer decisions.
 Evidence tags used everywhere: **VERIFIED** (read on the page/tool on 2026-09-25), **ESTIMATE** (secondary source, methodology unknown), **ASSUMPTION** (our reasoning; owner input needed), **HEURISTIC** (best-practice rule of thumb - not a platform rule).

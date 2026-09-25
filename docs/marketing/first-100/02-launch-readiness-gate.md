@@ -1,5 +1,7 @@
 # 2. Launch readiness gate - what must be true before the first rupee of ads
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. Sources: [../../ux/customer-psychology-gap-tracker.md](../../ux/customer-psychology-gap-tracker.md) (IDs like AWR-01), [../../engineering/challenges-and-bugs-log.md](../../engineering/challenges-and-bugs-log.md) (OPN-xx, OPS-xx), [../../seo/technical-seo-checklist.md](../../seo/technical-seo-checklist.md) (W-xx), [../social/06-paid-social.md](../social/06-paid-social.md) 6.1.
 
 **Development is on hold.** So the gate is split into two levels so that money is not blocked by code:

@@ -1,5 +1,7 @@
 # 7. Channel mix, budget scenarios, funnel math and stop/scale rules
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. Every conversion rate, CPM and organic-order count here is an **ASSUMPTION** (inputs D1-D12 in [01-owner-input-sheet.md](01-owner-input-sheet.md)); ranges are labelled low / base / high; CPC/CPL ranges are **ESTIMATE** taken from vendor blogs quoted in [../social/06-paid-social.md](../social/06-paid-social.md) and [../unit-economics-model.md](../unit-economics-model.md) (India Meta CPM about INR 120-230; Reels INR 45-140; CPC INR 6-55). No furniture-specific Indian benchmark was found by any team. The model was computed with a script whose arithmetic is reproduced in the tables; change the inputs, redo the columns.
 
 ## 1. Budget scenarios (per 4-week block, steady state) and recommendation

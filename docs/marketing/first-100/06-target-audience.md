@@ -1,5 +1,7 @@
 # 6. Target audience - segments, personas, targeting specs, and who to go after first
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. **We have no first-party audience data and invent none.** Where the docs already carry an ESTIMATE it is cited; everything else is reasoning (ASSUMPTION), and each segment has a free method to measure its size (section 4) so the owner fills the numbers in the sheet within the first week. Products = SKU codes from [03-starter-catalogue.md](03-starter-catalogue.md); combos = [04-combo-strategy.md](04-combo-strategy.md); channel money = [07-channel-mix-and-budget.md](07-channel-mix-and-budget.md).
 
 ## 1. Recommendation in one table

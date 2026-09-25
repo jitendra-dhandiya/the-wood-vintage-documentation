@@ -7,3 +7,5 @@ SEO strategy docs. Standing rules: `../claude/seo-rules.md`; ownership: `../agen
 - [keyword-map-india.md](keyword-map-india.md) - keyword universe -> target page -> tier -> priority; free volume-pulling method + template
 - [content-calendar.md](content-calendar.md) - pre-launch + 180-day publishing plan
 - [us-uae-seo-plan.md](us-uae-seo-plan.md) - export pilot (USA hybrid) and UAE; preconditions
+- [us-seo-plan.md](us-seo-plan.md) - US edition (2026-09-25): keyword map, marketplace SEO, technical/Merchant Center/schema, content briefs, backlinks, expectations, geo-lock and noindex implications (supersedes the US half of us-uae-seo-plan.md)
+

@@ -1,5 +1,7 @@
 # 8. The customisation offer - "made to your room", productised
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. This file turns the first USP in [../positioning-and-usp.md](../positioning-and-usp.md) ("made for your room, not a catalogue") into a menu, a process and a written promise. **Every price adder, percentage, timeline and policy term below is an ASSUMPTION or OWNER-SET draft for you to approve; nothing here is legal advice** and the policy drafts need a lawyer's read before they go on the site (we assert no consumer-law rule). Adders assume the owner-input defaults ([01](01-owner-input-sheet.md) B1 timber INR 1,500/cft, wastage 40%); recompute if your costs differ.
 
 ## 1. Why productise it

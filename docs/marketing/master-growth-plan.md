@@ -1,5 +1,101 @@
 # Master growth plan - The Wood Vintage (run the business from this page)
 
+> **US-FIRST REVISION (2026-09-25, later the same day).** Owner direction: the business is **B2C, the first 100 orders come from consumers outside India, the USA is the first market, India domestic is out of scope, the UAE is B2B only.** The section immediately below is the current plan. The original India-first text (all of "Superseded: India-first version" further down) is kept for history and for its India method (social, SEO and coupon mechanics), and **must not be used for decisions about the export business**. Detail: [us-first-100-orders-plan.md](us-first-100-orders-plan.md) and its ten files in [us-first-100/](us-first-100/), [social/11-us-diaspora-and-mainstream-playbook.md](social/11-us-diaspora-and-mainstream-playbook.md), [../seo/us-seo-plan.md](../seo/us-seo-plan.md), decision [0041](../decisions/0041-us-first-b2c-export-plan.md).
+
+## US-FIRST REVISION (dated 2026-09-25): run the business from this section
+
+Goal: **the first 100 paid orders from US consumers.** Development is on hold; documentation only. Every cost and conversion figure is an **ASSUMPTION** until the owner fills [us-first-100/01-owner-input-sheet.md](us-first-100/01-owner-input-sheet.md) (USD; INR 88 per USD). Evidence tags: VERIFIED / ESTIMATE / ASSUMPTION / OWNER-SET.
+
+### US-1. The eight questions, answered for the USA
+
+| # | Question | Decision | Reason (one line) | Detail |
+|---|---|---|---|---|
+| 1 | **Which country is good for me right now?** | **The USA** (owner-confirmed first market), B2C, hybrid: hero SKUs by LCL sea freight to a US 3PL, ground delivery in 3-7 days; custom pieces made to order in 10-12 weeks. **UAE = B2B research only; India = out of scope; Canada/UK/AU = later.** | Highest demand (about 5.2M Indian Americans, median household income USD 151,200, and mainstream artisan-décor buyers); DHL Express door-to-door fails for every SKU (shipping 59-407% of the price) but sea + 3PL brings 7 of 12 SKUs above 25% contribution; Section 301 +10% and CITES are manageable with mango wood and a broker | [../countries/market-selection.md](../countries/market-selection.md) (Revision 2026-09-25), [../countries/us.md](../countries/us.md), [export-b2c-logistics-and-landed-cost.md](export-b2c-logistics-and-landed-cost.md) |
+| 2 | Best-selling products there | **11 launch SKUs (about 11.2 CBM, 118 units):** carved mandir 2.5 ft USD 599, compact mandir 2 ft USD 449, carved mirror USD 279, jaali panel USD 219, coffee table USD 459, side table USD 309, console USD 559, bench USD 369, bookshelf USD 739, pooja stool USD 189, kitchen gift set USD 109; **six combos** (USD 299-1,099). Leave out trunks, planters, beds, dining, cabinets, upholstered seating, lamps, toys | Score + landed-cost model: high value-to-weight, culturally resonant, customisable; the rest are not viable or need testing/permits | [us-first-100/03](us-first-100/03-starter-catalogue.md), [04](us-first-100/04-combos.md), [best-selling-products-by-market.md](best-selling-products-by-market.md) section 9 |
+| 3 | Competitors and the USP given "about 30% lower cost" | **The 30% claim does not survive at US retail** (delivered landed cost is 3.4-5.6 x ex-factory). Position at **parity to about 8% below boutique comps** (Timbergirl, Vintage Realm, World Market; not Wayfair USD 217-337), on five provable USPs: named Jodhpur workshop on video, honest wood naming, custom to your room, duties included with honest dates, repair-or-replace. Highest threat: Mandir For Home (same model) and US-stocked mandir sellers (Urli Utsav, The Mandir Store) whose units are mostly laminate | Never say "30% cheaper"; solid carved wood at USD 450-900 is the gap between USD 399-570 units and USD 1,700+ US-made custom | [../competitor-research/us-b2c-price-benchmark.md](../competitor-research/us-b2c-price-benchmark.md), [us-b2c-competitor-analysis.md](../competitor-research/us-b2c-competitor-analysis.md), [positioning-and-usp.md](positioning-and-usp.md) section 12 |
+| 4 | How to present the brand / social media | "Handcrafted mandirs and solid-wood furniture from a named Jodhpur workshop, sized for your home, delivered with duties paid." Two audiences, one workshop. Instagram, Pinterest, Facebook groups, YouTube and WhatsApp drive to **Amazon and Etsy storefronts**; thewoodvintage.com is the brand hub and quote form | The account's goal is qualified conversations and marketplace clicks; workshop, packing and dated delivery are the proof | [social/11](social/11-us-diaspora-and-mainstream-playbook.md) |
+| 5 | Social expansion: monthly reels and daily posts | US cadence: 4 Instagram posts/reels and about 10 stories a week, 10-15 Pinterest pins a week, 3 value posts a week in community groups, one YouTube video per fortnight; 15 US reel concepts adapted from the India library; a 30-day launch calendar (2 Nov-1 Dec) and a 90-day roadmap with US hooks (Diwali passes, Thanksgiving, BFCM with no discount, Christmas as gift-ideas content, Sankranti, the 18 Jan landing) | Content is proof, not reach; no sales content before stock exists | [social/11](social/11-us-diaspora-and-mainstream-playbook.md) sections 3, 5, 11 |
+| 6 | Customisable home décor offer | Productised "made to your room": menu with USD adders, brief -> drawing (inches) -> quote in 48 h -> **40% deposit** -> build -> 60% at QC -> ship -> deliver; **10-12 weeks by sea, 5-8 by air with a premium**; final sale except defects; **FTC ship-date rule built in**; 12-month limited warranty, repair-first; stock items 14 days, buyer pays return shipping + 15% restocking | The moat and the way to sell without inventory cash; it must be a menu and a dated process | [us-first-100/08](us-first-100/08-customisation-offer.md) |
+| 7 | Goal 100 orders: combos, coupons, budget, audience | **Combos:** 6 (Pooja corner USD 729, Accent trio 959, Entryway 1,099, Gift pair 299, Compact pooja starter 589, Side-table pair 569). **Coupons:** 8 own-site/quote codes in USD (FIRSTUS 5% cap USD 40, referral USD 40/40, closing, nudge, creator, trade, SPRING27), plus Amazon coupons and Etsy sales; no stacking. **Budget: Base = about USD 25,700 (goods, freight and duty USD 10,500; paid media USD 5,850; creators, content, samples, tools USD 4,900; legal/insurance/trademark USD 4,400); commit USD 20,000; peak cash about -USD 18,800 in Feb 2027.** Lean USD 13,800 (peak -8,900); Growth not recommended (USD 37,250, peak -32,800). **Audience:** primary Indian-American households (mandir/pooja), secondary design-conscious mainstream buyers, then gifting, stagers/designers/Airbnb hosts, wellness studios. **Timeline:** stock lands about 18 Jan 2027; **100th order the week of 29 Mar 2027** (range 1 Mar-Aug 2027); Diwali 2026 and Christmas 2026 not served (air pilot evaluated: no) | Sea-freight arrival, not ad money, is the binding constraint; break-even cost per order USD 173 (AOV USD 488, contribution USD 173), kill line USD 147, scale target USD 86 | [us-first-100/05](us-first-100/05-coupons-and-promotions.md), [06](us-first-100/06-target-audience.md), [07](us-first-100/07-budget-channel-mix-and-timeline.md) |
+| 8 | SEO for that country | **Marketplace SEO first** (Amazon, Etsy, Pinterest, Google Shopping free listings); own-site SEO is a 9-18 month asset that must start correctly: fix indexability (F1/F2), enable `/us` with real prices, staged noindex removal, US schema (USD, shipping, returns, PreOrder), Merchant Center US, guides ("what size mandir", "solid wood vs laminate", "mango vs sheesham"), the custom-furniture page, real backlinks. Geo-lock: verify crawlers by IP/reverse-DNS, soft banner for organic landings, notify-me for the diaspora in Canada/UK/AU; decide what `/in` and `/` do now that India is out of scope. Expect 0-3 organic orders in 90 days after index | New domain, noindex until go-live, product pages fail for crawlers today | [../seo/us-seo-plan.md](../seo/us-seo-plan.md), [technical-seo-checklist.md](../seo/technical-seo-checklist.md) |
+
+### US-2. Scenario summary (through the 100th order, base funnel)
+| | A. Lean | **B. Base (recommended)** | C. Growth |
+|---|---|---|---|
+| First container | 5.4 CBM, 61 units | **11.2 CBM, 118 units** | 14.8 CBM, 154 units |
+| Total spend before per-order shipping | USD 13,800 | **USD 25,700** | USD 37,250 |
+| Steady orders per week (low / base / high) | 2 / 5 / 9 | **3.5 / 12 / 22** | 6 / 20 / 32 |
+| 100th order | Jun 2027 (Jan 2028 / Apr 2027) | **week of 29 Mar 2027 (Aug 2027 / 1 Mar 2027)** | 1 Mar 2027 (May 2027 / 22 Feb 2027) |
+| Peak cash needed | USD 8,900 | **USD 18,800** | USD 32,800 |
+Diwali 2027 (Friday 29 Oct 2027) is the first festival served: container 3 must leave Jodhpur by about 1 Aug 2027.
+
+### US-3. 30 / 60 / 90-day execution plan
+**Days 1-30 (Fri 25 Sep - Sun 25 Oct): decide, order, paperwork**
+1. Owner and workshop fill the P0 rows of the input sheet; forwarder (DHL Global Forwarding plus one other), 3PL and broker quotes; decide cash (USD 20,000) and the wood policy (mango/acacia for container 1). **Gate 0 closes Fri 9 Oct; production order placed.**
+2. Ask Etsy support about ships-from-US listings and DDP carriers; open the Etsy shop application; submit Amazon Global Selling documents; USPTO knockout search and filing; attorney policy pack; product-liability and cargo insurance quotes.
+3. Gate A paperwork in parallel with production: HTS sheet, Lacey sheet, CITES stance in writing, importer of record + bond + ISF, Made in India marks, ISPM-15 pallets, invoice template, coating lead test, drop tests.
+4. Two Jodhpur photo/video days (real workshop, real batch); Instagram/Pinterest/Facebook profiles reset with real contact; 9 posts scheduled; 30 designer/stager messages drafted; Diwali (8 Nov) is not served.
+**Days 31-60 (26 Oct - 24 Nov): ship, go public, open made-to-order**
+5. Production complete about 6 Nov; **container handed to the forwarder about 9 Nov (Gate A)**; account goes public 2 Nov with the 30-day calendar; **Etsy shop live Fri 20 Nov** with dated made-to-order listings; waitlist and early access (no discount).
+**Days 61-90 (25 Nov - 23 Dec): warm up while the container is at sea**
+6. Thanksgiving (26 Nov) and BFCM (27, 30 Nov) with no discounts; **Gate C minimum (fake content off, real USD prices, US shipping rule, real contact, policies, species/origin on pages) closed Fri 27 Nov**; samples to 4 creators/designers; Pinterest 160 pins by mid-January; Amazon listings drafted; last Christmas order date passes (14-16 Dec) with no stock, stated honestly.
+After day 90: vessel arrives about 28 Dec; customs cleared early January; **stock at the 3PL about 18 Jan 2027; sales open**; container 2 booked at order 25 (about 8 Feb); 100th order about the week of 29 Mar.
+
+### US-4. KPI dashboard spec (weekly; one sheet, tab "KPI")
+Headline: **quote requests and marketplace orders by source**, then cost per order; followers are secondary. Targets are base-case ASSUMPTIONS from [us-first-100/07](us-first-100/07-budget-channel-mix-and-timeline.md) and [09](us-first-100/09-roadmap-and-operations.md).
+| KPI | Source | Cadence | Target (base) | Note |
+|---|---|---|---|---|
+| Orders and cumulative, by channel (Amazon, Etsy, quote/own site, community/referral, B2B) | Amazon and Etsy reports, lead sheet, admin orders | Weekly | Cum. 8 (wk 16), 28 (wk 20), 50 (wk 22), 98 (wk 26), 110 (wk 27) | Reconcile weekly; the site cannot see marketplace or WhatsApp orders |
+| Average order value; orders by SKU/combo | Same | Weekly | About USD 488 (check at order 20) | Combo share about 28% |
+| Contribution per order versus floor | Sheet from [03](us-first-100/03-starter-catalogue.md) | Weekly | At or above the floor on 100% of orders; CM1 about USD 173 | Etsy is the tightest channel |
+| **Cost per order**, paid and blended | Spend / orders | Weekly | Kill line USD 147; scale target USD 86; base paid about USD 52 blended | |
+| Meta: spend, CPM, link CTR, click-to-order, cost per lead | Ads Manager + UTM | Weekly | USD 300 a week; CPM 16, CTR 1.2%, conversion 0.8% | Meta cannot see marketplace checkouts |
+| Amazon: sessions, unit-session %, ACoS, reviews, FBA stock | Seller Central | Weekly | ACoS at or below 20%; reviews 5 by wk 20 | |
+| Etsy: views, favourites, orders, offsite-ads share, reply rate | Shop Manager | Weekly | 50 views a day by wk 20 | |
+| Pinterest: pins, views, saves, outbound clicks | Pinterest Analytics | Weekly | 160 pins by wk 16; 20k views a month | |
+| Quote funnel: requests, first-reply time, quote within 48 h, quote-to-deposit rate | Lead sheet; decision 0034 events | Weekly | Quote to order 20%; 95% first replies within SLA | Leads have no lead-to-order link |
+| List size (WhatsApp/email opt-in) and referral orders | Sheet | Weekly | 400 by wk 16; 10% referral | |
+| **Stock cover by hero SKU**, days from order to ship, late orders | 3PL report | Weekly | 6+ weeks; book container 2 at order 25 | |
+| **Damage/claims % of units**, returns % | Claims log, 3PL | Weekly | Under 5-7%; 10% stops the SKU | |
+| Freight and last-mile actuals versus the model | Invoices | Monthly | Within 15% | Re-run [03](us-first-100/03-starter-catalogue.md) |
+| Cash position versus the table | Bank/Payoneer | Weekly | Not below -USD 22,000 before 60 orders | |
+| Search (after go-live): impressions, clicks, indexed pages, Merchant Center clicks | Search Console, Merchant Center | Weekly | Baseline; 0-3 organic orders in 90 days | Site is noindex until go-live |
+| Compliance log: creator disclosures, review requests, delay notices | Sheet | Monthly | 100% disclosed | FTC 16 CFR 465/435 |
+**Tracking gaps (dev or config):** consent banner and pixel decisions, `utm_content` and "How did you hear about us?" on the quote form, a way to record marketplace/WhatsApp orders in admin, lead-to-order link, combo events. The lead sheet is the source of truth until then.
+
+### US-5. Decision log: top 12 open owner decisions
+| # | Decision | Recommended default | Needed by | Where |
+|---|---|---|---|---|
+| 1 | Scenario and cash commitment; **skip the Christmas 2026 air pilot** | Base, USD 20,000 committed; hard stop -USD 22,000 before 60 orders | Fri 2 Oct | [07](us-first-100/07-budget-channel-mix-and-timeline.md) |
+| 2 | Real ex-factory cost, carton size and weight per SKU; workshop capacity for 118 units in 4 weeks | Fill section B of the input sheet | Fri 2 Oct | [01](us-first-100/01-owner-input-sheet.md) |
+| 3 | Wood policy: all mango/acacia in container 1; sheesham only after the CITES answer in writing | Mango/acacia | Fri 9 Oct | [03](us-first-100/03-starter-catalogue.md) section 5 |
+| 4 | Forwarder, 3PL (state), customs broker, importer-of-record set-up, bond, valuation approach | DHL Global Forwarding + one competitor quote; 3PL in a low-cost state | Fri 9 Oct | [01](us-first-100/01-owner-input-sheet.md) C, [02](us-first-100/02-launch-readiness-gate.md) A6 |
+| 5 | Channel plan: Amazon FBA (3 heroes) + Etsy + own site as hub; who owns listings and support; ask Etsy about ships-from-US | As stated | Fri 2 Oct | [../countries/us.md](../countries/us.md) B4 |
+| 6 | Price ladder, floors and parity policy; no "30% cheaper" | Section 1-2 of the catalogue | Fri 9 Oct | [03](us-first-100/03-starter-catalogue.md) |
+| 7 | Policies: 40% deposit, cancellation, final sale for custom, returns, 12-month limited warranty, FTC ship-date wording (lawyer read) | As in the offer file | Fri 16 Oct | [08](us-first-100/08-customisation-offer.md) |
+| 8 | Payment route for USD receipts and the own site (Payoneer/Amazon for marketplaces; PayPal, Stripe invite or Razorpay International for the site) | Marketplaces first; decide the site route by Fri 6 Nov | Fri 16 Oct | [01](us-first-100/01-owner-input-sheet.md) D |
+| 9 | **Your real US network:** contacts, temples, community groups; a US-based helper for photos and returns inspection | List at least 30 real contacts | Fri 9 Oct | [01](us-first-100/01-owner-input-sheet.md) E9, H3 |
+| 10 | Lift the development hold for Gate C: config now; dev items (hide Add to Bag for US, US legal pages, review feature, consent banner, USD checkout after order 50); **what `/in` and `/` do now that India is out of scope** | Config-only now; dev list by 23 Oct | Fri 23 Oct | [02](us-first-100/02-launch-readiness-gate.md) Gate C, [../seo/us-seo-plan.md](../seo/us-seo-plan.md) section 6 |
+| 11 | Trademark and brand: knockout search, USPTO filing (US attorney), Brand Registry route; whether to keep the name "The Wood Vintage" if the search finds conflicts | File by week 6 | Fri 16 Oct | [02](us-first-100/02-launch-readiness-gate.md) B5 |
+| 12 | Sales desk in two IST windows (19:00-23:00 and 07:30-11:30), who appears on camera (carpenters' consent), brand voice | 2 people, 4 hours each, 7 days | Fri 9 Oct | [09](us-first-100/09-roadmap-and-operations.md) |
+
+### US-6. What we are deliberately NOT doing yet
+- **Selling Diwali 2026 or Christmas 2026 stock** (impossible by sea; air pilot not recommended); **Black Friday discounts**.
+- **"30% cheaper" or "cheaper than Wayfair" claims**, fake compare-at prices, fake reviews or testimonials, "sustainable/legally sourced" without documents, "rosewood" alone, "teak" for mango/sheesham, lifetime warranty.
+- **Sheesham** in container 1 (CITES paperwork), storage trunks, planters, beds, dining sets, cabinets, upholstered seating, lamps/electrical mandirs, wooden toys, laminate mandirs.
+- **DHL Express door-to-door** for furniture (only samples, parts, gifts of USD 250+).
+- **Own-site checkout and US sales-tax registration** before about order 50 (marketplaces collect tax); own-site paid ads before Gate C.
+- **Lightning Deals, Prime Day deals, Amazon Vine** before reviews exist; discounts above the channel floors; stacking coupons with combos.
+- **Micro/macro influencers and agencies**; large pieces as free gifts.
+- **Performance Max, catalogue ads, lookalikes** before pixel/feed and 100+ quality seeds; Google Ads before Gate C and 15 leads.
+- **India domestic and UAE selling** (UAE B2B research only); Canada/UK/AU markets.
+- **More than 11 SKUs and 6 combos** before order 30; new code or engineering work beyond the Gate C items the owner approves.
+
+---
+
+## SUPERSEDED: India-first version (kept for history; do not decide the export business from it)
+
+
 Date: 2026-09-25. Goal: **the first 100 paid orders.** Development is on hold; this is documentation only. Every cost/conversion figure is an **ASSUMPTION** until the owner fills [first-100/01-owner-input-sheet.md](first-100/01-owner-input-sheet.md). Detail: [first-100-orders-plan.md](first-100-orders-plan.md) and its ten files.
 
 ## 1. The eight questions, answered

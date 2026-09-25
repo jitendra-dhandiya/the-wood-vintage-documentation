@@ -5,6 +5,14 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-25 (marketing: US-first B2C export plan, social, SEO, master plan revision)
+
+- Documentation only: US edition of the first-100-orders plan, US social playbook, US SEO plan, master plan revision and decision 0041 (supersedes 0040 for export). No code, no DB, no deployment change; nothing pushed.
+  - Files added: `docs/marketing/us-first-100-orders-plan.md`, `docs/marketing/us-first-100/01..10-*.md` (owner input sheet in USD, launch readiness gates 0/A/B/C, starter catalogue for the first LCL container, combos, coupons and promotions, target audience, budget/channel mix/timeline/cash flow, customisation offer and warranty draft, 100-order roadmap and operations, risks and unknowns), `docs/marketing/social/11-us-diaspora-and-mainstream-playbook.md`, `docs/seo/us-seo-plan.md`, `docs/decisions/0041-us-first-b2c-export-plan.md`.
+  - Files updated: `docs/marketing/master-growth-plan.md` (dated US-first revision at the top; India text kept and marked superseded), `docs/marketing/first-100-orders-plan.md` and `first-100/*.md` (superseded banners), `social-media-playbook.md` (note), `docs/seo/us-uae-seo-plan.md` (US half superseded), `docs/decisions/0040-marketing-go-to-market-plan.md` (update note), `docs/claude/known-decisions.md`, `tasks/TASKS.md` (US-first section), marketing/seo READMEs, daily log.
+  - Testing: n/a (documentation). Margins, funnel, timeline and cash flow were computed with a throwaway script from the logistics doc's formulas (reproduced its tables 3 and 4 for the shared SKUs); all cost and conversion inputs are ASSUMPTIONS or ESTIMATES until the owner fills `us-first-100/01-owner-input-sheet.md`. Web research (2026-09-25): Meta/Pinterest benchmarks, creator rates, Amazon promotion and fee rules, Etsy discount tools, 2026-2027 festival and shopping dates.
+  - Deployment notes: none.
+
 ## 2026-09-25 (marketing: B2C export-only revision)
 
 - Documentation only: owner direction (B2C, first 100 orders outside India, USA first, UAE B2B only). No code, no DB, no deployment change.

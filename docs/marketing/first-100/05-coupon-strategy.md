@@ -1,5 +1,7 @@
 # 5. Coupon strategy (built on the coupon engine, decision 0035)
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. Floors and headroom per SKU come from [03-starter-catalogue.md](03-starter-catalogue.md) (ASSUMPTIONS at the defaults in [01-owner-input-sheet.md](01-owner-input-sheet.md)); combos are in [04-combo-strategy.md](04-combo-strategy.md).
 
 ## 1. What the engine does (decision 0035, read 2026-09-25) and what we build on it

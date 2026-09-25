@@ -1,5 +1,7 @@
 # US and UAE SEO plan — export pilot (USA, hybrid) and secondary (UAE)
 
+> **SUPERSEDED FOR THE USA BY [us-seo-plan.md](us-seo-plan.md) (2026-09-25).** The US half of this plan assumed India first and a small-décor Etsy pilot; the USA is now market #1 (B2C). The UAE half (B2B research) still stands.
+
 Date: 2026-09-25. Tags: VERIFIED / ESTIMATE / ASSUMPTION. Development is ON HOLD; this is a plan and a set of preconditions, not a launch instruction.
 Phase-1 conclusion (`countries/market-selection.md`): first 100 orders = India D2C; export pilot = USA via hybrid (Etsy/Amazon for small décor + B2B/quote leads) after orders ~30-50; UAE secondary, pending price/competitor data (not found). See also
 [india-seo-plan.md](india-seo-plan.md), [technical-seo-checklist.md](technical-seo-checklist.md). Profiles: `countries/us.md`, `countries/uae.md`.

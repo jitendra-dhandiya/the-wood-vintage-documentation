@@ -1,5 +1,7 @@
 # 4. Combo strategy (built on the combo engine, decision 0037)
 
+> **SUPERSEDED BY THE US EDITION (2026-09-25).** Owner direction: B2C export, first 100 orders from consumers outside India, USA first, India domestic out of scope. For the export business use [../us-first-100-orders-plan.md](../us-first-100-orders-plan.md) and its files under [../us-first-100/](../us-first-100/). This India D2C document is kept for history and for its India method (decision 0040 is superseded by [0041](../../decisions/0041-us-first-b2c-export-plan.md)).
+
 Part of [../first-100-orders-plan.md](../first-100-orders-plan.md). Date: 2026-09-25. SKU codes S1-S16 are defined in [03-starter-catalogue.md](03-starter-catalogue.md); costs and floors are ASSUMPTIONS at the defaults in [01-owner-input-sheet.md](01-owner-input-sheet.md).
 
 ## 1. What the engine can and cannot do (decision 0037, read on 2026-09-25)
