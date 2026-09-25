@@ -126,3 +126,55 @@ Amazon.in best-seller ranks (503), Etsy/Amazon.com prices and sales (blocked), G
 3. Weights per SKU (needed for freight and the CITES 10 kg check).
 4. Whether you want to be seen as furniture or as heritage décor - it decides the first 10 SKUs.
 5. Diwali 2026 date and your production capacity before it.
+
+## 9. USA B2C export revision (2026-09-25): best sellers and what to launch first
+
+**Owner direction:** B2C, first 100 orders from consumers outside India, USA first (see [../countries/market-selection.md](../countries/market-selection.md) "Revision 2026-09-25" and [../countries/us.md](../countries/us.md)). **This section supersedes section 4 (USA pilot, "under 10 kg per item") because the DHL rate card and landed-cost work show that light-item courier is not the viable route**; the viable model is ocean-consolidated stock in a US warehouse ([export-b2c-logistics-and-landed-cost.md](export-b2c-logistics-and-landed-cost.md)). Section 4's weight limit was driven by CITES (10 kg per item for sheesham) and courier cost; the CITES point still stands, the courier point is replaced. Price evidence: [../competitor-research/us-b2c-price-benchmark.md](../competitor-research/us-b2c-price-benchmark.md). Tags: VERIFIED / ESTIMATE / ASSUMPTION.
+
+### 9.1 Evidence about what sells in the US (limits stated)
+- **No marketplace publishes units sold; Etsy, Amazon and Wayfair pages were blocked.** Proxies used: (1) **supply depth** at US sellers of Indian wood: Timbergirl lists 38 coffee tables, 48 end/side tables, 22 benches, 36 dining tables, 28 sideboards, 12 consoles; Vintage Realm 55 consoles, 38 benches, 36 dining tables, 22 coffee tables; World Interiors 33 dining tables, 33 side tables, 21 coffee tables (VERIFIED feeds, 2026-09-25); (2) the **mandir category**: at least five US-stocked or India-fulfilled specialist sellers with free ground shipping (Urli Utsav, The Mandir Store, Mandir For Home, Pooja Mandirs USA, Ananta) plus Amazon and Etsy listings, and a Pew-sourced signal that nearly eight in ten Asian-American Hindu households keep a home shrine (ESTIMATE); (3) Etsy "sheesham_furniture", "wooden_mandir", "jharokha_mirror" market pages exist (URLs found by search; prices blocked); (4) Wayfair sheesham keyword pages for coffee tables and console tables exist (search result, ESTIMATE); (5) Pinterest 2026 predictions cite warm wood and carved wood (ESTIMATE).
+- **Home décor demand context:** US home décor about USD 215B (2025, ESTIMATE, Mordor), online furniture share 20-25% (ESTIMATE); we cannot see the category split.
+
+### 9.2 Ranked list: 13 US B2C candidates (score /100)
+Weights: US demand evidence 25, contribution margin at the US price (logistics doc table 3) 25, shippability and last-mile 20, cultural resonance and customisation fit 20, competitive headroom 10. Scores are our judgement (ASSUMPTION); change the weights and re-rank.
+
+| Rank | SKU | Score | US price (list, DDP) | Margin after CAC (model) | Why | Watch-outs |
+|---|---|---|---|---|---|---|
+| 1 | **Carved solid-wood mandir 2.5 ft** (and 3-4 ft custom) | 85 | USD 599 | 26-32% | Diaspora anchor; gap between USD 410-570 mango units and USD 1,700+ US-made custom; customisation fits (size/finish/carving); giftable at housewarming/Diwali | Weight 32 kg; last mile USD 138; use mango/teak to avoid CITES; competes with laminate units at USD 399-1,799 on price, not on material |
+| 2 | **Carved / jharokha wall mirror 60x90** | 81 | USD 279 | 32-37% | High value-to-weight; photogenic; Etsy jharokha listings prove demand (ESTIMATE); comp USD 152-1,172 wide | Fragile: corner-protected carton; glass; HTS 7009.92 |
+| 3 | **Pooja stool / bajot / chowki add-ons** | 79 | USD 129-159 (bundle) | thin alone | Urli Utsav sells bajot USD 126-160; raises basket size with mandir; light | Sell as a bundle to absorb USD 26-44 last mile (not modelled as standalone) |
+| 4 | **Coffee table 90x50 (storage/carved)** | 77 | USD 459 | 29-35% | Largest supply depth in US feeds; anchor for a living-room bundle | Wayfair commodity USD 217-337 is not our comp; legs off to cut billable weight |
+| 5 | **Side / end tables (single or pair)** | 77 | USD 309 (single) | 31-35% | Deep supply; pair with coffee table | Timbergirl median USD 233: price against World Market USD 430 and design-led USD 685 with carved/custom |
+| 6 | **Console / entryway table 120 cm** | 74 | USD 559 | 33-37% | Vintage Realm carries 55; statement piece; instagrammable | Oversize length 118 cm; KD |
+| 7 | **Bench 120 cm** | 70 | USD 369 | 28-33% | Entryway/dining bench; steady seller across all three US feeds | Thin if priced down: hold USD 369+ |
+| 8 | **Bookshelf 5-tier 185 cm** | 70 | USD 739 | 40% | Highest margin; comps USD 800-1,609 | Longest carton; outside DHL Express piece limit; classify vs cabinets (Section 232) |
+| 9 | **Large jaali / carved wall panel** | 70 | USD 219+ | 27% at USD 219 | Light (9 kg), Instagram/Pinterest friendly | No US comp found; premium carved only |
+| 10 | **Personalised kitchen wood gift set** (tray + board + spoon, engraved) | 69 | USD 109+ | 26% | Giftable; Etsy personalised boards USD 45-180 (ESTIMATE) | Commodity trays USD 25-35 elsewhere; only as personalised set or add-on; CPSC/FDA food-contact wood finish claims (verify) |
+| 11 | **Carved stool** | 64 | USD 189 | 25% | Pairs with mandir | Marginal alone |
+| 12 | **Storage trunk 90x45** | 42 | USD 649 | 26% only at 10% above market | Heavy, 104 lb billable weight | **Avoid at launch** |
+| 13 | **Plant stand / planter** | 39 | USD 179 vs comp 45 | negative at market price | Commodity | **Avoid** |
+
+### 9.3 What to launch first (Wave 1, first LCL about 11 CBM, 136 units; table 7 of the logistics doc)
+12 mandirs, 20 jaali panels, 20 mirrors, 16 coffee tables, 20 side tables, 8 consoles, 10 benches, 10 stools/bajots, 20 kitchen gift sets. **Bundles to test (both sit above USD 500 and spread last mile):** (1) **Pooja corner:** mandir + stool/bajot; (2) **Living-room set:** coffee table + 2 side tables at a bundle price about 8% under the sum; (3) **Entryway:** console + bench + mirror. **Wave 2** (after 30-50 orders): bookshelf, larger custom mandirs (3-4 ft, made to order with a 10-12 week promise), jaali panels in larger sizes. **Made to order from day 1** (no stock): custom sizes of mandir, coffee table and console.
+
+**Bias applied (per owner brief):** high value-to-weight (mirror, jaali, mandir), fragile-safe (solid wood, corner-protected cartons; glass items last), giftable (mandir, kitchen set, bajot), culturally resonant (mandir, jharokha/jaali, chowki/bajot), customisation-friendly (mandir, coffee table, console).
+
+### 9.4 Seasonality and timing (US diaspora and mainstream), ASSUMPTION unless sourced
+- **Diwali 2026: Sunday 8 Nov (festival 6-10 Nov)** (hindutone.com, ESTIMATE): missed by sea freight; only DHL Express small items could reach. **Diwali 2027:** verify the date (about 29 Oct 2027). Other diaspora windows: Makar Sankranti/Pongal (about 14 Jan 2027), Ugadi/Gudi Padwa (Mar-Apr 2027), Navratri/Durga Puja (Oct 2027), wedding and housewarming season, Christmas and Mother's Day gifting for mainstream buyers.
+- **Mainstream:** spring refresh (Mar-May) and holiday gifting (Nov-Dec) for mirrors, trays and boards.
+
+### 9.5 What to avoid at launch, and why
+| Avoid | Reason (US B2C) |
+|---|---|
+| Beds, wardrobes, dining tables (over 70 kg) | Over 110 lb and oversize surcharges (FedEx USD 255-330), freight LTL, sheesham CITES permit (over 10 kg), return cost |
+| Upholstered wooden seating and cabinets/vanities | Section 232 25% (30% / 50% on 1 Jan 2027) (ghy.com, ihfra.org 2026-07-27) |
+| Sideboards and cabinets, unless the broker classes them outside the cabinet lines | Heavy and Section 232 risk |
+| Storage trunks, plant stands, large jhula/swings | Weight/volume out of proportion to price (model) |
+| Glass table tops, large mirrors over 30 in | Breakage claims |
+| Wood toys | CPSIA/ASTM F963 testing and tracking labels (not researched) |
+| Sub-USD 50 trays and utensils | DDP admin USD 70 per parcel or USD 26 last mile exceeds margin; commodity (World Market USD 25-35) |
+| Engineered/laminate mandirs | Competing on price with USD 399 units; contradicts the solid-wood story |
+| Anything sold as "sheesham" that is veneer or not Dalbergia sissoo | Wood authenticity claims (FTC/Lacey exposure) |
+
+### 9.6 Owner must confirm
+Which SKUs the workshop can make in knock-down form; wood per SKU (CITES); real costs and carton sizes; capacity for 136 units in 4 weeks; whether to keep the pooja bundle; any existing US contacts (temples, WhatsApp groups) for the first 30 orders.

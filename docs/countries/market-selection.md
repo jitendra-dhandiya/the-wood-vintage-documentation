@@ -186,3 +186,64 @@ Cosmetic items already known (0031): announcement bar and shop price slider are 
 - Freight: https://suaidglobal.com/shipping/india-to-usa/lcl/ ; https://www.freightamigo.com/en/blog/logistics/importing-indian-furniture-to-the-usa-a-comprehens/ ; https://cargocharges.com/courier-charges/india-to-usa.html ; https://indiashippingnews.com/export/jodhpurs-export-logistics-gains-speed-with-furniture-express/
 - Razorpay international: https://razorpay.com/accept-international-payments/
 - Market sizes (ESTIMATE): imarcgroup.com (India, UK, GCC, Australia), mordorintelligence.com, researchandmarkets.com (Canada), furnilytics.com (Europe)
+
+---
+
+## Revision 2026-09-25: B2C export-only
+
+**Owner direction (2026-09-25):** the business is B2C; the first 100 orders must come from consumers **outside India**; India domestic is out of scope; the UAE is treated as **B2B only** (importers, designers, hospitality). A later instruction fixed the **USA as the first market ("keep focus on USA first")**. The sections above are kept unchanged for history; **where they conflict with this revision, this revision wins** (in particular the earlier "India first" conclusion and the scores that ranked India and UAE first). The owner already holds the IEC and export documents, so compliance weight is lowered and B2C economics (demand, landed cost, delivery time, returns/damage, payment/tax, competition/price headroom, marketing reach) decide the ranking.
+
+### R1. Result: USA #1 (confirmed by owner); others deferred
+
+| Rank | Market | Role | One-line reason |
+|---|---|---|---|
+| **1** | **USA** | **First 100 B2C orders** | Largest diaspora and income (about 5.2M Indian Americans, median household income about USD 151k), largest online furniture/home e-commerce, deepest marketplaces (Etsy 86.6M active buyers, Amazon, Wayfair), price umbrella of USD 400-800 for solid-wood pieces that leaves 25-35% contribution under the DHL/sea-freight hybrid model; 10% Section 301 tariff is the main cost drag |
+| 2 | **UK** (deferred pilot, decide after the first 30-50 US orders; no earlier than Q1 2027) | Second pilot | 1.9M Indian-origin residents; UK-India CETA in force 15 Jul 2026; UK VAT and timber due diligence (UKTR) add work; furniture line duty not verified; not researched in depth |
+| 3 | Canada | Later | 1.86M diaspora; cheapest to serve from a US 3PL only if cross-border customs is solved; 25% provisional safeguard on wood cabinets/vanities from 31 Jul 2026 |
+| 4 | Australia | Later | ECTA 0% duty on furniture, GST 10%, but mandatory biosecurity treatment/inspection and the longest last-mile; Indian-born 916k (Jun 2024) |
+| 5 | Germany/Netherlands/France | Skip for now | EUDR from 30 Dec 2026, languages/GDPR, EUR 3 per-item parcel duty from 1 Jul 2026, EU-India FTA not yet in force; smallest diaspora pull |
+| - | New Zealand, Singapore | Not researched (low confidence) | small addressable market; not scored on evidence |
+| - | UAE | **B2B only** | importers already stock Rajasthan-origin wood (see [uae.md](uae.md) and [../competitor-research/us-uae-competitor-analysis.md](../competitor-research/us-uae-competitor-analysis.md) section 3) |
+| - | India | Out of scope | owner decision |
+
+### R2. Re-weighted B2C scoring matrix (weights sum to 100; scores 1 = bad, 5 = good; total = sum(weight x score) / 5)
+
+| Criterion | Weight | What it measures |
+|---|---|---|
+| Consumer demand and online home/furniture market size | 20 | Can the market absorb 100 orders with a small budget? |
+| Diaspora and India-origin pull (cultural resonance, income) | 15 | Ready buyers for mandirs, jaali, carved pieces |
+| Duty, tariff and de minimis burden (FAST) | 15 | Direct erosion of price advantage |
+| Delivered-cost logistics (ocean to 3PL, last mile, delivery time, damage/returns) | 15 | Decides viability of B2C furniture |
+| Competition and price headroom | 10 | Can we price with 25%+ contribution? |
+| Payment, tax and legal readiness with paperwork assumed present | 10 | Marketplace tax collection, DDP, card acceptance |
+| Marketing reach (marketplaces, Meta/Pinterest, cost) | 10 | Efficient path to the first 100 buyers |
+| Ops fit (timezone, language, support) | 5 | Small team in IST |
+
+| Market | Demand 20 | Diaspora 15 | Duty 15 | Logistics 15 | Compet. 10 | Pay/tax 10 | Marketing 10 | Ops 5 | **Total /100** |
+|---|---|---|---|---|---|---|---|---|---|
+| **USA** | 5 | 5 | 3 | 3 | 3 | 3 | 5 | 2 | **77** |
+| UK | 3 | 4 | 4 | 3 | 3 | 3 | 4 | 4 | **69** |
+| Canada | 3 | 4 | 3 | 3 | 3 | 3 | 3 | 3 | **63** |
+| Australia | 3 | 3 | 5 | 2 | 3 | 3 | 3 | 3 | **63** |
+| Singapore (ASSUMPTION, unresearched) | 2 | 3 | 5 | 3 | 3 | 3 | 2 | 4 | 61 |
+| EU (DE/NL/FR) | 4 | 2 | 2 | 3 | 3 | 2 | 3 | 3 | **56** |
+| New Zealand (ASSUMPTION, unresearched) | 1 | 2 | 4 | 2 | 3 | 3 | 2 | 3 | 47 |
+
+Scores are judgements from the evidence below, not measurements. **Robustness:** the US stays #1 unless the duty and logistics weights are pushed to 45+ combined (then Australia and Singapore rise). The UK-Canada-Australia order (69/63/63) is not robust (differences of 0-6 points).
+
+### R3. Evidence summary (dates 2026-09-25 unless stated)
+- **Diaspora (VERIFIED where a source is named):** US about 5.2M Indian Americans identifying alone or in combination (2023 ACS via Pew/NRI Pulse, https://www.pewresearch.org/2024/08/06/indian-americans-a-survey-data-snapshot/); median household income USD 151,200 for Indian-headed households (2023, Pew analysis of ACS 2021-23, second-largest Asian group, 21% of Asian Americans); UK about 1.9M and Canada about 1.86M (Wikipedia diaspora tables, ESTIMATE); Australia Indian-born 916,330 (ABS Jun 2024) and 976,000 by ancestry (2021) (Wikipedia, ESTIMATE). Nearly eight in ten Asian-American Hindu households keep a home shrine and 95% celebrate Diwali (Pew 2012 via search summary, ESTIMATE).
+- **US market size (ESTIMATE, sources disagree):** furniture USD 180-196B with 20-25% online share (IMARC/Grand View, [us.md](us.md)); another source says online furniture revenue above USD 120B in 2025 (Statista via search summary); US home décor about USD 215B (Mordor); Etsy 86.6M active buyers and Wayfair 21.2M active customers (Q3 2025). Treat all as orders of magnitude.
+- **Tariffs, FAST:** US 10% Section 301 on India from 24 Jul 2026 plus MFN 0% on non-upholstered wooden furniture; MFN 3.2% on wooden ornaments (HTS 4420); IEEPA tariffs struck down 20 Feb 2026; **de minimis suspended for all modes from 24 Jun 2026 (Federal Register 2026-12670)**; upholstered wooden seating 25% (Section 232) and cabinets/vanities 25% rising to 50% on 1 Jan 2027 (ghy.com, ihfra.org 2026-07-27). UK: CETA in force 15 Jul 2026, furniture line rates still to verify; VAT 20% (import VAT at the border above GBP 135). Australia: ECTA 0% furniture, GST 10%, DAFF biosecurity treatment; Illegal Logging Prohibition Rules from 3 Mar 2025. Canada: MFN 0% on most furniture; provisional 25% safeguard on wood cabinets/vanities from 31 Jul 2026 (KPMG 2026-08). EU: EUDR from 30 Dec 2026 (India low-risk), EUR 3 per item on parcels under EUR 150 from 1 Jul 2026, EU-India FTA not ratified.
+- **US channel rules that matter (FAST):** Etsy requires DDP for non-US sellers shipping to US buyers from 9 Jul 2026 to retain Purchase Protection; all US states with sales tax have marketplace-facilitator laws; economic nexus is USD 100k in 41 states (CA/TX/NY USD 500k) but inventory in a US 3PL creates physical nexus there.
+- **Timber:** sheesham (Dalbergia sissoo) CITES Appendix II: items over 10 kg net timber weight need a permit/Vriksh certificate; mango, acacia and reclaimed non-Dalbergia avoid it (section 4.1 above). US Lacey Act plant declaration applies. The owner's paperwork lowers this weight but does not remove per-shipment CITES and Lacey data.
+
+### R4. What changed versus the earlier ranking and why
+- The earlier answer (India domestic first, US "hybrid" second) is superseded: India is out of scope and UAE is B2B. The earlier US finding ("small décor under 10 kg by courier") is also superseded by the DHL rate-card analysis: **DHL Express door-to-door is not viable for furniture and mid-size décor at any assumed discount; the viable US B2C model is consolidated ocean (LCL, later FCL) to a US 3PL with domestic ground delivery, plus made-to-order batches** ([../marketing/export-b2c-logistics-and-landed-cost.md](../marketing/export-b2c-logistics-and-landed-cost.md)).
+- Landed-cost verdict: the earlier "about 30% cheaper" advantage **does not hold at US retail**; achievable is parity to about 8% below comparable boutique prices with a 25-32% margin.
+
+### R5. What to skip or defer
+Skip EU (EUDR, languages, tiny diaspora), Australia and Canada until the US model is proven; do not attempt UK before the first 30-50 US orders unless the owner wants a parallel Etsy UK test; do not launch B2C in the UAE (owner direction) or India (out of scope).
+
+### R6. Sources added in this revision
+Pew (https://www.pewresearch.org/2024/08/06/indian-americans-a-survey-data-snapshot/); NRI Pulse (https://nripulse.com/indian-american-population-in-the-us-reaches-5-2-million-but-demographics-are-changing/); Federal Register (https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other); IHFRA (https://ihfra.org/2026/07/27/new-tariffs-keep-pressure-on-furniture-imports/); Etsy DDP (https://www.valueaddedresource.net/etsy-requires-ddp-shipping-us-tariffs/); DHL Express Service and Rate Guide 2026 India and US (see the logistics doc); Wikipedia diaspora pages (Indian diaspora, Indian Australians). Detailed US work: [us.md](us.md), [../competitor-research/us-b2c-price-benchmark.md](../competitor-research/us-b2c-price-benchmark.md), [../competitor-research/us-b2c-competitor-analysis.md](../competitor-research/us-b2c-competitor-analysis.md).

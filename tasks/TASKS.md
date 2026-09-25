@@ -435,3 +435,10 @@ Development stays on hold; items marked (dev) need the owner to lift the hold fo
 - [ ] Marketing: paid test T1 (INR 10,000 cap) from 19 Oct; weekly KPI review (master plan section 4); stop/scale rules in `first-100/07`.
 - [ ] Marketing: designer lookbook + 30 outreach messages; 3-4 nano creator barter seedings; Google Business Profile; SEO P0 pages (dev): custom-furniture, how-customisation-works, made-in-jodhpur.
 - [ ] Owner: week-8 checkpoint (22 Nov, at least 12 orders) and order-30 checkpoint (unlock quote-only pieces, US B2B sample discussion).
+
+## B2C export (USA first) - documentation only (2026-09-25), see `docs/marketing/export-b2c-logistics-and-landed-cost.md` and `docs/countries/us.md`
+- [ ] Owner: real ex-factory cost, carton size/weight and wood species per SKU for the 7 viable US SKUs (mandir, mirror, coffee table, side table, console, bench, bookshelf).
+- [ ] Owner: DHL Express account rate card (Zone 8) and DHL Global Forwarding LCL/FCL quote to a US 3PL; two US 3PL quotes; Amazon FBA fee check; customs broker, bond, ISF, importer-of-record decision.
+- [ ] Owner: approve US pricing at parity to 8% under comps, returns/warranty policy, channel plan (Amazon FBA + Etsy + Instagram/WhatsApp; own site as brand hub), payments (Stripe invite / PayPal / Razorpay International).
+- [ ] Marketing: capture Etsy/Amazon/Wayfair prices with a browser session (blocked to the research tool); Meta Ad Library checks for US competitors.
+- [ ] Dev (on hold): USD checkout, payments, sales tax, DDP messaging, US legal pages, per-SKU HTS/species/weight fields.

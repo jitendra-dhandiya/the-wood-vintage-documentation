@@ -124,6 +124,8 @@ How to use: ask the carpenter team for the real cost of the products in this tab
 
 ## 6. USA pilot micro-model (small décor, under 10 kg, express courier)
 
+> **Superseded 2026-09-25** by [export-b2c-logistics-and-landed-cost.md](export-b2c-logistics-and-landed-cost.md) (DHL rate card, sea-freight + US 3PL model, 12 SKUs). Kept for history; its conclusion that single-piece courier fails is confirmed and extended to all furniture.
+
 All ASSUMPTION/ESTIMATE, illustrative. FX INR 88 per USD (ASSUMPTION - owner to update). Retail anchor: World Market India-made mango-wood tray USD 24.99 (medium) - 34.99 (large) (VERIFIED, https://www.worldmarket.com/p/mango-wood-footed-serving-tray-113191.html).
 
 **Case A - Etsy DTC, hand-painted mango-wood tray set of 2, 2.5 kg chargeable, retail USD 39, seller pays shipping (free-shipping expectation USD 35+):**

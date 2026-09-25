@@ -158,3 +158,71 @@ Diwali/Dhanteras (verify 2026 date), Navratri, wedding season Nov-Feb, housewarm
 
 ## 11. Data gaps
 No customer interviews; no search-volume data; brand awareness unknown; trademarks not checked; Meta ads of competitors not reviewed; real cost data missing (needed to confirm option A is profitable).
+
+## 12. B2C export revision (2026-09-25): positioning for US customers
+
+**Owner direction:** B2C, first 100 orders from consumers outside India, USA first; India domestic out of scope; UAE B2B only. Sections 1-11 above were written India-first; **where they conflict with this section, this section wins for the export business.** Evidence: [../competitor-research/us-b2c-price-benchmark.md](../competitor-research/us-b2c-price-benchmark.md), [../competitor-research/us-b2c-competitor-analysis.md](../competitor-research/us-b2c-competitor-analysis.md), [export-b2c-logistics-and-landed-cost.md](export-b2c-logistics-and-landed-cost.md). Tags: VERIFIED / ESTIMATE / ASSUMPTION.
+
+### 12.1 Who we are talking to (segments; ASSUMPTION, validate with the first 30 orders)
+| Segment | Who / where | What they buy | Message |
+|---|---|---|---|
+| **A. Indian-American families** (about 5.2M people, median household income about USD 151k, Pew 2024; Diwali celebrated by 95% of Hindus, ESTIMATE) | Metro areas with large communities (Bay Area, NJ/NY, Dallas, Chicago, Houston, Atlanta, Seattle); WhatsApp/temple/festival communities | Mandir/pooja unit, chowki/bajot, jharokha mirror, gifts for parents | "A solid-wood mandir made by the same kind of carpenters your family would use in India, sized to your wall, delivered with duties paid" |
+| **B. Design-conscious mainstream US home buyers** | Etsy/Pinterest/Instagram shoppers; renters and owners 28-45 wanting warm, carved, heritage-craft pieces | Carved mirror, console, coffee table, bench, jaali wall panel | "Handcrafted solid wood from a named Jodhpur workshop; custom size; priced like the boutique importers, not like flat-pack" |
+| **C. Gifting and celebrations** | Housewarmings, weddings, Diwali gifts, personalised gifts | Pooja bundle, engraved kitchen set, small decor | "A gift with a story and a maker's name, delivered on time with duties included" |
+Segment A first (highest fit, lowest CAC through community channels); B second; C only as bundles/add-ons because small parcels cannot carry courier costs.
+
+### 12.2 Five defensible USPs and the proof each needs
+| # | USP | What we may say | Proof requirement (must exist before we say it) |
+|---|---|---|---|
+| 1 | **Made in a named Jodhpur workshop, shown on video** | "Handcrafted by our own carpenters in Jodhpur, Rajasthan" | Own-workshop video walkthrough (raw timber to finish), named artisans with consent (replace all seed/fictional artisans and testimonials before going public), address/registration, photo of the batch with the order number; no stock-photo workshops |
+| 2 | **Honest wood naming** | "Solid sheesham (Indian rosewood, *Dalbergia sissoo*)", "solid mango wood", "veneer" labelled as veneer; species per SKU on the listing | Species per SKU documented by the timber supplier; for sheesham items over 10 kg net timber a CITES permit or Vriksh certificate; Lacey declaration data; lab or supplier legality documents on request; never call other woods sheesham/teak |
+| 3 | **Custom to your room** | "Choose size, finish and carving; we quote in 24-48 hours" | Working quote flow (decision 0034); size chart in inches (decision 0039); production-lead-time table; customisation limits stated; final-sale terms disclosed before payment |
+| 4 | **Duties included and honest delivery dates** | "Price includes delivery and import duties (no surprise customs bill)"; "in stock: arrives in 3-7 days; made to order: 10-12 weeks" | DDP set up (importer of record, bond, broker) or US-warehouse stock; date computed from real lead time and updated in messages; refund/credit if we miss the promised window by more than 14 days (policy owner decision) |
+| 5 | **Repair or replace promise with video proof** | "If it arrives damaged, send a photo within 48 hours and we repair, replace a part or replace the piece" ; "1-year workmanship warranty" | Written policy on the site; parts stock in the US warehouse; packing video for each order; claims log; DHL Shipment Value Protection and cargo insurance in place |
+Secondary (use only when true): **"Ships from our US warehouse"** for stock items (3-7 days); **"Made for a pooja room"**: proportions checked with the customer (Vastu-neutral wording unless the owner can support it).
+
+### 12.3 Pricing psychology in USD and "why we are not cheaper than Wayfair"
+- **Do not compete with Wayfair commodity sheesham (USD 217-337 for a coffee table).** Our model needs about USD 432 for a 25% margin and loses money below about USD 320 (logistics doc). Being cheaper is neither possible nor good for the brand.
+- **Position at boutique parity, 5-10% under comparable pieces:** coffee table USD 459, side table USD 309, console USD 559, bench USD 369, bookshelf USD 739, carved mirror USD 279, mandir 2.5 ft USD 599 (model outputs; owner's costs replace them). Anchors: Timbergirl and Vintage Realm USD 400-650 for tables and consoles, World Interiors USD 800-1,400 for a coffee table, mandir units USD 275-570 (mango/laminate) up to USD 1,700-3,300 (US-made custom).
+- **Whole-dollar prices** (USD 459, 599) match the craft tier used by Urli Utsav (395, 410, 570), The Mandir Store (399, 699, 1,799) and World Interiors (824, 662); ".99" is the mass-market signal (Timbergirl, World Market) (VERIFIED pattern in the feeds, our reading).
+- **One all-in number:** "Delivered to your door, duties included" (the norm at Urli Utsav, Mandir Store and Mandir For Home; World Interiors charges USD 99-199 extra). Show the delivery date next to the price.
+- **Anchors and bundles:** show the bundle (living-room set, pooja corner) with a saving of about 8% versus the sum of parts; do not show a fake compare-at price (US competitors do; we do not).
+- **The pitch when a customer says "Wayfair is cheaper":** "Wayfair's is a container-shipped, factory-finish table. Ours is made in our Jodhpur workshop from named solid wood in the size you choose, and if it arrives damaged we fix it. If you want the cheapest table, buy theirs; if you want this one, here is what makes it different."
+- **Price-value proof:** wood species and weight, joinery (mortise-tenon, no particle board), finish coats, and a 60-second workshop video per hero SKU.
+
+### 12.4 What NOT to claim (US-specific)
+| Do not say | Why | Say instead |
+|---|---|---|
+| "30% cheaper than the US market" or "cheaper than Wayfair" | False at US landed cost (logistics doc section 8); comparisons against inflated compare-at prices are unprovable | "Priced like boutique importers, made by our own workshop" |
+| "Sheesham", "rosewood" or "teak" for any other wood, or unqualified "rosewood" | Wood-name accuracy; sheesham is CITES-listed; FTC deception risk | "Sheesham (Indian rosewood, *Dalbergia sissoo*)" only for that species; mango wood is mango wood |
+| "Legally sourced / sustainable / eco-friendly / FSC" | Needs documents (Lacey, CITES/Vriksh, supplier proof); FTC Green Guides | Publish the compliance summary only when the documents exist |
+| "Duty-free" or "no customs" | We pay the duties; the customer does not | "Duties included in the price" |
+| "Delivered in 3-5 days" for made-to-order or India-fulfilled goods | Not achievable from India for furniture; competitors' claims are unevidenced | Two dates: stock 3-7 days; made to order 10-12 weeks (5-8 by air at a premium) |
+| "Free returns" or "30-day returns" as a blanket | Our policy: damage free fix; custom final sale; stock returns at buyer's cost with restocking fee | State exactly as in the logistics doc, section 9 |
+| Fictional testimonials, fake artisans, seed reviews | FTC rule against fake reviews and testimonials (16 CFR Part 465, effective Oct 2024; ASSUMPTION, verify) | Real customer photos and verified reviews only |
+| "Made in USA" or US-stock claims when goods are made in India | Deceptive origin claims | "Handcrafted in Jodhpur, India; ships from our US warehouse" |
+| "Antique/vintage/heritage" for new pieces; "hand-carved" for machine-carved | Accuracy of craft claims | "Vintage-style", "hand-carved" only if each piece is |
+| Lifetime warranty | Unbounded exposure | 1-year workmanship warranty |
+| Health or religious efficacy ("brings prosperity") | Consumer-protection risk and cultural sensitivity | Describe design and function only |
+
+### 12.5 Taglines to test (US, ASSUMPTION)
+- "Solid wood, made in Jodhpur, sized for your home." 
+- "Handcrafted mandirs, delivered with duties paid."
+- "Made by hand in Rajasthan. Delivered to your door."
+Trademark and Prop 65 checks required before use.
+
+### 12.6 Objection handling (US)
+| Objection | Answer |
+|---|---|
+| "Will it arrive damaged from India?" | "We pack in double-wall cartons with corner and carved-face protection and record the packing; ships to our US warehouse first, so your parcel travels by ground in the US. If anything is damaged, send photos within 48 hours and we repair or replace." |
+| "Will customs charge me?" | "No. Duties and delivery are included in the price." |
+| "Is it real sheesham?" | "Yes: *Dalbergia sissoo* (Indian rosewood); the species and origin are printed on your order sheet. Where a piece is mango wood we say so." |
+| "How long?" | "In stock: 3-7 days. Made to order: 10-12 weeks; we email a dated timeline." |
+| "Can I return it?" | "Damaged or defective: we fix it. Stock items: 14 days, unused, you pay return shipping and a 15% restocking fee. Custom pieces are final sale except defects." |
+| "Why not cheaper?" | See 12.3. |
+
+### 12.7 Owner decisions
+Approve the price positioning (parity to 8% under, not 30% under); species per SKU; whether to offer a lateness credit; return/restocking policy; permission and consent for artisan names/videos; tagline and trademark search; whether to offer white-glove delivery.
+
+### 12.8 Data gaps
+No US customer research; no keyword volume ("pooja mandir for home", "sheesham coffee table"); competitor social/ads not collected; FTC rules cited from general knowledge (check [../countries/us-legal-requirements.md](../countries/us-legal-requirements.md)).

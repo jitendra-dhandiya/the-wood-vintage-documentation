@@ -9,3 +9,5 @@ Phase 2 research (2026-09-25):
 - [india-market-price-benchmark.md](india-market-price-benchmark.md) - measured India prices by category, MRP vs selling price, target price ladder, row-level observations.
 - [india-competitor-analysis.md](india-competitor-analysis.md) - 12+ Indian competitors: positioning, price, reviews, social, gaps.
 - [us-uae-competitor-analysis.md](us-uae-competitor-analysis.md) - USA and UAE competitor sets and price evidence.
+- [us-b2c-price-benchmark.md](us-b2c-price-benchmark.md) - US retail price bands per category, mandir benchmark, shipping and returns norms (2026-09-25, B2C export).
+- [us-b2c-competitor-analysis.md](us-b2c-competitor-analysis.md) - 14 named US competitors (Timbergirl, World Interiors, Urli Utsav, Mandir Store, Mandir For Home and others), threats and gaps.

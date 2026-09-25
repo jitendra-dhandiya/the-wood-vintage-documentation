@@ -5,6 +5,13 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-25 (marketing: B2C export-only revision)
+
+- Documentation only: owner direction (B2C, first 100 orders outside India, USA first, UAE B2B only). No code, no DB, no deployment change.
+  - Files added: `docs/marketing/export-b2c-logistics-and-landed-cost.md`, `docs/competitor-research/us-b2c-price-benchmark.md`, `docs/competitor-research/us-b2c-competitor-analysis.md`.
+  - Files updated: `docs/countries/market-selection.md` (Revision 2026-09-25), `docs/countries/us.md`, `docs/marketing/best-selling-products-by-market.md` (section 9), `docs/marketing/positioning-and-usp.md` (section 12), `docs/marketing/unit-economics-model.md` (section 6 note), `docs/decisions/0040` (update note), READMEs.
+  - Testing: n/a (documentation). Landed-cost figures computed with a throwaway script; every cost input is an ASSUMPTION or ESTIMATE the owner must replace.
+
 ## 2026-09-25 (marketing: first-100-orders plan and master growth plan)
 
 - Documentation only: go-to-market plan for the first 100 orders (decision 0040). No code, no DB, no deployment change.

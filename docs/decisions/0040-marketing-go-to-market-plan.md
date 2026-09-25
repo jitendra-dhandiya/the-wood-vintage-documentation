@@ -55,3 +55,7 @@ No code changes; no push.
 
 ## Date
 2026-09-25
+
+
+## Update 2026-09-25 (later the same day): owner direction supersedes India-only
+The owner set the business as B2C with the first 100 orders from customers **outside India**, the USA first, India domestic out of scope and the UAE B2B only. The India-first plan above is therefore superseded for the export business; the export analysis is in `docs/marketing/export-b2c-logistics-and-landed-cost.md`, `docs/countries/market-selection.md` (Revision 2026-09-25) and `docs/countries/us.md`. No code changed.
