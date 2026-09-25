@@ -5,6 +5,14 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-09-25 (handicraft size system)
+
+- "Size / Dimensions" + "Finish" replace fashion sizes/colour (decision 0039).
+  - Files changed: frontend `lib/handicraftSize.ts` (new, tested via `npm run test:size`), `lib/variantLabel.ts`, `lib/sizeSort.ts`, admin add/edit product pages, `components/admin/SizeDimensionPicker.tsx`, `VariantBulkDialog.tsx`, product page, quote modal/WhatsApp, cart/drawer/order/combo displays, FilterPanel + shop/search (size filter removed), constants; backend `utils/sizeLabel.ts`, product controller/service (normalise, validate, duplicate 409), `pricing/unitPrice.ts` + cart add (variant sale price), colour names (wood finishes), export headers, seed data, `variants:migrate-sizes` script.
+  - DB changes: none.
+  - Migration requirements: none for the schema; run `npm run seed:handicraft` (or `variants:migrate-sizes -- --apply`) to refresh labels.
+  - Testing: 24 unit tests, tsc clean, frontend build, real HTTP incl. COD order + cancel, headless Chrome screenshots; test data removed.
+
 ## 2026-09-21 (combo offers)
 
 - Admin-managed combo offers end to end (decision 0037).

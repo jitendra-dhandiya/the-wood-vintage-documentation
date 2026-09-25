@@ -407,3 +407,10 @@ not integrated, see the spec).
 - [x] Seed: 3 sample combos + homepage section (idempotent).
 - [ ] Per-line discount allocation / partial returns of a combo line; combo-specific analytics events.
 - [ ] Variant-level stock (stock is product-level everywhere).
+
+## Handicraft size system (2026-09-25) — built, see `docs/decisions/0039-handicraft-size-system.md`
+- [x] Size / Dimensions + Finish vocabulary, category presets, custom dimension builder, bulk sizes x finishes, smart ordering + tests.
+- [x] Storefront/cart/order/combo/quote displays; size filter removed; seed presets; legacy-size migration script.
+- [x] Variant sale price honoured at checkout.
+- [ ] Variant prices in non-default currencies (still base-currency, see 0032).
+- [ ] Size facet in search if the owner wants one (needs structured dimensions or a normalised size table).
