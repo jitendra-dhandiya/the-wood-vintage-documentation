@@ -5,6 +5,14 @@ per MASTER-PROMPT §44. Record date, feature, files/DB/API changed, migration re
 status, deployment notes for every major change. Day-to-day detail belongs in `daily-log/`; this
 file is the higher-level, release-facing summary.
 
+## 2026-10-06 (marketing: Navratri/Diwali 2026 India push)
+
+- Documentation only: time-boxed India-domestic marketing strategy for Navratri (11 Oct 2026) and Diwali (8 Nov 2026), running alongside the existing US-first export plan and the original India first-100 plan (decision 0042; does not replace 0040 or 0041). No code, no DB, no deployment change; nothing pushed.
+  - Files added: `docs/marketing/diwali-2026/navratri-diwali-marketing-strategy.md` (owner input sheet, 6 Oct-8 Nov timeline, 9 combos on the live combo engine, 8 coupons on the live coupon engine with WELCOME10 confirmed retired, target audience incl. a corporate/B2B gifting segment, 3 budget scenarios with festive-season-adjusted funnel math, operational-readiness check, risks), `docs/decisions/0042-navratri-diwali-2026-india-push.md`.
+  - Files updated: `docs/claude/known-decisions.md`, `tasks/TASKS.md` (new Navratri/Diwali 2026 section).
+  - Testing: n/a (documentation). Combo/coupon margins computed with a throwaway script reproducing the exact formula in `unit-economics-model.md` and the combo costing method in `first-100/04-combo-strategy.md`, validated by reproducing that file's published Cook's Gift Set numbers exactly (INR 1,861/43.9% before CAC) before computing new combos. Web research (2026-10-06): festive-season Meta/Instagram CPM uplift, influencer rate-card inflation, Amazon/Flipkart festive ad-slot CPC, and a live re-verification of the Dhanteras 2026 date — all cited with URL and access date, tagged ESTIMATE/VERIFIED.
+  - Deployment notes: none. `docs/marketing/diwali-2026/50-diwali-products.md` was being written concurrently and did not exist at the time of writing; section 3's combos are built entirely from the existing 16-SKU catalogue except one combo (D5) explicitly flagged stretch/uncosted pending that list.
+
 ## 2026-09-25 (marketing: US-first B2C export plan, social, SEO, master plan revision)
 
 - Documentation only: US edition of the first-100-orders plan, US social playbook, US SEO plan, master plan revision and decision 0041 (supersedes 0040 for export). No code, no DB, no deployment change; nothing pushed.

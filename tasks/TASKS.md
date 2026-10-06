@@ -469,3 +469,24 @@ Supersedes the India first-100 tasks above for the export business (India items 
 **Run (18 Jan - Apr 2027)**
 - [ ] Book container 2 at order 25 (about 8 Feb); weekly KPI review (`master-growth-plan.md` US-4); checkpoints week 22 (at least 45 orders) and week 26 (at least 74); re-rank SKUs/segments at order 30 with real data.
 
+## Navratri/Diwali 2026 (2026-10-06) — documentation only, runs alongside the US-first track above, see `docs/decisions/0042-navratri-diwali-2026-india-push.md`
+Docs: [navratri-diwali-marketing-strategy.md](../docs/marketing/diwali-2026/navratri-diwali-marketing-strategy.md). India domestic, INR, time-boxed to 6 Oct - 8 Nov 2026. Development stays on hold; this is config-only (combos/coupons on the existing 0035/0037 engines) plus content/outreach.
+
+**This week (by ~12 Oct, before the Navratri window is wasted)**
+- [ ] Owner: fill the owner-input-sheet P0 rows in the strategy doc section 1 (budget for the push, cash available, current ready-stock build status, confirm Dhanteras/Diwali dates already re-verified).
+- [ ] Owner/marketing: set the real WhatsApp Business number, phone and Instagram in Admin > Settings (still placeholder per `docs/ux/customer-psychology-gap-tracker.md` CON-02/LOW-01) — blocks every paid ad and coupon below.
+- [ ] Owner: deactivate WELCOME10 in Admin > Coupons (confirmed-retired decision, independent of the rest of this plan).
+- [ ] Workshop: confirm in writing how many ready-stock units (mandir 2 ft, jaali, mirrors, kitchen-wood sets) can be built by 28 Oct; recheck real ex-factory costs against the floors in the strategy doc section 3.
+- [ ] Marketing: configure the 9 Diwali combos (D1-D9) and 8 coupons (NAVRATRI26, DHAN26, DIWALI-FLASH, GIFT-/THANKS- referral pair, CORP-\<FIRM\>, NUDGE-DIW, FIRST100 kept) exactly as in the strategy doc sections 3-4.
+- [ ] Marketing: real photos for D1/D2/D4/D8/D9's SKUs before the Navratri (11 Oct) soft launch.
+- [ ] **Marketing/owner: swap every Diwali combo's planning-code items (S1-S16) for real catalogue slugs and real workshop costs** — the strategy doc's combos were drafted on the first-100 plan's placeholder catalogue, not the real seeded products; the header reconciliation note there has a price-gap table (real jharokha mirror ₹11,900 vs the planning ₹5,499, real jaali panel ₹10,400 vs ₹6,999, etc.). **D8 Mandir Corner cannot be configured at all — no mandir product exists in the real catalogue.** Do this before any combo goes live, not after.
+
+**Navratri window (11-19 Oct) — content/early-bird only, no new-production promise**
+- [ ] Daily Navratri content + WhatsApp status/personal outreach; NAVRATRI26 live on ready-stock décor categories only.
+
+**The real push (22 Oct - 8 Nov)**
+- [ ] Marketing: ramp to the Base-scenario budget (~INR 1.3 lakh for the window) only if Gate A has closed; otherwise hold at Lean/organic-only and fall back to the original first-100 roadmap's more conservative order estimate.
+- [ ] Marketing: corporate/B2B direct outreach to offices/societies for D3 Corporate Gifting Crate and D7 Return Gift Pack — the genuine low-cost, high-relevance channel for this window.
+- [ ] Owner: do not publish the 28 Oct (pan-India) / 2 Nov (Rajasthan/NCR) Diwali-delivery cutoff date until the workshop's written confirmation above exists.
+- [ ] Reconcile section 3 of the strategy doc against `docs/marketing/diwali-2026/50-diwali-products.md` once that concurrent deliverable lands.
+
